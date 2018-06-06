@@ -1,0 +1,26 @@
+<div ng-controller="prodCtrl" class="prod_page">
+    <div class="margin-bot">
+        <a  href="/admin"><div class="main_button">Home Page</div></a>
+    </div>
+    <div class="margin-bot">
+        <label>Keyword</label>
+        <input id="prod_search">
+        <button id="search_prod">Search</button>
+    </div>
+    <div class="margin-bot" ><input type="button" value="Add New" onclick="add_new();"></input></div>
+    
+    <div class="margin-bot">
+        <table>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Price</th>
+            </tr>
+            <tr ng-repeat="prod in product">
+                <td><a href="#!/p_id=1&prod_id={{prod.id}}">{{prod.id}}</a></td>
+                <td>{{prod.name}}</td>
+                <td>{{prod.price}}</td>
+            </tr>
+        </table>
+    </div>
+</div>

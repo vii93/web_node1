@@ -1,0 +1,57 @@
+.login-container {
+    position: fixed;
+    top: calc(50% - 200px) !important;
+    left:calc(50% - 250px) !important;
+    display: block;
+    background: lightslategrey;
+    max-width: 500px;
+    margin: 16px auto;
+    padding: 20px 20px;
+    border: 1px solid darkgrey;
+    border-radius: 6px;
+  }
+
+.main_button {
+    color: black;
+    background-color: dodgerblue;
+    width: 100px;
+    height: 40px;
+    border: 1px solid white;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.homePage {
+    margin-left: 10px; 
+}
+
+.first_row {
+    position: relative;
+    float: left;
+    clear: left;
+    width: 100%;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+.prod_page {
+    margin: 10px 10px 10px 10px;
+}
+
+.margin-bot {
+    margin-bottom: 10px; 
+}

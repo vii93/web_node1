@@ -1,0 +1,19 @@
+.checkout-top{
+    width: 800px;
+}
+
+.checkout-order{
+    width: 490px;
+    margin-right: 10px;
+    height: 500px;
+    background: lightgray;
+    float: left;
+}
+
+.checkout-total{
+    width: 290px;
+    margin-left: 10px;
+    background: lightgray;
+    float: left;
+    position: fixed;
+}
