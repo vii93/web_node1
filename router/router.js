@@ -28,7 +28,7 @@ module.exports = function(app) {
     app.post('/admin/add_new', function(req,res) {
         con.getConnection(function(err,conn) {
             if(err) console.log(err);
-            conn.query("insert into product_detail(id) select max(id)+1 from product_detail", function(err,result) {
+            conn.query("insert into product_detail(prod_id) select max(prod_id)+1 from product_detail", function(err,result) {
                 conn.releaseConnection;
                 if(err) console.log(err);
                 res.json(result);
@@ -39,7 +39,7 @@ module.exports = function(app) {
     app.get('/api/new_prod', function(req,res) {
         con.getConnection(function(err,conn) {
             if(err) console.log(err);
-            conn.query("select * from product_detail order by id desc limit 10;", function(err,result) {
+            conn.query("select * from product_detail order by prod_id desc limit 10;", function(err,result) {
                 conn.releaseConnection;
                 if(err) console.log(err);
                 res.json(result);
@@ -50,7 +50,7 @@ module.exports = function(app) {
     app.get('/api/best_sell', function(req,res) {
         con.getConnection(function(err,conn) {
             if(err) console.log(err);
-            conn.query("select * from product_detail order by id limit 10;", function(err,result) {
+            conn.query("select * from product_detail order by prod_id limit 10;", function(err,result) {
                 conn.releaseConnection;
                 if(err) console.log(err);
                 res.json(result);
