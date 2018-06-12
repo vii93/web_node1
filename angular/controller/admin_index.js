@@ -7,6 +7,10 @@ adminApp.config(function($routeProvider) {
     })
     .when('/p_id=1', {
         templateUrl: 'product_controller.html'
+    })
+    .when('/p_id=1/prod_id=:id', {
+        templateUrl: 'product_detail.html',
+        controller: "EditProdCtrl"
     });     
  });
 
@@ -21,4 +25,10 @@ adminApp.controller('prodCtrl', function($scope,$http) {
 
 adminApp.controller('homeCtrl', function($scope) {
 
+});
+
+adminApp.controller('EditProdCtrl', function($scope,$routeParams,$http) {
+    $http.get('/admin/get_prod_detail/:'+$routeParams.id).then(function(res) {
+        $scope.prod = res.data[0];        
+    });
 });

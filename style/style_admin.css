@@ -55,3 +55,7 @@ tr:nth-child(even) {
 .margin-bot {
     margin-bottom: 10px; 
 }
+
+.left {
+    float: left;
+}

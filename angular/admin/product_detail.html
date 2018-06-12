@@ -1,6 +1,36 @@
-<div>
+<div style="width: 500px;">
     <div>
-        <a  href="#!/p_id=1"><div class="main_button">Product</div></a>
-        <a  href="#!/"><div class="main_button">Home</div></a>
+        <button class="main_button left"  onclick="location.href = '#!/p_id=1'">Product</button>
+        <button class="main_button"  onclick="location.href = '#!/'">Home</button>
     </div>
+</div>
+
+<div style="margin-top: 20px;">
+    <div style="width: 400px; margin-right: 10px;margin-left: 10px;" class="left">
+        <div ng-if="prod.active == '1'">
+            <input type="checkbox" name="active" id="active" checked  onchange="update_field(this)" />Active
+        </div>
+        <div ng-if="prod.active != '1'">
+            <input type="checkbox" name="active" id="active"  onchange="update_field(this)" />Active
+        </div>
+        <p style="width: 400px;text-align: center;">ID: {{prod.prod_id}}</p>
+        <input id="prod_id" type="hidden" value="{{prod.prod_id}}"/>
+        <p style="width: 400px;text-align: center;">Name</p>
+        <input style="width: 400px;" onchange="update_field(this)" name="prod_name" value="{{prod.prod_name}}"></input></br>
+        <p style="width: 400px;text-align: center;">Price</p>
+        <input style="width: 400px;" onchange="update_field(this)" name="prod_price" value="{{prod.prod_price}}"></input></br>
+        <p style="width: 400px;text-align: center;">Category</p>
+        <input style="width: 400px;" onchange="update_field(this)" name="prod_category" value="{{prod.prod_category}}"></input></br>
+        <p style="width: 400px;text-align: center;">Type</p>
+        <input style="width: 400px;" onchange="update_field(this)" name="prod_type" value="{{prod.prod_type}}"></input></br>
+        <p style="width: 400px;text-align: center; ">Brand</p>
+        <input style="width: 400px;" onchange="update_field(this)" name="brand" value="{{prod.brand}}"></input></br>
+        <p style="width: 400px;text-align: center; ">Image URL</p>
+        <input style="width: 400px;" onchange="update_field(this)" name="img_url" value="{{prod.img_url}}"></input></br>
+    </div>
+    <div style="width: 500px;float: left;">
+        <div id="editor">
+            <h1>Hello world!</h1>
+        </div>
+    </div>    
 </div>
