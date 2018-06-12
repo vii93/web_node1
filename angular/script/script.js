@@ -34,7 +34,7 @@ function submit_db_change() {
     url: '/admin/update_db/'+val,
     success: function(res_data) {
       if(res_data.status)
-        $("#result").val(JSON.parse(res_data.msg));
+        $("#result").val("Success!");
       else $("#result").val("False!");
     }
   });
