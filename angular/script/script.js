@@ -27,3 +27,15 @@ function update_field(obj) {
   });
 }
 
+function submit_db_change() {
+  var val = $("#db_update").val();
+  $.ajax({
+    type: 'POST',
+    url: '/admin/update_db/'+val,
+    success: function(res_data) {
+      if(res_data.status)
+        $("#result").val(JSON.parse(res_data.msg));
+      else $("#result").val("False!");
+    }
+  });
+}

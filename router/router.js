@@ -42,6 +42,24 @@ module.exports = function(app) {
         });
     });
 
+    app.post('/admin/update_db/:val', function(req,res) {
+        con.getConnection(function(err,conn) {
+            if(err) console.log(err);
+            var sql = req.params.val;
+            console.log(sql)
+            conn.query(sql, function(err,result) {
+                conn.releaseConnection;
+                var result1 = {"status":true,msg: result}
+                if(err){
+                    console.log(err);
+                    result1.status = false;
+                    result1.msg = err.sqlMessage;
+                }
+                res.json(result1);
+            });
+        });
+    });
+
     app.post('/admin/add_new', function(req,res) {
         con.getConnection(function(err,conn) {
             if(err) console.log(err);

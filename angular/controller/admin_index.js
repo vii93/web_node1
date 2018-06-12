@@ -8,6 +8,9 @@ adminApp.config(function($routeProvider) {
     .when('/p_id=1', {
         templateUrl: 'product_controller.html'
     })
+    .when('/p_id=4', {
+        templateUrl: 'console_database.html'
+    })
     .when('/p_id=1/prod_id=:id', {
         templateUrl: 'product_detail.html',
         controller: "EditProdCtrl"
