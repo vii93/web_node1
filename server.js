@@ -37,7 +37,7 @@ app.get("/admin",function(req,res) {
 router(app);
 var con = require("./router/connect_data");
 
-app.listen(8080,function(req,res) {
+app.listen(80,function(req,res) {
     console.log("connect");
 });
 
