@@ -12,7 +12,12 @@ function add_new() {
 
 function update_field(obj) {
   var prod_id = $("#prod_id").val();
-  var val = $(obj).val();
+  var val = String($(obj).val());
+  var temp = val.split("/");
+  for(var i in temp){
+    val = val.replace('/','%2F');
+  }
+  console.log(val)
   if($(obj).attr("name") == "active"){
     val = Number($(obj).is(":checked"))
   }
