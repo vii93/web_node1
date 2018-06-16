@@ -1,0 +1,29 @@
+<div class="shop_content">
+    <div class="right_menu">
+        <div ng-repeat="menu in menu_prod">
+            <button class="main_cat" onclick="open_prod_type(this)" name="{{menu.cat_url}}">
+                <div class="main_cat_title">{{menu.cat_name}}</div>
+                <div class="btn_expand">+</div>
+            </button>
+            <div ng-repeat="type in menu.types">
+                <div class="main_type {{menu.cat_url}}">
+                    <div class="">{{type.type_name}}</div>
+                </div>
+            </div>            
+        </div>
+    </div>
+    <div class="prod_result">
+        <div ng-repeat="prod in product">
+            <a href="#!/product_detail/{{prod.seo_url}}" >
+                <div class="prod_cell" >
+                    <img class="img_prod_cell" ng-src="{{prod.img_url}}" alt="">
+                    <span class="prod_info">{{prod.prod_name}}</span>
+                    <hr class="hr"/>
+                    <span class="prod_info">{{prod.prod_price}}</span>
+                </div>
+            </a>
+            
+        </div>
+    
+    </div>
+</div>

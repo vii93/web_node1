@@ -1,15 +1,15 @@
 $(document).ready(function(){
-  $(".bxslider").slick({
-    infinite: false,
-    slidesToShow: 1,
-    slidesToScroll: 1
-  }); 
+  $(".main_cat").click(function() {
+    $(".main_type").show();
+  });
 
-  $(".slider").slick({
-    infinite: false,
-    slidesToShow: 3,
-    slidesToScroll: 1
-  }); 
+  var href = location.href;
+  if(href.includes("checkout")) {
+    $(".cart_icon").hide();
+  } else {
+    var width = $( document ).width();
+    $(".cart_icon").css("margin-left",width-70+"px")
+  }
 });
 
 function openCity(evt, cityName) {
@@ -24,4 +24,11 @@ function openCity(evt, cityName) {
   }
   document.getElementById(cityName).style.display = "block";
   evt.currentTarget.firstElementChild.className += " w3-border-red";
+}
+
+function open_prod_type(obj) {
+  var name = $(obj).attr("name");
+  if( $("."+name).css("display") == "none") {
+    $("."+name).css("display","block")
+  } else $("."+name).css("display","none")
 }

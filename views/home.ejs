@@ -17,7 +17,9 @@
     <link rel="stylesheet" href="/slick-carousel/slick/slick-theme.css">
     
     <script src="/jquery/dist/jquery.js"></script> 
-     
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular-sanitize.js"></script>
+    
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="/bootstrap.min.css"> 
     <link rel="stylesheet" type="text/css" href="/style1.css"> 
@@ -32,17 +34,19 @@
         <div class="nav">
             <ul class="style-ul" role="navigation">
                 <li><a href="#!/">Home</a></li>
-                <li><a href="#!/news">News</a></li>
+                <li><a href="#!/shop">Shop Now</a></li>
                 <li><a href="#!/product_detail">Contact</a></li>
                 <li><a href="#!/about">About</a></li>
             </ul>                  
-        </div>
-
-
-        <div ng-view></div>
+        </div>        
         <div class="asd"></div>
     </div>
+    <div class="cart_info">
+        <img class="cart_icon" src="cart.png" alt="">
+    </div>
+    <div ng-view></div>
     <div class="footer">
+        <hr/>
         <div class="content content1">
             <p><a href="www.facebook.com">Shop</a></p>
             <p><a href="www.instagram.com">About us</a></p>
@@ -58,5 +62,6 @@
 </body>
 
 <script type="text/javascript" src="/script/webshop_script.js"></script>
-
+<script type="text/javascript" src="/script/slide_image.js"></script>
+<link rel="stylesheet" href="/slide_image.css">
 </html>

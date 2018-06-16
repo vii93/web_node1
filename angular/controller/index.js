@@ -1,10 +1,10 @@
 'use strict';
-var mainApp = angular.module('MyApp',['ngRoute']);
+var mainApp = angular.module('MyApp',['ngRoute','ngSanitize']);
 
 mainApp.config(function($routeProvider) {
 
     $routeProvider.
-    when('/product_detail/:id1/:id2', {
+    when('/product_detail/:url', {
        templateUrl: 'webshop/detail.html',
        controller: "ProdCtrl"
     })
@@ -15,12 +15,23 @@ mainApp.config(function($routeProvider) {
     .when('/checkout', {
         templateUrl: 'webshop/checkout.html',
         controller: 'checkout'
+    })
+    .when('/shop', {
+        templateUrl: 'webshop/shops.html',
+        controller: 'shopCtrl'
     });       
  });
 
 
-mainApp.controller('ProdCtrl', function($scope,$http) {
-   
+mainApp.controller('ProdCtrl', function($scope,$http,$routeParams,$sce) {
+   $http.get("/api/product_detail/:"+$routeParams.url).then(function(res) {
+        $scope.prod = res.data[0];
+        $scope.list_img = res.data[0].img_url.split(",");
+        $scope.first_img = $scope.list_img[0];
+   }); 
+    $scope.trustAsHtml = function(html) {
+      return $sce.trustAsHtml(html);
+    }   
 });
 
 mainApp.controller('checkout', function($scope,$http) {
@@ -52,4 +63,24 @@ mainApp.controller('home', function($scope,$http) {
         $scope.best_sell9 = res.data[8];
         $scope.best_sell10 = res.data[9];
       });
+});
+
+
+mainApp.controller('shopCtrl', function($scope,$http) {
+    $http.get('/api/list_cat_n_type').then(function(res) {
+        var kq1 = res.data.cat[0];
+        var kq2 = res.data.type[0];
+        for(var i in kq1){
+            kq1[i].types = [];
+            for(var j in kq2){
+                if(kq1[i].cat_id == kq2[j].cat_id){
+                    kq1[i].types.push(kq2[j]);
+                }                 
+            }
+        }
+        $scope.menu_prod = kq1;       
+    });
+    $http.get('/api/new_prod').then(function(res) {
+        $scope.product = res.data;
+    });
 });
