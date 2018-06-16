@@ -16,8 +16,8 @@ module.exports = function(app) {
         });
     });
 
-    app.post('/admin/update_prod/:col/:val/:prod_id', function(req,res) {
-        var sql = "update product_detail set "+req.params.col+" = '"+req.params.val+"' where prod_id="+req.params.prod_id
+    app.post('/admin/update_prod/:col/:val/:product_id', function(req,res) {
+        var sql = "update product_detail set "+req.params.col+" = '"+req.params.val+"' where product_id="+req.params.product_id
         con.query(sql, function(err,result) {
             var result = {"status":true,msg: ""}
             if(err){
@@ -43,21 +43,21 @@ module.exports = function(app) {
     });
 
     app.post('/admin/add_new', function(req,res) {
-        con.query("insert into product_detail(prod_id) select max(prod_id)+1 from product_detail", function(err,result) {
+        con.query("insert into product_detail(product_id) select max(product_id)+1 from product_detail", function(err,result) {
             if(err) console.log(err);
             res.json(result);
         });
     });
 
     app.get('/api/new_prod', function(req,res) {
-        con.query("select * from product_detail order by prod_id desc limit 10;", function(err,result) {
+        con.query("select * from product_detail order by product_id desc limit 10;", function(err,result) {
             if(err) console.log(err);
             res.json(result);
         });        
     });
 
     app.get('/api/best_sell', function(req,res) {
-        con.query("select * from product_detail order by prod_id limit 10;", function(err,result) {
+        con.query("select * from product_detail order by product_id limit 10;", function(err,result) {
             if(err) console.log(err);
             res.json(result);
         });
@@ -65,7 +65,7 @@ module.exports = function(app) {
 
     app.get('/admin/get_prod_detail/:id',function(req,res) {
         var params = (req.params.id).replace(":","");
-        con.query("select * from product_detail where prod_id="+params, function(err,result) {
+        con.query("select * from product_detail where product_id="+params, function(err,result) {
             if(err) console.log(err);
             res.json(result);
         });

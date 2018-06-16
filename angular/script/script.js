@@ -11,7 +11,7 @@ function add_new() {
 }
 
 function update_field(obj) {
-  var prod_id = $("#prod_id").val();
+  var product_id = $("#product_id").val();
   var val = String($(obj).val());
   var temp = val.split("/");
   for(var i in temp){
@@ -23,7 +23,7 @@ function update_field(obj) {
   }
   $.ajax({
     type: 'POST',
-    url: '/admin/update_prod/'+$(obj).attr("name")+'/'+val+'/'+prod_id,
+    url: '/admin/update_prod/'+$(obj).attr("name")+'/'+val+'/'+product_id,
     success: function(res_data) {
       if(res_data.status)
         alert("Success!")

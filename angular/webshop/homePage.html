@@ -1,138 +1,21 @@
-
-<div class="main-screen">
-<div class="slideshow-container">
-    <div class="mySlides fade">
-        <img src="/wall1.jpeg" style="width:100%">
-        <div class="text">Caption Text</div>
-    </div>    
-    <div class="mySlides fade">
-        <img src="/wall2.jpeg" style="width:100%">
-        <div class="text">Caption Two</div>
-    </div>    
-    <div class="mySlides fade">
-        <img src="/images.jpg" style="width:100%">
-        <div class="text">Caption Three</div>
-    </div>    
-    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-    <a class="next" onclick="plusSlides(1)">&#10095;</a>
-    
+<div class="w3-content w3-display-container banner_home" >
+    <img class="mySlides" src="/wall1.jpeg" style="width:100%">
+    <img class="mySlides" src="/wall2.jpeg" style="width:100%">
+    <img class="mySlides" src="/images.jpg" style="width:100%">
+    <div class="w3-center w3-container w3-section w3-large w3-text-white w3-display-bottommiddle" style="width:100%">
+        <div class="w3-left w3-hover-text-khaki" onclick="plusDivs(-1)">&#10094;</div>
+        <div class="w3-right w3-hover-text-khaki" onclick="plusDivs(1)">&#10095;</div>
+        <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(1)"></span>
+        <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(2)"></span>
+        <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(3)"></span>
+    </div>
 </div>
-<br>
-    
-<div style="text-align:center">
-    <span class="dot" onclick="currentSlide(1)"></span> 
-    <span class="dot" onclick="currentSlide(2)"></span> 
-    <span class="dot" onclick="currentSlide(3)"></span> 
-</div>
-    
-    
-    <!-- <h4 class="content-title">New Arrival</h4>
-    <div class="slider">
-        <div>
-          <img class="prod-pict" src="{{products1.img_url}}" />
-          <a class="text-center">{{products1.prod_name}}</a>
-          <p>{{products1.prod_name}}</p>
-        </div>
-        <div>
-            <img class="prod-pict" src="{{products2.img_url}}" />
-            <a class="text-center">{{products2.prod_name}}</a>
-            <p>{{products2.prod_name}}</p>
-        </div>
-        <div>
-            <img class="prod-pict" src="{{products3.img_url}}" />
-            <a class="text-center">{{products3.prod_name}}</a>
-            <p>{{products3.prod_name}}</p>
-        </div>
-        <div>
-            <img class="prod-pict" src="{{products4.img_url}}" />
-            <a class="text-center">{{products4.prod_name}}</a>
-            <p>{{products4.prod_name}}</p>
-        </div>
-        <div>
-            <img class="prod-pict" src="{{products5.img_url}}" />
-            <a class="text-center">{{products5.prod_name}}</a>
-            <p>{{products5.prod_name}}</p>
-        </div>
-        <div>
-            <img class="prod-pict" src="{{products6.img_url}}" />
-            <a class="text-center">{{products6.prod_name}}</a>
-            <p>{{products6.prod_name}}</p>
-        </div>
-        <div>
-            <img class="prod-pict" src="{{products7.img_url}}" />
-            <a class="text-center">{{products7.prod_name}}</a>
-            <p>{{products7.prod_name}}</p>
-        </div>
-        <div>
-            <img class="prod-pict" src="{{products8.img_url}}" />
-            <a class="text-center">{{products8.prod_name}}</a>
-            <p>{{products8.prod_name}}</p>
-        </div>
-        <div>
-            <img class="prod-pict" src="{{products9.img_url}}" />
-            <a class="text-center">{{products9.prod_name}}</a>
-            <p>{{products9.prod_name}}</p>
-        </div>
-        <div>
-            <img class="prod-pict" src="{{products10.img_url}}" />
-            <a class="text-center">{{products10.prod_name}}</a>
-            <p>{{products10.prod_name}}</p>
+      
+<div>
+    <h4>Sản Phẩm Mới</h4>
+    <div>
+        <div ng-repeat="prod in product">
+            <img ng-src="prod" alt="">
         </div>
     </div>
-    
-    
-    
-    <h4 class="content-title">Best Sellers</h4>
-    <div class="slider">
-        <div>
-          <img class="prod-pict" src="{{best_sell1.img_url}}" />
-          <a class="text-center">{{best_sell1.prod_name}}</a>
-          <p>{{best_sell1.prod_name}}</p>
-        </div>
-        <div>
-            <img class="prod-pict" src="{{best_sell2.img_url}}" />
-            <a class="text-center">{{best_sell2.prod_name}}</a>
-            <p>{{best_sell2.prod_name}}</p>
-        </div>
-        <div>
-            <img class="prod-pict" src="{{best_sell3.img_url}}" />
-            <a class="text-center">{{best_sell3.prod_name}}</a>
-            <p>{{best_sell3.prod_name}}</p>
-        </div>
-        <div>
-            <img class="prod-pict" src="{{best_sell4.img_url}}" />
-            <a class="text-center">{{best_sell4.prod_name}}</a>
-            <p>{{best_sell4.prod_name}}</p>
-        </div>
-        <div>
-            <img class="prod-pict" src="{{best_sell5.img_url}}" />
-            <a class="text-center">{{best_sell5.prod_name}}</a>
-            <p>{{best_sell5.prod_name}}</p>
-        </div>
-        <div>
-            <img class="prod-pict" src="{{best_sell6.img_url}}" />
-            <a class="text-center">{{best_sell6.prod_name}}</a>
-            <p>{{best_sell6.prod_name}}</p>
-        </div>
-        <div>
-            <img class="prod-pict" src="{{best_sell7.img_url}}" />
-            <a class="text-center">{{best_sell7.prod_name}}</a>
-            <p>{{best_sell7.prod_name}}</p>
-        </div>
-        <div>
-            <img class="prod-pict" src="{{best_sell8.img_url}}" />
-            <a class="text-center">{{best_sell8.prod_name}}</a>
-            <p>{{best_sell8.prod_name}}</p>
-        </div>
-        <div>
-            <img class="prod-pict" src="{{best_sell9.img_url}}" />
-            <a class="text-center">{{best_sell9.prod_name}}</a>
-            <p>{{best_sell9.prod_name}}</p>
-        </div>
-        <div>
-            <img class="prod-pict" src="{{best_sell10.img_url}}" />
-            <a class="text-center">{{best_sell10.prod_name}}</a>
-            <p>{{best_sell0.prod_name}}</p>
-        </div>
-    </div>   
-</div> -->
+</div>

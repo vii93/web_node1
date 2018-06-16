@@ -80,7 +80,12 @@ mainApp.controller('shopCtrl', function($scope,$http) {
         }
         $scope.menu_prod = kq1;       
     });
+    $scope.product = [];
     $http.get('/api/new_prod').then(function(res) {
-        $scope.product = res.data;
+        for(var i in res.data){
+            $scope.product[i] = res.data[i];
+            var img = res.data[i].img_url.split(",");
+            $scope.product[i].img_url = img[0];
+        }
     });
 });
