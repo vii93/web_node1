@@ -21,7 +21,7 @@
     <div ng-view></div>   
     <script>
         $(document).ready(function(){
-            if($("#editor")[0]) {
+            if($("#editor").length) {
                 CKEDITOR
                 .replace( document.querySelector( '#editor' ) )
             }
