@@ -39,30 +39,22 @@ mainApp.controller('checkout', function($scope,$http) {
 });
 
 mainApp.controller('home', function($scope,$http) {
+    $scope.new_prod = [];
     $http.get('/api/new_prod').then(function(res) {
-      $scope.products1 = res.data[0];
-      $scope.products2 = res.data[1];
-      $scope.products3 = res.data[2];
-      $scope.products4 = res.data[3];
-      $scope.products5 = res.data[4];
-      $scope.products6 = res.data[5];
-      $scope.products7 = res.data[6];
-      $scope.products8 = res.data[7];
-      $scope.products9 = res.data[8];
-      $scope.products10 = res.data[9];
+        for(var i in res.data){
+            $scope.new_prod[i] = res.data[i];
+            var img = res.data[i].img_url.split(",");
+            $scope.new_prod[i].img_url = img[0];
+        }
     });
+    $scope.best_sell =[];
     $http.get('/api/best_sell').then(function(res) {
-        $scope.best_sell1 = res.data[0];
-        $scope.best_sell2 = res.data[1];
-        $scope.best_sell3 = res.data[2];
-        $scope.best_sell4 = res.data[3];
-        $scope.best_sell5 = res.data[4];
-        $scope.best_sell6 = res.data[5];
-        $scope.best_sell7 = res.data[6];
-        $scope.best_sell8 = res.data[7];
-        $scope.best_sell9 = res.data[8];
-        $scope.best_sell10 = res.data[9];
-      });
+        for(var i in res.data){
+            $scope.best_sell[i] = res.data[i];
+            var img = res.data[i].img_url.split(",");
+            $scope.best_sell[i].img_url = img[0];
+        }       
+    });
 });
 
 
@@ -81,7 +73,7 @@ mainApp.controller('shopCtrl', function($scope,$http) {
         $scope.menu_prod = kq1;       
     });
     $scope.product = [];
-    $http.get('/api/new_prod').then(function(res) {
+    $http.get('/api/get_fast_search').then(function(res) {
         for(var i in res.data){
             $scope.product[i] = res.data[i];
             var img = res.data[i].img_url.split(",");

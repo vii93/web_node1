@@ -59,3 +59,7 @@ tr:nth-child(even) {
 .left {
     float: left;
 }
+
+.ck-content{
+    height: 600px;
+}

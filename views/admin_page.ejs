@@ -13,18 +13,23 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="/script/script.js"></script>
-    <script src="/ckeditor/ckeditor.js"></script>
-    <script src="/ckeditor/styles.js"></script>
-    <script src="/ckeditor/config.js"></script>
-    <script src="/ckeditor/lang/en.js"></script>
-    <script src="/script/sample.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/10.0.1/classic/ckeditor.js"></script>
     
     <title>Vi's house</title>
 </head>
 <body>    
-    <div ng-view></div>
+    <div ng-view></div>   
     <script>
-        initSample();
+        $(document).ready(function(){
+            ClassicEditor
+            .create( document.querySelector( '#editor' ) )
+            .catch( error => {
+                    console.error( error );
+            } );
+        });
+        $(".ck-content").change(function() {
+            console.log(34)
+        })
     </script>
 </body>
 </html>

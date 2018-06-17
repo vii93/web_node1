@@ -1,13 +1,18 @@
 <div class="shop_content">
     <div class="right_menu">
+        <div>
+            <button class="main_cat" name="all_product" onclick="location.href = '#!/shop'">
+                <div class="main_cat_title">ALL</div>
+            </button>
+        </div>
         <div ng-repeat="menu in menu_prod">
-            <button class="main_cat" onclick="open_prod_type(this)" name="{{menu.cat_url}}">
-                <div class="main_cat_title">{{menu.cat_name}}</div>
+            <button class="main_cat" onclick="open_prod_type(this)" name="{{menu.seo_url}}">
+                <div class="main_cat_title">{{menu.product_cate_name}}</div>
                 <div class="btn_expand">+</div>
             </button>
             <div ng-repeat="type in menu.types">
-                <div class="main_type {{menu.cat_url}}">
-                    <div class="">{{type.type_name}}</div>
+                <div class="main_type {{menu.seo_url}}">
+                    <div class="" onclick="location.href = '#!/shop/product_type={{type.seo_url}}'">{{type.product_type_name}}</div>
                 </div>
             </div>            
         </div>

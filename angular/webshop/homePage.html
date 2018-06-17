@@ -1,7 +1,17 @@
 <div class="w3-content w3-display-container banner_home" >
-    <img class="mySlides" src="/wall1.jpeg" style="width:100%">
-    <img class="mySlides" src="/wall2.jpeg" style="width:100%">
-    <img class="mySlides" src="/images.jpg" style="width:100%">
+    <div class="mySlides">
+        <img style="width: 1000px;  height: 500px;" src="/image/big_banner3.jpg">
+        <div class="centered">MAKEUP</div>
+    </div>
+    <div class="mySlides">
+        <img style="width: 1000px;  height: 500px;" src="/image/big_banner1.jpg">
+        <div class="centered">SKINCARE</div>
+    </div>
+    <div class="mySlides">
+        <img style="width: 1000px;  height: 500px;" src="/image/big_banner6.jpg">
+        <div class="centered">MASK SHEET</div>
+    </div>
+   
     <div class="w3-center w3-container w3-section w3-large w3-text-white w3-display-bottommiddle" style="width:100%">
         <div class="w3-left w3-hover-text-khaki" onclick="plusDivs(-1)">&#10094;</div>
         <div class="w3-right w3-hover-text-khaki" onclick="plusDivs(1)">&#10095;</div>
@@ -10,12 +20,65 @@
         <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(3)"></span>
     </div>
 </div>
-      
-<div>
-    <h4>Sản Phẩm Mới</h4>
-    <div>
-        <div ng-repeat="prod in product">
-            <img ng-src="prod" alt="">
-        </div>
+
+<div class="list_banner">
+    <div class="div_small_banner">
+        <img class="small_banner" src="/banner/all_item_tea.jpg" alt="">
+    </div>
+    <div class="div_small_banner">
+        <img class="small_banner" src="/banner/combo_tea_tree.jpg" alt="">
+    </div>
+    <div class="div_small_banner">
+        <img class="small_banner" src="/banner/green_tea_line.jpg" alt="">
     </div>
 </div>
+
+<div class="new_prod_list">
+    <h4>Sản Phẩm Mới</h4>
+    <div class="list_produt">
+        <div ng-repeat="prod in new_prod">
+            <a href="#!/product_detail/{{prod.seo_url}}" >
+                <div class="prod_cell">
+                    <img class="img_prod_cell" ng-src="{{prod.img_url}}" alt="{{prod.img_alt}}">
+                    <span class="prod_info">{{prod.product_name}}</span>
+                    <hr class="hr"/>
+                    <span class="prod_info">{{prod.product_sale_price}}</span>
+                    <span class="prod_info">{{prod.product_price}}</span>
+                </div> 
+            </a>           
+        </div>
+    </div>
+    <div class="see_more">
+        <button class="btn_see_more" href="">See More >></button>
+    </div>    
+</div>
+<div class="list_banner">   
+    <div class="div_small_banner">
+        <img class="small_banner" src="/banner/mask1.jpg" alt="">
+    </div>
+    <div class="div_small_banner">
+        <img class="small_banner" src="/banner/no_sebum.jpg" alt="">
+    </div>
+    <div class="div_small_banner">
+        <img class="small_banner" src="/banner/vivid_cotton_ink.jpg" alt="">
+    </div>
+</div>
+<div class="new_prod_list">
+        <h4>Best sellings</h4>
+        <div class="list_produt">
+            <div ng-repeat="prod in best_sell">
+                <a href="#!/product_detail/{{prod.seo_url}}" >
+                    <div class="prod_cell">
+                        <img class="img_prod_cell" ng-src="{{prod.img_url}}" alt="{{prod.img_alt}}">
+                        <span class="prod_info">{{prod.product_name}}</span>
+                        <hr class="hr"/>
+                        <span class="prod_info">{{prod.product_sale_price}}</span>
+                        <span class="prod_info">{{prod.product_price}}</span>
+                    </div> 
+                </a>           
+            </div>
+        </div>
+        <div class="see_more">
+            <button class="btn_see_more" href="">See More >></button>
+        </div>    
+    </div>

@@ -85,6 +85,13 @@ module.exports = function(app) {
         });        
     });
 
+    app.get('/api/get_fast_search',function(req,res) {
+        con.query("select * from product_detail limit 50", function(err,result){
+            if(err) console.log(err);
+            res.json(result);
+        });
+    });
+
     app.get('/api/product_detail/:url',function(req,res) {
         var param = req.params.url.replace(":","");
         con.query("select * from product_detail where seo_url='"+param+"'", function(err,result){

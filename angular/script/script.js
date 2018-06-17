@@ -14,22 +14,23 @@ function update_field(obj) {
   var product_id = $("#product_id").val();
   var val = String($(obj).val());
   var temp = val.split("/");
-  for(var i in temp){
-    val = val.replace('/','%2F');
-  }
-  console.log(val)
-  if($(obj).attr("name") == "active"){
-    val = Number($(obj).is(":checked"))
-  }
-  $.ajax({
-    type: 'POST',
-    url: '/admin/update_prod/'+$(obj).attr("name")+'/'+val+'/'+product_id,
-    success: function(res_data) {
-      if(res_data.status)
-        alert("Success!")
-      else alert("False!")
-    }
-  });
+  console.log($(obj).val())
+  // for(var i in temp){
+  //   val = val.replace('/','%2F');
+  // }
+  // console.log(val)
+  // if($(obj).attr("name") == "active"){
+  //   val = Number($(obj).is(":checked"))
+  // }
+  // $.ajax({
+  //   type: 'POST',
+  //   url: '/admin/update_prod/'+$(obj).attr("name")+'/'+val+'/'+product_id,
+  //   success: function(res_data) {
+  //     if(res_data.status)
+  //       alert("Success!")
+  //     else alert("False!")
+  //   }
+  // });
 }
 
 function submit_db_change() {
