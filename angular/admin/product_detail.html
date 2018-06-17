@@ -14,7 +14,7 @@
             <input type="checkbox" name="active" id="active"  onchange="update_field(this,'product_detail')" />Active
         </div>
         <p style="width: 400px;text-align: center;">ID: {{prod.product_id}}</p>
-        <input id="product_id" type="hidden" value="{{prod.product_id}}"/>
+        <input name="field_id" type="hidden" value="{{prod.product_id}}"/>
         <p style="width: 400px;text-align: center;">Name</p>
         <input style="width: 400px;" onchange="update_field(this,'product_detail')" name="product_name" value="{{prod.product_name}}"></input></br>
         <p style="width: 400px;text-align: center;">Price</p>
