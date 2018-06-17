@@ -41,39 +41,36 @@
 		</br>
 		</br>
 		<div>
-			<button >Add to bag</button>
-			<button >Add to favorite list</button>
+			<button class="w3-aqua" onclick="add_to_basket()">Add to bag</button>
 		</div>
 	</span>
 </div>
 
-<div class="w3-container">
-	<h2>Tabs in a Grid</h2>
-
+<div class="w3-container prod_long_desc">
 	<div class="w3-row">
-		<a href="javascript:void(0)" onclick="openCity(event, 'London');">
-			<div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding w3-border-red">London</div>
+		<a href="javascript:void(0)" onclick="openCity(event, 'Description');">
+			<div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding w3-border-aqua">Description</div>
 		</a>
-		<a href="javascript:void(0)" onclick="openCity(event, 'Paris');">
-			<div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding">Paris</div>
+		<a href="javascript:void(0)" onclick="openCity(event, 'Review');">
+			<div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding">Review</div>
 		</a>
-		<a href="javascript:void(0)" onclick="openCity(event, 'Tokyo');">
-			<div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding">Tokyo</div>
+		<a href="javascript:void(0)" onclick="openCity(event, 'Question');">
+			<div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding">Question</div>
 		</a>
 	</div>
 
-	<div id="London" class="w3-container city">
-		<h2>London</h2>
-		<p>London is the capital city of England.</p>
+	<div id="Description" class="w3-container city">
+		<h2>Description</h2>
+		<p ng-bind-html="trustAsHtml(prod.long_desc)"></p>
 	</div>
 
-	<div id="Paris" class="w3-container city" style="display:none">
-		<h2>Paris</h2>
-		<p>Paris is the capital of France.</p> 
+	<div id="Review" class="w3-container city" style="display:none">
+		<h2>Review</h2>
+		<p>Review is the capital of France.</p> 
 	</div>
 
-	<div id="Tokyo" class="w3-container city" style="display:none">
-		<h2>Tokyo</h2>
-		<p>Tokyo is the capital of Japan.</p>
+	<div id="Question" class="w3-container city" style="display:none">
+		<h2>Question</h2>
+		<p>Question is the capital of Japan.</p>
 	</div>
 </div>

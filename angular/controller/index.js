@@ -26,6 +26,7 @@ mainApp.config(function($routeProvider) {
 mainApp.controller('ProdCtrl', function($scope,$http,$routeParams,$sce) {
    $http.get("/api/product_detail/:"+$routeParams.url).then(function(res) {
         $scope.prod = res.data[0];
+        $scope.prod.long_desc = decodeURI(res.data[0].long_desc);
         $scope.list_img = res.data[0].img_url.split(",");
         $scope.first_img = $scope.list_img[0];
    }); 
@@ -65,12 +66,13 @@ mainApp.controller('shopCtrl', function($scope,$http) {
         for(var i in kq1){
             kq1[i].types = [];
             for(var j in kq2){
-                if(kq1[i].cat_id == kq2[j].cat_id){
+                if(kq1[i].product_cate_id == kq2[j].product_cate_id){
                     kq1[i].types.push(kq2[j]);
-                }                 
+                }else kq1[i].types = []
             }
         }
-        $scope.menu_prod = kq1;       
+        $scope.menu_prod = kq1; 
+        console.log($scope.menu_prod)
     });
     $scope.product = [];
     $http.get('/api/get_fast_search').then(function(res) {

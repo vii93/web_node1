@@ -1,0 +1,27 @@
+<div style="width: 500px;">
+    <div>
+        <button class="main_button"  onclick="location.href = '#!/'">Home</button>
+        <button class="main_button left"  onclick="location.href = '#!/p_id=5'">Product Type</button>
+    </div>
+</div>
+
+<div>
+    <div ng-if="prod_type.active == '1'">
+        <input type="checkbox" name="active" id="active" checked  onchange="update_field(this,'product_type')" />Active
+    </div>
+    <div ng-if="prod_type.active != '1'">
+        <input type="checkbox" name="active" id="active"  onchange="update_field(this,'product_type')" />Active
+    </div>
+    <p style="width: 400px;text-align: center;">ID: {{prod_type.product_type_id}}</p>
+    <input style="width: 400px;" name="field_id" type="hidden" value="{{prod_type.product_type_id}}"/>
+    <p style="width: 400px;text-align: center;">Product Type Name</p>
+    <input style="width: 400px;" name="product_type_name" onchange="update_field(this,'product_type')" value="{{prod_type.product_type_name}}"/>
+    <p style="width: 400px;text-align: center;">Product Category Id</p>
+    <input style="width: 400px;" name="product_cate_id" onchange="update_field(this,'product_type')" value="{{prod_type.product_cate_id}}"/>
+    <p style="width: 400px;text-align: center;">SEO URL</p>
+    <input style="width: 400px;" name="seo_url" onchange="update_field(this,'product_type')" value="{{prod_type.seo_url}}"/>
+    <p style="width: 400px;text-align: center;">SEO Description</p>
+    <input style="width: 400px;" name="seo_desc" onchange="update_field(this,'product_type')" value="{{prod_type.seo_desc}}"/>
+    <p style="width: 400px;text-align: center;">Sort</p>
+    <input style="width: 400px;" name="sort" onchange="update_field(this,'product_type')" value="{{prod_type.sort}}"/>
+</div>

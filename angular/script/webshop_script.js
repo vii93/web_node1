@@ -20,13 +20,14 @@ function openCity(evt, cityName) {
   }
   tablinks = document.getElementsByClassName("tablink");
   for (i = 0; i < x.length; i++) {
-     tablinks[i].className = tablinks[i].className.replace(" w3-border-red", "");
+     tablinks[i].className = tablinks[i].className.replace(" w3-border-aqua", "");
   }
   document.getElementById(cityName).style.display = "block";
-  evt.currentTarget.firstElementChild.className += " w3-border-red";
+  evt.currentTarget.firstElementChild.className += " w3-border-aqua";
 }
 
 function open_prod_type(obj) {
+  console.log(obj)
   var name = $(obj).attr("name");
   if( $("."+name).css("display") == "none") {
     $("."+name).css("display","block")

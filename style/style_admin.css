@@ -14,7 +14,8 @@
 .main_button {
     color: black;
     background-color: dodgerblue;
-    width: 100px;
+    max-width: 200px;
+    width: auto;
     height: 40px;
     border: 1px solid white;
     border-radius: 5px;
@@ -62,4 +63,8 @@ tr:nth-child(even) {
 
 .ck-content{
     height: 600px;
+}
+
+.content_area {
+    margin-left: 420px;
 }

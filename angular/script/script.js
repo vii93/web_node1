@@ -1,8 +1,8 @@
 
-function add_new() {
+function add_new(tb,field_id) {
   $.ajax({
     type: 'POST',
-    url: '/admin/add_new',
+    url: '/admin/add_new/'+tb+'/'+field_id,
     data: {},
     success: function(resultData) {
         location.reload()
@@ -10,27 +10,25 @@ function add_new() {
   });
 }
 
-function update_field(obj) {
-  var product_id = $("#product_id").val();
-  var val = String($(obj).val());
-  var temp = val.split("/");
-  console.log($(obj).val())
-  // for(var i in temp){
-  //   val = val.replace('/','%2F');
-  // }
-  // console.log(val)
-  // if($(obj).attr("name") == "active"){
-  //   val = Number($(obj).is(":checked"))
-  // }
-  // $.ajax({
-  //   type: 'POST',
-  //   url: '/admin/update_prod/'+$(obj).attr("name")+'/'+val+'/'+product_id,
-  //   success: function(res_data) {
-  //     if(res_data.status)
-  //       alert("Success!")
-  //     else alert("False!")
-  //   }
-  // });
+
+function update_field(obj,tb) {
+  var id = $("input[name=field_id]").val();
+  var val = String($(obj).val());  
+  if($(obj).attr("name") == "long_desc") {
+    val =CKEDITOR.instances.editor.getData();
+  }
+  if($(obj).attr("name") == "active"){
+    val = Number($(obj).is(":checked"))
+  }
+  $.ajax({
+    type: 'POST',
+    url: '/admin/update_prod/'+$(obj).attr("name")+'/'+encodeURIComponent(val)+'/'+id+'/'+tb,
+    success: function(res_data) {
+      if(res_data.status)
+        alert("Success!")
+      else alert("False!")
+    }
+  });
 }
 
 function submit_db_change() {

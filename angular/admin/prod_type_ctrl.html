@@ -1,0 +1,26 @@
+<div ng-controller="prodCtrl" class="prod_page">
+    <div class="margin-bot">
+        <a  href="/admin"><div class="main_button">Home Page</div></a>
+    </div>
+    <div class="margin-bot">
+        <label>Keyword</label>
+        <input id="main_cate_search">
+        <button id="search_main_cate">Search</button>
+    </div>
+    <div class="margin-bot" ><input type="button" value="Add New" onclick="add_new('product_type','product_type_id');"></input></div>
+    
+    <div class="margin-bot">
+        <table>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>SEO URL</th>
+            </tr>
+            <tr ng-repeat="cate in prod_type">
+                <td><a href="#!/p_id=5/prod_type={{cate.product_type_id}}">{{cate.product_type_id}}</a></td>
+                <td>{{cate.product_type_name}}</td>
+                <td>{{cate.seo_url}}</td>
+            </tr>
+        </table>
+    </div>
+</div>
