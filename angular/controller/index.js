@@ -71,8 +71,7 @@ mainApp.controller('shopCtrl', function($scope,$http) {
                 }else kq1[i].types = []
             }
         }
-        $scope.menu_prod = kq1; 
-        console.log($scope.menu_prod)
+        $scope.menu_prod = kq1;
     });
     $scope.product = [];
     $http.get('/api/get_fast_search').then(function(res) {
