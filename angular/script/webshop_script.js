@@ -27,9 +27,13 @@ function openCity(evt, cityName) {
 }
 
 function open_prod_type(obj) {
-  console.log(obj)
   var name = $(obj).attr("name");
   if( $("."+name).css("display") == "none") {
     $("."+name).css("display","block")
   } else $("."+name).css("display","none")
+}
+
+function goto(url){
+  alert(2)
+  location.href = url;
 }

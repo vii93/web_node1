@@ -102,14 +102,14 @@ module.exports = function(app) {
     });
 
     app.get('/api/new_prod', function(req,res) {
-        con.query("select * from product_detail order by product_id desc limit 10;", function(err,result) {
+        con.query("select * from product_detail where active=1 order by product_id desc limit 10;", function(err,result) {
             if(err) console.log(err);
             res.json(result);
         });        
     });
 
     app.get('/api/best_sell', function(req,res) {
-        con.query("select * from product_detail order by product_id limit 10;", function(err,result) {
+        con.query("select * from product_detail where active=1 order by product_id  limit 10;", function(err,result) {
             if(err) console.log(err);
             res.json(result);
         });
@@ -125,10 +125,10 @@ module.exports = function(app) {
 
     app.get('/api/list_cat_n_type',function(req,res) {
         var kq = {"cat":[],"type":[]};
-        con.query("select product_cate_name,product_cate_id from product_category where active=1", function(err,result) {
+        con.query("select product_cate_name,product_cate_id,seo_url from product_category where active=1", function(err,result) {
             if(err) console.log(err);
             kq.cat.push(result);
-            con.query("select product_type_name,product_type_id from product_type where active=1", function(err,result) {
+            con.query("select product_type_name,product_type_id,tb1.product_cate_id,tb1.seo_url as type_url,tb2.seo_url as cate_url from product_type tb1 left join  product_category tb2 on tb1.product_cate_id=tb2.product_cate_id where tb1.active=1", function(err,result) {
                 if(err) console.log(err);
                 kq.type.push(result);
                 res.json(kq);
@@ -137,7 +137,7 @@ module.exports = function(app) {
     });
 
     app.get('/api/get_fast_search',function(req,res) {
-        con.query("select * from product_detail limit 50", function(err,result){
+        con.query("select * from product_detail where active=1 limit 50", function(err,result){
             if(err) console.log(err);
             res.json(result);
         });

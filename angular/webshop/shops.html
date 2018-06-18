@@ -1,7 +1,7 @@
 <div class="shop_content">
     <div class="right_menu">
         <div>
-            <button class="main_cat" name="all_product" onclick="location.href = '#!/shop'">
+            <button class="main_cat" name="all_product" onclick="location.href = '#!/shop/product_type=33'">
                 <div class="main_cat_title">ALL</div>
             </button>
         </div>
@@ -10,9 +10,9 @@
                 <div class="main_cat_title">{{menu.product_cate_name}}</div>
                 <div class="btn_expand">+</div>
             </button>
-            <div ng-repeat="type in menu.types">
-                <div class="main_type {{menu.seo_url}}">
-                    <div class="" onclick="location.href = '#!/shop/product_type={{type.seo_url}}'">{{type.product_type_name}}</div>
+            <div ng-repeat="type in menu.types">            
+                <div class="main_type {{type.cate_url}}">
+                    <button class="main_cat" ng-click="location.href='#!/shop/product_type={{type.type_url}}'">{{type.product_type_name}}</button>
                 </div>
             </div>            
         </div>

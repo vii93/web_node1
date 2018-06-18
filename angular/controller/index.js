@@ -65,10 +65,12 @@ mainApp.controller('shopCtrl', function($scope,$http) {
         var kq1 = res.data.cat[0];
         var kq2 = res.data.type[0];
         for(var i in kq1){
+            kq1[i].product_cate_name = decodeURI(kq1[i].product_cate_name);
             kq1[i].types = [];
             for(var j in kq2){
                 if(kq1[i].product_cate_id == kq2[j].product_cate_id){
                     kq1[i].types.push(kq2[j]);
+                    kq1[i].types[j].product_type_name = decodeURI(kq2[j].product_type_name)
                 }else kq1[i].types = []
             }
         }
