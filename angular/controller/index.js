@@ -27,6 +27,7 @@ mainApp.controller('ProdCtrl', function($scope,$http,$routeParams,$sce) {
    $http.get("/api/product_detail/:"+$routeParams.url).then(function(res) {
         $scope.prod = res.data[0];
         $scope.prod.long_desc = decodeURI(res.data[0].long_desc);
+        $scope.prod.product_name = decodeURI(res.data[0].product_name);
         $scope.list_img = res.data[0].img_url.split(",");
         $scope.first_img = $scope.list_img[0];
    }); 
@@ -77,6 +78,7 @@ mainApp.controller('shopCtrl', function($scope,$http) {
     $http.get('/api/get_fast_search').then(function(res) {
         for(var i in res.data){
             $scope.product[i] = res.data[i];
+            $scope.product[i].product_name = decodeURI(res.data[i].product_name);
             var img = res.data[i].img_url.split(",");
             $scope.product[i].img_url = img[0];
         }

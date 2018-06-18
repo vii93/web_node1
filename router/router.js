@@ -125,10 +125,10 @@ module.exports = function(app) {
 
     app.get('/api/list_cat_n_type',function(req,res) {
         var kq = {"cat":[],"type":[]};
-        con.query("select * from product_category where active=1", function(err,result) {
+        con.query("select product_cate_name,product_cate_id from product_category where active=1", function(err,result) {
             if(err) console.log(err);
             kq.cat.push(result);
-            con.query("select * from product_type where active=1", function(err,result) {
+            con.query("select product_type_name,product_type_id from product_type where active=1", function(err,result) {
                 if(err) console.log(err);
                 kq.type.push(result);
                 res.json(kq);
