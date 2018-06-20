@@ -1,6 +1,6 @@
 var slideIndex = 1;
 $(document).ready(function(){    
-  if($(".mySlides").length)
+  if($(".mySlides").length > 0)
     showDivs(slideIndex);
 });
 
