@@ -23,8 +23,8 @@ function showDivs(n) {
      x[i].style.display = "none";  
   }
   for (i = 0; i < dots.length; i++) {
-     dots[i].className = dots[i].className.replace(" w3-aqua", "");
+     dots[i].className = dots[i].className.replace(" w3-pale-red", "");
   }
   x[slideIndex-1].style.display = "block";  
-  dots[slideIndex-1].className += " w3-aqua";
+  dots[slideIndex-1].className += " w3-pale-red";
 }

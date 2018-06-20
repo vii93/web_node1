@@ -47,6 +47,7 @@ mainApp.controller('home', function($scope,$http) {
             $scope.new_prod[i] = res.data[i];
             var img = res.data[i].img_url.split(",");
             $scope.new_prod[i].img_url = img[0];
+            $scope.new_prod[i].product_name = decodeURI(res.data[i].product_name);
         }
     });
     $scope.best_sell =[];
@@ -55,12 +56,13 @@ mainApp.controller('home', function($scope,$http) {
             $scope.best_sell[i] = res.data[i];
             var img = res.data[i].img_url.split(",");
             $scope.best_sell[i].img_url = img[0];
+            $scope.best_sell[i].product_name = decodeURI(res.data[i].product_name);
         }       
     });
 });
 
 
-mainApp.controller('shopCtrl', function($scope,$http) {
+mainApp.controller('shopCtrl', function($scope,$http,myService) {
     $http.get('/api/list_cat_n_type').then(function(res) {
         var kq1 = res.data.cat[0];
         var kq2 = res.data.type[0];
@@ -76,6 +78,13 @@ mainApp.controller('shopCtrl', function($scope,$http) {
         }
         $scope.menu_prod = kq1;
     });
+    $scope.goto = function(obj) {
+        var href = "#!/shop/product_type="+obj.type.type_url
+        location.href=href;
+    }
+    $scope.addcard = function(id) {
+        myService.myFunction(id);
+    }
     $scope.product = [];
     $http.get('/api/get_fast_search').then(function(res) {
         for(var i in res.data){
@@ -85,4 +94,25 @@ mainApp.controller('shopCtrl', function($scope,$http) {
             $scope.product[i].img_url = img[0];
         }
     });
+});
+
+mainApp.factory('myService', function($window,$http) {
+    return {
+        myFunction: function(id) {
+            var curent_sess = $window.sessionStorage.getItem("ctk_id");
+            console.log(id,curent_sess)
+            if(curent_sess) {
+                $http.post('/api/addcard/'+curent_sess+'/'+id).then(function(res) {
+
+                });
+            } else {
+                var sess = Math.random().toString(36).substring(7);
+                $window.sessionStorage.setItem("ctk_id",sess);
+                $http.post('/api/addcard/'+sess+'/'+id).then(function(res) {
+    console.log(res)
+                });
+            }
+            
+        }
+    };
 });

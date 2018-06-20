@@ -21,3 +21,41 @@ ADD COLUMN `search_field` VARCHAR(255) CHARACTER SET 'utf8' COLLATE 'utf8_unicod
 ADD COLUMN `seo_desc` VARCHAR(45) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NULL AFTER `search_field`,
 ADD COLUMN `seo_title` VARCHAR(45) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NULL AFTER `seo_desc`,
 ADD COLUMN `product_detailcol` VARCHAR(45) NULL AFTER `seo_title`;
+
+
+
+CREATE TABLE `data`.`main_category` (
+  `main_cate_id` INT NOT NULL,
+  `active` TINYINT(4) NULL,
+  `main_cate_name` VARCHAR(45) NULL,
+  `heading` VARCHAR(45) NULL,
+  `desciption` VARCHAR(255) NULL,
+  `seo_url` VARCHAR(45) NULL,
+  `seo_desc` VARCHAR(45) NULL,
+  `imt_url` VARCHAR(45) NULL,
+  `img_alt` VARCHAR(45) NULL,
+  `sort` INT(4) NULL,
+  PRIMARY KEY (`main_cate_id`));
+  
+  
+  
+  ALTER TABLE `data`.`product_category` 
+CHANGE COLUMN `cat_id` `product_cate_id` INT(11) NOT NULL ,
+CHANGE COLUMN `cat_name` `product_cate_name` VARCHAR(45) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NULL DEFAULT NULL ,
+CHANGE COLUMN `cat_url` `main_cate_id` INT(4) NULL DEFAULT NULL ,
+ADD COLUMN `active` TINYINT(4) NULL AFTER `main_cate_id`,
+ADD COLUMN `seo_url` VARCHAR(45) NULL AFTER `active`,
+ADD COLUMN `seo_desc` VARCHAR(45) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NULL AFTER `seo_url`,
+ADD COLUMN `seo_title` VARCHAR(45) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NULL AFTER `seo_desc`,
+ADD COLUMN `img_url` VARCHAR(45) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NULL AFTER `seo_title`,
+ADD COLUMN `img_alt` VARCHAR(45) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NULL AFTER `img_url`;
+
+
+
+
+CREATE TABLE `data`.`basket_detail` (
+  `basket_id` INT NOT NULL,
+  `product_id` INT NULL,
+  `ctk_id` VARCHAR(10) NULL,
+  `qty` INT(4) NULL,
+  PRIMARY KEY (`basket_id`));

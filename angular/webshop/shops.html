@@ -12,22 +12,22 @@
             </button>
             <div ng-repeat="type in menu.types">            
                 <div class="main_type {{type.cate_url}}">
-                    <button class="main_cat" ng-click="location.href='#!/shop/product_type={{type.type_url}}'">{{type.product_type_name}}</button>
+                    <div class="main_cat" name="{{type.type_url}}" ng-click="goto(this)">{{type.product_type_name}}</div>
                 </div>
             </div>            
         </div>
     </div>
     <div class="prod_result">
-        <div ng-repeat="prod in product">
-            <a href="#!/product_detail/{{prod.seo_url}}" >
-                <div class="prod_cell" >
+        <div ng-repeat="prod in product">            
+            <div class="prod_cell" >
+                <a href="#!/product_detail/{{prod.seo_url}}" >
                     <img class="img_prod_cell" ng-src="{{prod.img_url}}" alt="">
                     <span class="prod_info">{{prod.product_name}}</span>
                     <hr class="hr"/>
                     <span class="prod_info">{{prod.product_price}}</span>
-                </div>
-            </a>
-            
+                </a>
+                <button class="btn_add_cart" ng-click="addcard(prod.product_id)">Thêm vào giỏ</button>
+            </div>
         </div>
     
     </div>

@@ -20,10 +20,10 @@ function openCity(evt, cityName) {
   }
   tablinks = document.getElementsByClassName("tablink");
   for (i = 0; i < x.length; i++) {
-     tablinks[i].className = tablinks[i].className.replace(" w3-border-aqua", "");
+     tablinks[i].className = tablinks[i].className.replace(" w3-border-pale-red", "");
   }
   document.getElementById(cityName).style.display = "block";
-  evt.currentTarget.firstElementChild.className += " w3-border-aqua";
+  evt.currentTarget.firstElementChild.className += " w3-border-pale-red";
 }
 
 function open_prod_type(obj) {
@@ -31,9 +31,4 @@ function open_prod_type(obj) {
   if( $("."+name).css("display") == "none") {
     $("."+name).css("display","block")
   } else $("."+name).css("display","none")
-}
-
-function goto(url){
-  alert(2)
-  location.href = url;
 }

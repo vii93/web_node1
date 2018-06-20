@@ -37,15 +37,17 @@
     <h4>Sản Phẩm Mới</h4>
     <div class="list_produt">
         <div ng-repeat="prod in new_prod">
-            <a href="#!/product_detail/{{prod.seo_url}}" >
-                <div class="prod_cell">
+            <div class="prod_cell">
+                <a href="#!/product_detail/{{prod.seo_url}}" >
                     <img class="img_prod_cell" ng-src="{{prod.img_url}}" alt="{{prod.img_alt}}">
                     <span class="prod_info">{{prod.product_name}}</span>
                     <hr class="hr"/>
                     <span class="prod_info">{{prod.product_sale_price}}</span>
                     <span class="prod_info">{{prod.product_price}}</span>
-                </div> 
-            </a>           
+                
+                </a>
+                <button class="btn_add_cart" ng-click="addcard(prod.product_id)">Thêm vào giỏ</button>
+            </div>            
         </div>
     </div>
     <div class="see_more">

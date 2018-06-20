@@ -313,3 +313,10 @@ a {
     width: 1000px;
     margin: auto;
 }
+
+.btn_add_cart {
+    display: grid;
+    text-align: center;
+    margin: auto;
+}
+

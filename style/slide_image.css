@@ -87,7 +87,7 @@ img {vertical-align: middle;}
 }
 
 .mySlides {display:none; width: 800px;  height: 500px;}
-.w3-left, .w3-right, .w3-badge {cursor:pointer;color:aquamarine;}
+.w3-left, .w3-right, .w3-badge {cursor:pointer;color:antiquewhite;}
 .w3-badge {height:13px;width:13px;padding:0}
 
 @-webkit-keyframes fade {
