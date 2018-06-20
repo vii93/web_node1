@@ -1,3 +1,12 @@
+$(document).ready(function(){
+  console.log($("#editor").length)
+  if($("#editor").length > 0) {
+      CKEDITOR
+      .replace( document.querySelector( '#editor' ) )
+  }
+});
+
+
 
 function add_new(tb,field_id) {
   $.ajax({
