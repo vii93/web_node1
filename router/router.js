@@ -159,27 +159,18 @@ module.exports = function(app) {
     app.post('/api/addcard/:ctk_id/:id', function(req,res) {
         var id= (req.params.id).replace(":","")
         var ctk_id= (req.params.ctk_id).replace(":","")
-        // con.query("insert into basket(basket_id) select ifnull(max(basket_id),0)+1 from basket", function(err,result) {
-        //     if(err) throw err;
-        //     con.query("update basket set product_id="+id+", ckt_id="+ctk_id+" where basket_id=max(basket_id)",function(err,result1){
-        //         if(err) throw err;
-        //         res.json(result1);
-        //     })            
-        // });
-        con.query("select * from basket_detail where ctk_id="+ctk_id,function(err,result) {
-            if(err) {
-                con.query("insert into basket_detail(basket_id) select ifnull(max(basket_id),0)+1 from basket_detail;update basket_detail set product_id="+id+", ctk_id='"+ctk_id+"' where basket_id=1;", function(err,result) {
+        con.query("select basket_id, count(*) as count_basket from basket_detail where product_id="+id+" and ctk_id='"+ctk_id+"'",function(err,result) {
+            if(err) throw err;
+            if(Number(result[0].count_basket) < 1) {
+                con.query("INSERT INTO basket_detail( basket_id, product_id, ctk_id,qty ) SELECT ifnull(MAX( basket_id ),0) + 1, '"+id+"', '"+ctk_id+"', 1 FROM basket_detail;", function(err,result) {
                     if(err) throw err;     
-                    console.log(result)     
+                    res.json(result)     
+                });                
+            } else {
+                con.query("update basket_detail set qty = (qty+1) where basket_id="+result[0].basket_id, function(err,result) {
+                    if(err) throw err;     
+                    res.json(result)     
                 });
-                
-            }
-            if(!result) {
-                // con.query("update basket_detail set product_id="+id+", ctk_id="+ctk_id+" where basket_id=max(basket_id)",function(err,result1){
-                //     if(err) throw err;
-                //     console.log(id,90)
-                //     res.json(result1);
-                // });
             }
         })
     });

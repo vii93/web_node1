@@ -30,6 +30,7 @@ mainApp.controller('ProdCtrl', function($scope,$http,$routeParams,$sce) {
         $scope.prod.product_name = decodeURI(res.data[0].product_name);
         $scope.list_img = res.data[0].img_url.split(",");
         $scope.first_img = $scope.list_img[0];
+        $scope.prod.prod_desc = decodeURI(res.data[0].prod_desc)   
    }); 
     $scope.trustAsHtml = function(html) {
       return $sce.trustAsHtml(html);

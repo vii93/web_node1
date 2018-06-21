@@ -1,3 +1,12 @@
+<div class="cart_info">
+        <img onclick="openNav()" class="cart_icon" src="cart.png" alt="" style="margin-left: 95%">
+            
+</div>
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <span>Giỏ Hàng Của Bạn</span>        
+</div>
+
 <div class="shop_content">
     <div class="right_menu">
         <div>
@@ -24,6 +33,7 @@
                     <img class="img_prod_cell" ng-src="{{prod.img_url}}" alt="">
                     <span class="prod_info">{{prod.product_name}}</span>
                     <hr class="hr"/>
+                    <span class="prod_info" ng-if="prod.product_sale_price > 0">{{prod.product_sale_price}}</span>
                     <span class="prod_info">{{prod.product_price}}</span>
                 </a>
                 <button class="btn_add_cart" ng-click="addcard(prod.product_id)">Thêm vào giỏ</button>

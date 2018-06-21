@@ -4,12 +4,6 @@ $(document).ready(function(){
   });
 
   var href = location.href;
-  if(href.includes("checkout")) {
-    $(".cart_icon").hide();
-  } else {
-    var width = $( document ).width();
-    $(".cart_icon").css("margin-left",width-70+"px")
-  }
 });
 
 function openCity(evt, cityName) {
@@ -31,4 +25,12 @@ function open_prod_type(obj) {
   if( $("."+name).css("display") == "none") {
     $("."+name).css("display","block")
   } else $("."+name).css("display","none")
+}
+
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
 }

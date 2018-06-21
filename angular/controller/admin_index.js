@@ -58,7 +58,8 @@ adminApp.controller('EditProdCtrl', function($scope,$routeParams,$http) {
     $http.get('/admin/get_prod_detail/:'+$routeParams.id).then(function(res) {
         $scope.prod = res.data[0];  
         $scope.prod.long_desc = decodeURI(res.data[0].long_desc)   
-        $scope.prod.product_name = decodeURI(res.data[0].product_name)   
+        $scope.prod.product_name = decodeURI(res.data[0].product_name)  
+        $scope.prod.prod_desc = decodeURI(res.data[0].prod_desc)   
     });
 });
 
