@@ -1,0 +1,29 @@
+<div class="margin-bot">
+    <a  href="/admin"><div class="main_button">Home Page</div></a>
+</div>
+<div>
+    <div>
+        <span>Discount Management</span>
+    </div>
+    <div class="margin-bot" ><input type="button" value="Add New" onclick="add_new('discount_code','discount_id');"></input></div>
+    <div class="margin-bot">
+        <table>
+            <tr>
+                <th>Id</th>
+                <th>Code</th>
+                <th>Value</th>
+                <th>Start date</th>
+                <th>End date</th>
+            </tr>
+            <tr ng-repeat="d in discount">
+                <td>{{d.discount_id}}
+                    <input type="hidden" name="filed_id" value="{{d.discount_id}}">
+                </td>
+                <td><input type="text" onchange="update_field(this,'discount_code',d.discount_id)" name="discount_code" ng-model="d.discount_code"></td>
+                <td><input type="text" onchange="update_field(this,'discount_code',d.discount_id)" name="value" ng-model="d.value"></td>
+                <td><input type="date" onchange="update_field(this,'discount_code',d.discount_id)" name="start_date" ng-model="d.start_date"></td>
+                <td><input type="date" onchange="update_field(this,'discount_code',d.discount_id)" name="end_date" ng-model="d.end_date"></td>
+            </tr>
+        </table>
+    </div>
+</div>

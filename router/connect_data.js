@@ -5,6 +5,10 @@ var con = mysql.createConnection({
     user: "root",
     password: "T@v14863258",
     database: "data"
-  });
+  }); 
+
+  con.connect(function(err) {
+    if(err) throw err;
+  })
 
 module.exports = con;

@@ -320,3 +320,6 @@ a {
     margin: auto;
 }
 
+button {
+    border: none;
+}

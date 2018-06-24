@@ -38,14 +38,54 @@ adminApp.config(function($routeProvider) {
     .when('/p_id=5/prod_type=:id', {
         templateUrl: 'prod_type_detail.html',
         controller: "EditProdType"
+    })
+    .when('/p_id=6', {
+        templateUrl: 'discount_ctrl.html',
+        controller: "DiscountCtrl"
+    })
+    .when('/p_id=7', {
+        templateUrl: 'order_ctrl.html',
+        controller: "OrderCtrl"
+    })
+    .when('/p_id=7/:id', {
+        templateUrl: 'order_detail.html',
+        controller: "EditOrder"
     });     
- });
+});
+
+adminApp.controller('EditOrder', function($scope,$http) {
+    $scope.product = [];    
+    $http.get('/admin/order_detail').then(function(res) {
+       for(var i=0; i< res.data.length; i++) {
+           $scope.product.push(res.data[i]);
+       }
+    });
+});
+
+adminApp.controller('OrderCtrl', function($scope,$http) {
+    $scope.product = [];    
+    $http.get('/admin/list_order').then(function(res) {
+       for(var i=0; i< res.data.length; i++) {
+           $scope.product.push(res.data[i]);
+       }
+    });
+});
+
+adminApp.controller('DiscountCtrl', function($scope,$http) {
+    $scope.discount = [];    
+    $http.get('/admin/list_discount').then(function(res) {
+       for(var i=0; i< res.data.length; i++) {
+           $scope.discount.push(res.data[i]);
+       }
+    });
+});
 
 adminApp.controller('prodCtrl', function($scope,$http) {
     $scope.product = [];    
     $http.get('/admin/list_product').then(function(res) {
        for(var i=0; i< res.data.length; i++) {
            $scope.product.push(res.data[i]);
+           $scope.product[i].product_name = decodeURI($scope.product[i].product_name);
        }
     });
 });

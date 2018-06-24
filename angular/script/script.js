@@ -1,12 +1,7 @@
 $(document).ready(function(){
-  console.log($("#editor").length)
-  if($("#editor").length > 0) {
-      CKEDITOR
-      .replace( document.querySelector( '#editor' ) )
-  }
+  CKEDITOR
+  .replace( document.querySelector( '#editor' ) )
 });
-
-
 
 function add_new(tb,field_id) {
   $.ajax({
@@ -20,8 +15,10 @@ function add_new(tb,field_id) {
 }
 
 
-function update_field(obj,tb) {
-  var id = $("input[name=field_id]").val();
+function update_field(obj,tb,id) {
+  if(!id)
+   id = $("input[name=field_id]").val();
+  
   var val = String($(obj).val());  
   if($(obj).attr("name") == "long_desc") {
     val =CKEDITOR.instances.editor.getData();
