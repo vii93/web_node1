@@ -1,7 +1,7 @@
-$(document).ready(function(){
-  console.log(document.getElementById("editor1"))
-  if(document.getElementById("editor1"))
-    CKEDITOR.replace(document.querySelector('#editor1'))
+$(function(){
+  console.log(document.getElementById("editor"))
+  if(document.getElementById("editor"))
+    CKEDITOR.replace(document.querySelector('#editor'))
 });
 
 function add_new(tb,field_id) {
