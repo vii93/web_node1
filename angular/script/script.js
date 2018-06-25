@@ -1,6 +1,6 @@
 $(document).ready(function(){
-  CKEDITOR
-  .replace( document.querySelector( '#editor' ) )
+  if(document.querySelector('#editor1'))
+    CKEDITOR.replace(document.querySelector('#editor1'))
 });
 
 function add_new(tb,field_id) {
