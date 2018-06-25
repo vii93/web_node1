@@ -234,6 +234,7 @@ mainApp.controller('shopCtrl', function($scope,$http,myService,$window) {
                 }else kq1[i].types = []
             }
         }
+        console.log(kq1)
         $scope.menu_prod = kq1;
     });
     $scope.goto = function(obj) {
