@@ -342,6 +342,7 @@ module.exports = function (app) {
             con.query(sql, function (err, result) {
                 if (err) {
                     console.error(err);
+                    con.end();
                     return;
                 }
                 order_id = result[0].max_id;
@@ -349,6 +350,7 @@ module.exports = function (app) {
                 con.query(sql, function (err, res1) {
                     if (err) {
                         console.error(err);
+                        con.end();
                         return;
                     }
                 });
@@ -357,9 +359,9 @@ module.exports = function (app) {
                     con.query(sql, function (err, res2) {
                         if (err) {
                             console.error(err);
+                            con.end();
                             return;
                         }
-                        con.end();
                     });
                 }
                 var transporter = nodemailer.createTransport({ // config mail server
@@ -434,6 +436,7 @@ module.exports = function (app) {
                         res.redirect('/');
                     }
                 });
+                con.end();
             })
         });
     });
