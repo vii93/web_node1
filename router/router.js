@@ -417,9 +417,9 @@ module.exports = function (app) {
                     mail_body += '<tr>';
                 }
                 mail_body += '<tr> <td></td><td></td>'
-                    + ' style="float:right">Phí Ship COD</td>'
+                    + '<td> style="float:right">Phí Ship COD</td>'
                     + '<td  style="text-align: center;">' + (payment == "ck" ? 0 : 20000) + '</td> </tr>';
-                +' <tr> <td></td><td></td>  style="float:right">Tổng thanh toán</td>';
+                +' <tr> <td></td><td></td><td>  style="float:right">Tổng thanh toán</td>';
                 +   '<td  style="text-align: center;">' + total + '</td></tr>';
                 var mainOptions = { // thiết lập đối tượng, nội dung gửi mail
                     from: 'Vighticosmetic',
