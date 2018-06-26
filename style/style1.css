@@ -152,7 +152,7 @@ li a:hover {
 	margin:0px 20px 0px 0px;
 }
 .prod_top {
-	width: 1000px;
+	max-width: 1000px;
 	margin: auto;
     height: 700px;
     margin-bottom: 10px;
@@ -243,8 +243,12 @@ a {
     display: grid;
     text-align: center;
 }
+.prod_info.name {
+    height: 66px;
+}
+
 .prod_result {
-    width: 1000px;
+    max-width: 1000px;
     margin-left: 230px;
 }
 
@@ -262,7 +266,7 @@ a {
 }
 
 .new_prod_list{
-    width: 1000px;
+    max-width: 1000px;
     margin: auto;
     margin-top: 50px;
     margin-bottom: 20px;
@@ -271,13 +275,13 @@ a {
 
 .see_more{
     display: grid;
-    width: 1000px;
+    max-width: 1000px;
     text-align: center;
     float: right;
 }
 
 .list_produt{
-    width: 1000px;
+    max-width: 1000px;
 }
 .btn_see_more{
     width: 122px;    
@@ -294,7 +298,7 @@ a {
 }
 
 .list_banner {
-    width: 1000px;
+    max-width: 1000px;
     margin-top: 20px;
     margin-bottom: 20px;
     margin: auto;
@@ -310,7 +314,7 @@ a {
 }
 
 .prod_long_desc{
-    width: 1000px;
+    max-width: 1000px;
     margin: auto;
 }
 
@@ -318,6 +322,11 @@ a {
     display: grid;
     text-align: center;
     margin: auto;
+}
+
+.prod_detail{
+    width: 300px;
+    height: 50px;
 }
 
 button {

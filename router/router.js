@@ -160,7 +160,7 @@ module.exports = function (app) {
             if (err) {
                 throw err;
             }
-            con.query("select * from product_detail where active=1 order by product_id desc limit 10;", function (err, result) {
+            con.query("select product_id,product_name,seo_url,img_url,img_alt,product_price,product_sale_price from product_detail where active=1 order by product_id desc limit 10;", function (err, result) {
                 if (err) { con.end(); console.error(err); return; }
                 res.json(result);
                 con.end();
@@ -170,7 +170,7 @@ module.exports = function (app) {
     app.get('/api/best_sell', function (req, res) {
         pool.getConnection(function (err, con) {
             if (err) throw err
-            con.query("select * from product_detail where active=1 order by product_id  limit 10;", function (err, result) {
+            con.query("select product_id,product_name,seo_url,img_url,img_alt,product_price,product_sale_price from product_detail where active=1 order by product_id  limit 50;", function (err, result) {
                 if (err) { con.end(); console.error(err); return; }
                 res.json(result);
                 con.end();
@@ -234,9 +234,9 @@ module.exports = function (app) {
             if (err) throw err
             var id = (req.params.id).replace(":", "")
             var ctk_id = (req.params.ctk_id).replace(":", "")
-            con.query("select basket_id, count(*) as count_basket from basket_detail where product_id=" + id + " and ctk_id='" + ctk_id + "'", function (err, result) {
+            con.query("select basket_id from basket_detail where product_id=" + id + " and ctk_id='" + ctk_id + "'", function (err, result) {
                 if (err) { con.end(); console.error(err); return; }
-                if (Number(result[0].count_basket) < 1) {
+                if (result.length < 1) {
                     con.query("INSERT INTO basket_detail( basket_id, product_id, ctk_id,qty ) SELECT ifnull(MAX( basket_id ),0) + 1, '" + id + "', '" + ctk_id + "', 1 FROM basket_detail;", function (err, result) {
                         if (err) { con.end(); console.error(err); return; }
                         res.json(result);
@@ -435,6 +435,18 @@ module.exports = function (app) {
                     }
                 });
             })
+        });
+    });
+
+    app.get('/api/search/order_by:key', function (req, res) {
+        pool.getConnection(function (err, con) {
+            if (err) throw err
+            var param = req.params.key.replace(":", "");
+            con.query("select * from product_detail order by product_id  " + param , function (err, result) {
+                if (err) { con.end(); console.error(err); return; }
+                res.json(result);
+                con.end();
+            });
         });
     });
 }

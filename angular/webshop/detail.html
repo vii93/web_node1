@@ -1,3 +1,37 @@
+<div class="cart_info">
+	<img onclick="openNav()" class="cart_icon" src="cart.png" alt="" style="margin-left: 95%">
+		
+</div>
+<div id="mySidenav" class="sidenav">
+	<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+	<span>Giỏ Hàng Của Bạn</span>  
+	<hr/>
+	<div ng-repeat="b in basket">
+		<div>
+			<table>
+				<tbody>
+					<tr>
+						<td>
+							<img ng-src="{{b.img_url}}" style="width: 50px" alt="{{b.img_url}}">
+						</td>
+						<td colspan="2">{{b.product_name}}</td>
+					</tr>
+					<tr>
+						<td>{{b.product_price_show}} * </td>
+						<td><input style="width: 60px;" ng-change="update_qty(b.product_id,b.qty)" type="number" name="qty" id="qty" ng-model="b.qty">= </td>
+						<td>{{b.total_item_show}}</td>
+					</tr>
+				</tbody>
+			</table>
+			<hr/>
+		</div>
+	</div>      
+	<div style="text-align:right; display: grid;">Tổng: {{total_amount_show}} <hr/></div>
+
+	<div style="float: right; display: grid;margin-bottom: 50px;">
+		<button onclick="location.href='#!/checkout'">Checkout</button>
+	</div>
+</div>
 
 <div class="prod_top">
 	<span class="inline img_prod">		
@@ -17,31 +51,14 @@
 			<p>SKU: {{prod.product_id}}</p>
 			<p ng-bind-html="trustAsHtml(prod.prod_desc)"></p>
 		</div>
+		
 		<div>
-			<p class="select_inline text_prod">Color:</p>
-			<select class="text_prod">
-				<option value="red">Red</option>
-				<option value="blue">Blue</option>
-				<option value="black">Black</option>
-				<option value="yelow">Yelow</option>
-			</select>
-		</div>
-		</br>
-		<div>
-			<p class="select_inline text_prod">Quantity:</p>
-			<button action="" class="inline text_prod">-</button>
-			<input class="input_inline text_prod" value="1"></input>
-			<button action="" class="inline text_prod">+</button>
+			<p class="select_inline text_prod">Price: {{prod.product_price_show}}</p>
 		</div>
 		</br>
 		</br>
 		<div>
-			<p class="select_inline text_prod">Price: {{prod.product_price}}</p>
-		</div>
-		</br>
-		</br>
-		<div>
-			<button class="w3-pale-red" onclick="add_to_basket()">Add to bag</button>
+			<button class="btn_add_cart w3-red prod_detail" ng-click="addcard(prod)">Add to bag</button>
 		</div>
 	</span>
 </div>

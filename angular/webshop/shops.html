@@ -57,12 +57,12 @@
             <div class="prod_cell" >
                 <a href="#!/product_detail/{{prod.seo_url}}" >
                     <img class="img_prod_cell" ng-src="{{prod.img_url}}" alt="">
-                    <span class="prod_info">{{prod.product_name}}</span>
+                    <span class="prod_info name">{{prod.product_name}}</span>
                     <hr class="hr"/>
                     <span class="prod_info" ng-if="prod.product_sale_price > 0">{{prod.product_sale_price}}</span>
-                    <span class="prod_info">{{prod.product_price}}</span>
+                    <span class="prod_info">{{prod.product_price_show}}</span>
                 </a>
-                <button class="btn_add_cart" ng-click="addcard(prod.product_id)">Thêm vào giỏ</button>
+                <button class="btn_add_cart w3-red" ng-click="addcard(prod)">Thêm vào giỏ</button>
             </div>
         </div>
     
