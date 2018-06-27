@@ -34,3 +34,11 @@ function openNav() {
 function closeNav() {
   document.getElementById("mySidenav").style.width = "0";
 }
+
+function open_mobile_nav() {
+  document.getElementById("navbar_mobile").style.width = "350px";
+}
+
+function close_mobile_nav() {
+  document.getElementById("navbar_mobile").style.width = "0";
+}

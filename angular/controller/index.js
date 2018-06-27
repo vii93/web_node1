@@ -20,12 +20,15 @@ mainApp.config(function($routeProvider) {
         templateUrl: 'webshop/shops.html',
         controller: 'shopCtrl'
     })
+    .when('/confirm_checkout/:order_id', {
+        templateUrl: 'webshop/confirm_checkout.html',
+        controller: 'confirmCtrl'
+    })
     .when('/shop/k=:key', {
         templateUrl: 'webshop/shops.html',
         controller: 'shopCtrl'
     });       
  });
-
 
 mainApp.controller('ProdCtrl', function($scope,$http,$routeParams,$sce,myService,$window) {
    $http.get("/api/product_detail/:"+$routeParams.url).then(function(res) {
@@ -163,21 +166,24 @@ mainApp.controller('checkout', function($scope,$http,$window,myService) {
         })
     }
 
-    $scope.docheckout = function(basket,cust,disc) {
-        if(!cust.customer_name || !cust.customer_email || !cust.customer_address || !cust.customer_phone){
+    $scope.docheckout = function(basket,cust,disc,) {
+        if( !cust||!cust.customer_name || !cust.customer_email || !cust.customer_address || !cust.customer_phone){
             alert("Thông tin cần thiết đang trống!!!")
             return false;
         }else {
-            $http({url :'/api/send_email',method: "GET",params : {"basket":[basket], "cust":$scope.customer, "discount": disc, "total": $scope.tien_tong ,"payment": $scope.payment_type}}).then(function(res) {
+            $http({url :'/api/send_email',method: "GET",params : {"basket":[basket], "cust":$scope.customer, "discount": disc, "total": $scope.tien_tong_show ,"payment": $scope.ship_cod_phi_show}}).then(function(res) {
                 if(res.status == 200) {
-                    $http('/api/remove_basket/'+sess).then(function(res) {
-
-                    });
-                    location.href = "#!/confirm_order/"+res.data;
+                    location.href = "#!/confirm_checkout/"+res.data;
                 }
             })
         }
     }
+});
+
+mainApp.controller('confirmCtrl', function($scope,$http,$routeParams) {
+    // $http.get('/confirm_chekout/'+$routeParams.url).then(function(res){
+
+    // });
 });
 
 mainApp.controller('home', function($scope,$http,$window,myService) {

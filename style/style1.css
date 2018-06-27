@@ -60,6 +60,9 @@ li a:hover {
     margin-left: auto;
     margin-right: auto;
 }
+.mobile-screen{
+    display: none;
+}
 
 .bx-wrapper {
     margin-top: 10px;

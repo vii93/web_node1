@@ -305,7 +305,7 @@ module.exports = function (app) {
     app.get('/api/remove_basket/:ctk_id', function (req, res) {
         pool.getConnection(function (err, con) {
             if (err) throw err
-            var ctk_id = req.params.replace(":", "");
+            var ctk_id = req.params.ctk_id.replace(":", "");
             con.query("delete from basket_detail where ctk_id='" + ctk_id + "';", function (err, result) {
                 if (err) { con.end(); console.error(err); return; }
                 res.json(result);
@@ -400,7 +400,7 @@ module.exports = function (app) {
                 mail_body += '    <p>Mã đơn hàng: ' + order_id + '</p>'
                 mail_body += '    <p>Ngày mua: ' + Date() + '</p>'
                 mail_body += '</div>    </div>';
-                mail_body += '<div style="width: 70%; display: grid;clear: both;margin: auto;">'
+                mail_body += '<div style="width: 100%; display: grid;clear: both;margin: auto;">'
                     + '<table>'
                     + '        <tr>'
                     + '            <th style="text-align: center;">Sản phẩm</th>'
@@ -411,16 +411,16 @@ module.exports = function (app) {
                 for (var i in basket) {
                     mail_body += '<tr>';
                     mail_body += '<td style="text-align: center;">' + basket[i].product_name + ' </td>';
-                    mail_body += '<td style="text-align: center;">' + basket[i].product_price + ' </td>';
+                    mail_body += '<td style="text-align: center;">' + basket[i].product_price_show + ' </td>';
                     mail_body += '<td style="text-align: center;"> ' + basket[i].qty + '</td>';
-                    mail_body += '<td style="text-align: center;">' + basket[i].total_item + ' </td>';
+                    mail_body += '<td style="text-align: center;">' + basket[i].total_item_show + ' </td>';
                     mail_body += '<tr>';
                 }
                 mail_body += '<tr> <td></td><td></td>'
-                    + '<td> style="float:right">Phí Ship COD</td>'
-                    + '<td  style="text-align: center;">' + (payment == "ck" ? 0 : 20000) + '</td> </tr>';
-                +' <tr> <td></td><td></td><td>  style="float:right">Tổng thanh toán</td>';
-                +   '<td  style="text-align: center;">' + total + '</td></tr>';
+                    + '<td style="float:right">Phí Ship COD</td>'
+                    + '<td  style="text-align: center;">' + payment + '</td> </tr>';
+                mail_body += ' <tr> <td></td><td></td><td  style="float:right">Tổng thanh toán</td>';
+                mail_body += '<td  style="text-align: center;">' + total + '</td></tr>';
                 var mainOptions = { // thiết lập đối tượng, nội dung gửi mail
                     from: 'Vighticosmetic',
                     to: cust.customer_email,
@@ -430,10 +430,10 @@ module.exports = function (app) {
                 transporter.sendMail(mainOptions, function (err, info) {
                     if (err) {
                         console.log(err);
-                        res.redirect('/');
+                        res.json(false)
                     } else {
                         console.log('Message sent: ' + info.response);
-                        res.redirect('/');
+                        res.json(order_id)
                     }
                 });
                 con.end();
