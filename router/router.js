@@ -217,6 +217,25 @@ module.exports = function (app) {
         });
     });
 
+    app.get('/api/get_fast_search/:type/:key', function (req, res) {
+        var type = req.params.type.replace(":", "");
+        var key = req.params.key.replace(":", "");
+        var sql_where = "";
+        if( type == "product_type"){
+            sql_where = "prod_type_url='"+key+"'";
+        } else if( type == "search") {
+            sql_where = "product_name like ('%"+key+"%') or product_detail="+key+" or long_desc like ('%"+key+"%')"
+        }
+        pool.getConnection(function (err, con) {
+            if (err) throw err
+            con.query("select * from product_detail where active=1 and "+sql_where, function (err, result) {
+                if (err) { con.end(); console.error(err); return; }
+                res.json(result);
+                con.end();
+            });
+        });
+    });
+
     app.get('/api/product_detail/:url', function (req, res) {
         pool.getConnection(function (err, con) {
             if (err) throw err
