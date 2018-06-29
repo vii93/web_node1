@@ -224,11 +224,13 @@ module.exports = function (app) {
         if( type == "product_type"){
             sql_where = "prod_type_url='"+key+"'";
         } else if( type == "search") {
-            sql_where = "product_name like ('%"+key+"%') or product_detail="+key+" or long_desc like ('%"+key+"%')"
+            sql_where = "product_name like ('%"+key+"%') or prod_desc like("+key+") or long_desc like ('%"+key+"%')"
         }
         pool.getConnection(function (err, con) {
             if (err) throw err
-            con.query("select * from product_detail where active=1 and "+sql_where, function (err, result) {
+            var sql = "select * from product_detail where active=1 and "+sql_where;
+            console.log(sql)
+            con.query(sql, function (err, result) {
                 if (err) { con.end(); console.error(err); return; }
                 res.json(result);
                 con.end();
