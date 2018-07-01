@@ -1,4 +1,5 @@
 $(document).ready(function(){
+  console.log($(window).innerWidth())
   $(".main_cat").click(function() {
     $(".main_type").show();
   });

@@ -27,8 +27,40 @@ mainApp.config(function($routeProvider) {
     .when('/search/key=:key', {
         templateUrl: 'webshop/shops.html',
         controller: 'searchCtrl'
+    })
+    .when('/shop/product_type/:type', {
+        templateUrl: 'webshop/shops.html',
+        controller: 'searchCtrl'
     });       
  });
+
+mainApp.controller('confirmCtrl',function(){
+    var sess = $window.sessionStorage.getItem("ctk_id");
+    if(!sess) {
+        var sess = Math.random().toString(36).substring(7);
+        $window.sessionStorage.setItem("ctk_id",sess);
+    }
+    $http.get('/api/get_basket/'+sess).then(function(res) {        
+        $scope.basket = res.data;
+        for(var i in res.data){            
+            var img = (res.data[i].img_url).split(",");
+            $scope.basket[i].img_url = img[0];
+            $scope.basket[i].product_name = decodeURI(res.data[i].product_name)
+            $scope.basket[i].total_item = Number(res.data[i].qty) * Number(res.data[i].product_price)
+            $scope.basket[i].product_price_show = $scope.basket[i].product_price.toLocaleString('it-IT',{ style: 'currency', currency: 'VND' })
+            $scope.basket[i].total_item_show =  $scope.basket[i].total_item.toLocaleString('it-IT',{ style: 'currency', currency: 'VND' });
+            total_amount += $scope.basket[i].total_item;
+        }
+        $scope.total_amount = total_amount;
+        $scope.tien_tong = total_amount + $scope.ship_cod_phi;
+        $scope.tien_tong_show = $scope.tien_tong.toLocaleString('it-IT',{ style: 'currency', currency: 'VND' });
+        $scope.total_amount_show = $scope.total_amount.toLocaleString('it-IT',{ style: 'currency', currency: 'VND' });
+    });
+    $http.get('/api/remove_basket/'+sess).then(function(res) {
+        console.log("Success");
+    });
+    $window.sessionStorage.removeItem("ctk_id");
+});
 
 mainApp.controller('fastSearchCtrl', function($scope,$http,$routeParams,myService,$window) {
     var type = $routeParams.product_type;
@@ -370,16 +402,19 @@ mainApp.controller('checkout', function($scope,$http,$window,myService) {
         })
     }
 
-    $scope.docheckout = function(basket,cust,disc,) {
+    $scope.docheckout = function(basket,cust,disc) {
         if( !cust||!cust.customer_name || !cust.customer_email || !cust.customer_address || !cust.customer_phone){
             alert("Thông tin cần thiết đang trống!!!")
             return false;
         }else {
-            $http({url :'/api/send_email',method: "GET",params : {"basket":[basket], "cust":$scope.customer, "discount": disc, "total": $scope.tien_tong_show ,"payment": $scope.ship_cod_phi_show}}).then(function(res) {
+            $http({url :'/api/send_email',method: "GET",params : {"basket":[basket], "cust":$scope.customer, "discount": disc, "total": $scope.tien_tong,"total_show":$scope.tien_tong_show ,"payment": $scope.ship_cod_phi_show}}).then(function(res) {
                 if(res.status == 200) {
-                    location.href = "#!/confirm_checkout/"+res.data;
+                    if(res.data == false) {
+                        alert("Không thể hoàn thành đơn hàng vui lòng thử lại sau!")
+                    } else
+                        location.href = "#!/confirm_checkout/"+res.data;
                 }
-            })
+            });            
         }
     }
 });

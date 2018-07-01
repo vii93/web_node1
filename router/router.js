@@ -357,6 +357,7 @@ module.exports = function (app) {
                 var cust = JSON.parse(params.cust);
             var discount = params.discount ? params.discount : '';
             var total = params.total;
+            var total_show = params.total_show;
             var payment = params.payment;
             var order_id = 0;
             var sql = "select ifnull(max(order_id),0) +1 as max_id from order_edit;";
@@ -441,7 +442,7 @@ module.exports = function (app) {
                     + '<td style="float:right">Phí Ship COD</td>'
                     + '<td  style="text-align: center;">' + payment + '</td> </tr>';
                 mail_body += ' <tr> <td></td><td></td><td  style="float:right">Tổng thanh toán</td>';
-                mail_body += '<td  style="text-align: center;">' + total + '</td></tr>';
+                mail_body += '<td  style="text-align: center;">' + total_show + '</td></tr>';
                 var mainOptions = { // thiết lập đối tượng, nội dung gửi mail
                     from: 'Vighticosmetic',
                     to: cust.customer_email,
@@ -457,6 +458,7 @@ module.exports = function (app) {
                         res.json(order_id)
                     }
                 });
+                
                 con.end();
             })
         });
