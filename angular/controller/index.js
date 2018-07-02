@@ -301,6 +301,10 @@ mainApp.controller('ProdCtrl', function($scope,$http,$routeParams,$sce,myService
         $scope.total_amount_show = $scope.total_amount.toLocaleString('it-IT',{ style: 'currency', currency: 'VND' });
     });   
 
+    $scope.show_big_img = function(img) {
+        $(".img_prod").attr("src",img);
+    }
+
     $scope.addcard = function(prod) {
         openNav();
         var ctk_id = myService.addToBasket(prod.product_id);

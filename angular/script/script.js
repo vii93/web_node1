@@ -4,6 +4,10 @@ $(function(){
     CKEDITOR.replace(document.querySelector('#editor'))
 });
 
+function load_editor() {
+  CKEDITOR.replace(document.querySelector('#editor'))
+}
+
 function add_new(tb,field_id) {
   $.ajax({
     type: 'POST',
