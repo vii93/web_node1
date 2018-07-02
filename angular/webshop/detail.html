@@ -49,7 +49,7 @@
 		<p class="product_name">{{prod.product_name}}</p>
 		<div>
 			<p>SKU: {{prod.product_id}}</p>
-			<p ng-bind-html="trustAsHtml(prod.prod_desc)"></p>
+			<p ng-if="prod.prod_desc != null" ng-bind-html="trustAsHtml(prod.prod_desc)"></p>
 		</div>
 		
 		<div>

@@ -37,7 +37,8 @@ module.exports = function (app) {
             where_field = "product_cate_id";
         if (req.params.tb == "product_type")
             where_field = "product_type_id";
-        var sql = "update " + req.params.tb + " set " + req.params.col + " = '" + encodeURI(req.params.val) + "' where " + where_field + "=" + req.params.id
+        var sql = "update " + req.params.tb + " set " + req.params.col + " = '" + encodeURI(req.params.val) + "' where " + where_field + "=" + req.params.id+";";
+        console.log(sql,"update")
         pool.getConnection(function (err, con) {
             if (err) throw err
             con.query(sql, function (err, result) {
@@ -221,14 +222,16 @@ module.exports = function (app) {
         var type = req.params.type.replace(":", "");
         var key = req.params.key.replace(":", "");
         var sql_where = "";
+        console.log(type,1)
+        console.log(key,2)
         if( type == "product_type"){
-            sql_where = "prod_type_url='"+key+"'";
+            sql_where = " and prod_type_url='"+key+"';";
         } else if( type == "search") {
-            sql_where = "product_name like ('%"+key+"%') or prod_desc like("+key+") or long_desc like ('%"+key+"%')"
+            sql_where = " and product_name like ('%"+key+"%') or prod_desc like('%"+key+"%') or long_desc like ('%"+key+"%');"
         }
         pool.getConnection(function (err, con) {
             if (err) throw err
-            var sql = "select * from product_detail where active=1 and "+sql_where;
+            var sql = "select * from product_detail where active=1 "+sql_where;
             console.log(sql)
             con.query(sql, function (err, result) {
                 if (err) { con.end(); console.error(err); return; }
