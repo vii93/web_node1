@@ -371,12 +371,12 @@ mainApp.controller('searchCtrl', function($scope,$http,$routeParams,myService,$w
 mainApp.controller('ProdCtrl', function($scope,$http,$routeParams,$sce,myService,$window) {
    $http.get("/api/product_detail/:"+$routeParams.url).then(function(res) {
         $scope.prod = res.data[0];
-        $scope.prod.long_desc = (res.data[0].long_desc == null) ? decodeURI(res.data[0].long_desc) : "";
+        $scope.prod.long_desc = (res.data[0].long_desc) ? decodeURI(res.data[0].long_desc) : "";
         $scope.prod.product_name = decodeURI(res.data[0].product_name);
         $scope.prod.product_price_show = $scope.prod.product_price.toLocaleString('it-IT',{ style: 'currency', currency: 'VND' });
         $scope.list_img = res.data[0].img_url.split(",");
         $scope.first_img = $scope.list_img[0];
-        $scope.prod.prod_desc = (res.data[0].prod_desc == null) ? decodeURI(res.data[0].prod_desc) : "";   
+        $scope.prod.prod_desc = (res.data[0].prod_desc) ? decodeURI(res.data[0].prod_desc) : "";   
    }); 
     $scope.trustAsHtml = function(html) {
       return $sce.trustAsHtml(html);

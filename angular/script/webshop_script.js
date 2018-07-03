@@ -29,7 +29,12 @@ function open_prod_type(obj) {
 }
 
 function openNav() {
-  document.getElementById("mySidenav").style.width = "350px";
+  
+  if($(document).width() < 1000) {
+    document.getElementById("mySidenav").style.width = "500px";
+  }else {
+    document.getElementById("mySidenav").style.width = "350px";
+  }
 }
 
 function closeNav() {
