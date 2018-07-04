@@ -1,5 +1,7 @@
 var slideIndex = 1;
-$(document).ready(function(){    
+$(document).ready(function(){  
+  console.log(slideIndex)
+  if($(".list_banner ").length >0) 
     showDivs(slideIndex);
 });
 

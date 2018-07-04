@@ -1,5 +1,4 @@
 $(document).ready(function(){
-  console.log($(window).innerWidth())
   $(".main_cat").click(function() {
     $(".main_type").show();
   });
@@ -29,8 +28,8 @@ function open_prod_type(obj) {
 }
 
 function openNav() {
-  
-  if($(document).width() < 1000) {
+  console.log($(document).width())
+  if($(document).width() <= 1000) {
     document.getElementById("mySidenav").style.width = "500px";
   }else {
     document.getElementById("mySidenav").style.width = "350px";

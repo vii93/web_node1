@@ -62,6 +62,9 @@
     height: 100px;
   }
   .btn_add_cart{
+    height: 100px;
+  }
+  .prod_detail{
     width: 500px;
     height: 100px;
   }
@@ -71,7 +74,8 @@
   .nav_bar_mobile {
     font-size:120px;
     cursor:pointer;
-    color:white;
+    color:black;
+    background: white;
   }
   img.logo_mobile {
     width: 150px;
@@ -81,7 +85,7 @@
   }
   .mobile-screen{
     display: block;
-    background: black;
+    background: white;
     height: 200px;
     width: 100%;
     position: fixed;
