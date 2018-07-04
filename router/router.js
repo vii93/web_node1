@@ -38,7 +38,6 @@ module.exports = function (app) {
         if (req.params.tb == "product_type")
             where_field = "product_type_id";
         var sql = "update " + req.params.tb + " set " + req.params.col + " = '" + encodeURI(req.params.val) + "' where " + where_field + "=" + req.params.id+";";
-        console.log(sql,"update")
         pool.getConnection(function (err, con) {
             if (err) throw err
             con.query(sql, function (err, result) {
@@ -222,8 +221,6 @@ module.exports = function (app) {
         var type = req.params.type.replace(":", "");
         var key = req.params.key.replace(":", "");
         var sql_where = "";
-        console.log(type,1)
-        console.log(key,2)
         if( type == "product_type"){
             sql_where = " and prod_type_url='"+key+"';";
         } else if( type == "search") {
@@ -232,7 +229,6 @@ module.exports = function (app) {
         pool.getConnection(function (err, con) {
             if (err) throw err
             var sql = "select * from product_detail where active=1 "+sql_where;
-            console.log(sql)
             con.query(sql, function (err, result) {
                 if (err) { con.end(); console.error(err); return; }
                 res.json(result);
