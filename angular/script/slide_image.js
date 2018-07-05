@@ -28,4 +28,5 @@ function showDivs(n) {
   }
   x[slideIndex-1].style.display = "block";  
   dots[slideIndex-1].className += " w3-pale-red";
+  setTimeout(showDivs, 2000);
 }

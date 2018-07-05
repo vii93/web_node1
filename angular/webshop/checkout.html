@@ -7,7 +7,7 @@
         <div style="float: left;">
             <img ng-src="{{b.img_url}}" style="width: 50px" alt="{{b.img_url}}">
             {{b.product_name}}
-            <span  style="float: right;">{{b.total_item_show}} || <a href="#" ng-click="delete_item(b.product_id)">Xóa</a></span> 
+            <span  style="float: right;">{{b.total_item_show}} || <a ng-click="delete_item(b.product_id)">Xóa</a></span> 
             <div  style="float: right; margin-right: 5px;">
                 <input style="width: 60px;" ng-change="update_qty(b.product_id,b.qty)" type="number" name="qty" id="qty" ng-model="b.qty">=
             </div>
@@ -61,8 +61,8 @@
       <p>- Trần Nhật Thảo Vi - Ngân hàng VIB chi nhánh Tôn Đức Thắng, Tp.HCM - 686704060168770</p>
     </div>
   </div>
-  <div style="display: grid; padding-left: 20px;margin: auto; width: 1000px;margin-top: 20px;background: antiquewhite">
-    <div style="width: 650px;margin: auto;padding-top: 20px;">
+  <div class="address_delivery">
+    <div class="info_address">
         <div><span>Thông tin khách hàng</span><hr/></div>
         <div style="clear: both;padding-top: 5px;">
           <span>Họ tên: </span>

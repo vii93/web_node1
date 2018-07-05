@@ -1,0 +1,19 @@
+<div class="margin-bot">
+    <a  href="/admin"><div class="main_button">Home Page</div></a>
+</div>
+<div>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Total</th>
+            <th>Giao hàng</th>
+            <th>Email Khách</th>
+        </tr>
+        <tr ng-repeat="o in order">
+            <td><a href="#!/p_id=7/order_id={{o.order_id}}">{{o.order_id}}</a></td>
+            <td>{{o.order_value}}</td>
+            <td>{{o.payment_type}}</td>
+            <td>{{o.customer_email}}</td>
+        </tr>
+    </table>
+</div>

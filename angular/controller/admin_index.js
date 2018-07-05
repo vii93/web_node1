@@ -76,27 +76,29 @@ adminApp.config(function($routeProvider) {
         templateUrl: 'order_ctrl.html',
         controller: "OrderCtrl"
     })
-    .when('/p_id=7/:id', {
+    .when('/p_id=7/order_id=:id', {
         templateUrl: 'order_detail.html',
         controller: "EditOrder"
     });     
 });
 
-adminApp.controller('EditOrder', function($scope,$http) {
+adminApp.controller('EditOrder', function($scope,$http,$routeParams) {
     $scope.product = [];    
-    $http.get('/admin/order_detail').then(function(res) {
+    $http.get('/admin/order_detail/'+$routeParams.id).then(function(res) {
        for(var i=0; i< res.data.length; i++) {
            $scope.product.push(res.data[i]);
+           $scope.product[i].total = Number(res.data[i].order_detail_price) * Number(res.data[i].order_detail_qty)
        }
+    });
+    $http.get('/admin/list_order/'+$routeParams.id).then(function(res) {
+        $scope.order = res.data[0];
     });
 });
 
 adminApp.controller('OrderCtrl', function($scope,$http) {
-    $scope.product = [];    
+    $scope.order = [];    
     $http.get('/admin/list_order').then(function(res) {
-       for(var i=0; i< res.data.length; i++) {
-           $scope.product.push(res.data[i]);
-       }
+        $scope.order = res.data;
     });
 });
 

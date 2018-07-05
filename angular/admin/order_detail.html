@@ -1,0 +1,39 @@
+<div style="width: 500px;">
+    <div>
+        <button class="main_button"  onclick="location.href = '#!/'">Home</button>
+        <button class="main_button left"  onclick="location.href = '#!/p_id=7'">Order</button>
+    </div>
+</div>
+
+<div>
+    <div style="width: 50%;height: 300px;float: left;">
+        <span style="display: grid;">Tên Khách: {{order.customer_name}}</span>
+        <span style="display: grid;">Email: {{order.customer_email}}</span>
+        <span style="display: grid;">SDT: {{order.customer_phone}}</span>
+        <span style="display: grid;">Địa chỉ: {{order.customer_address}}</span>
+        <span style="display: grid;">Tin nhắn: {{order.customer_msg}}</span>
+        <span style="display: grid;">Giao hàng: {{order.payment_type}}</span>
+    </div>
+    <div style="width: 50%;float: left;">
+        <span>Tổng tiền: {{order.order_value}}</span>
+    </div>
+</div>
+
+<div>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Tên</th>
+            <th>Giá</th>
+            <th>Số lượng</th>
+            <th>Tổng</th>
+        </tr>
+        <tr ng-repeat="p in product">
+            <td>{{p.product_id}}</td>
+            <td>{{p.product_name}}</td>
+            <td>{{p.order_detail_price}}</td>
+            <td>{{p.order_detail_qty}}</td>
+            <td>{{p.total}}</td>
+        </tr>
+    </table>
+</div>

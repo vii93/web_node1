@@ -190,6 +190,48 @@ module.exports = function (app) {
         });
     });
 
+    app.get('/admin/list_order/:id', function (req, res) {
+        pool.getConnection(function (err, con) {
+            if (err) throw err
+            var params = (req.params.id).replace(":", "");
+            con.query("select * from order_edit where order_id=" + params, function (err, result) {
+                if (err) { con.end(); console.error(err); return; }
+                res.json(result);
+                con.end();
+            });
+        });
+    });
+
+    app.get('/admin/list_order', function (req, res) {
+        var sql = "select * from order_edit";
+        pool.getConnection(function (err, con) {
+            if (err) throw err
+            con.query(sql, function (err, result) {
+                if (err) {
+                    throw err;
+                }
+                res.json(result);
+                con.end();
+            });
+        });
+    });
+
+    app.get('/admin/order_detail/:id', function (req, res) {
+        var id = req.params.id.replace(":","");
+        var sql = "select tb1.*,tb2.product_name from order_detail tb1 left join product_detail tb2 on tb1.product_id=tb2.product_id where tb1.order_id="+id;
+        console.log(sql)
+        pool.getConnection(function (err, con) {
+            if (err) throw err
+            con.query(sql, function (err, result) {
+                if (err) {
+                    throw err;
+                }
+                res.json(result);
+                con.end();
+            });
+        });
+    });
+
     app.get('/api/list_cat_n_type', function (req, res) {
         pool.getConnection(function (err, con) {
             if (err) throw err

@@ -447,7 +447,11 @@ mainApp.controller('checkout', function($scope,$http,$window,myService) {
     $scope.payment_type = "cod";
     $scope.ship_cod_phi = 20000;
     $scope.ship_cod_phi_show = $scope.ship_cod_phi.toLocaleString('it-IT');
-    $http.get('/api/get_basket/'+sess).then(function(res) {        
+    $http.get('/api/get_basket/'+sess).then(function(res) {  
+        if(res.data.length <=0){
+            $window.location.href = '#'; 
+        } 
+        console.log(res.data.length)     
         $scope.basket = res.data;
         for(var i in res.data){            
             var img = (res.data[i].img_url).split(",");
@@ -591,7 +595,8 @@ mainApp.controller('home', function($scope,$http,$window,myService) {
         if(temp == $scope.basket.length) {
             
             $scope.basket.push(prod);
-            $scope.basket[$scope.basket.length-1].img_url = prod.img_url;
+            var img = (prod.img_url).split(",");
+            $scope.basket[$scope.basket.length-1].img_url = img[0];
             $scope.basket[$scope.basket.length-1].qty = 1;
             $scope.basket[$scope.basket.length-1].product_name = decodeURI(prod.product_name)
             $scope.basket[$scope.basket.length-1].total_item =  Number(prod.product_price)

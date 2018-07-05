@@ -12,10 +12,21 @@
     font-size: 30px;
   }
   .show_total{
-    width: 100%;
+    width: 94%;
+    margin: 3%;
+    padding: 20px;
+  }
+  .address_delivery{
+    width: 94%;
+    margin: 3%;
+    padding: 20px;
+  }
+  .info_address{
+    width: 100%
   }
   .basket {
-    width: 100%;
+    width: 94%;
+    margin: 3%;
   }
   span{
     font-size: 30px;
@@ -148,7 +159,7 @@
   }
   .mobile-screen{
     display: block;
-    background: black;
+    background: white;
     height: 90px;
     width: 100%;
   }
