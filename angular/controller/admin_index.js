@@ -87,6 +87,7 @@ adminApp.controller('EditOrder', function($scope,$http,$routeParams) {
     $http.get('/admin/order_detail/'+$routeParams.id).then(function(res) {
        for(var i=0; i< res.data.length; i++) {
            $scope.product.push(res.data[i]);
+           $scope.product[i].product_name = decodeURI($scope.product[i].product_name)
            $scope.product[i].total = Number(res.data[i].order_detail_price) * Number(res.data[i].order_detail_qty)
        }
     });
