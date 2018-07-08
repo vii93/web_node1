@@ -3,7 +3,7 @@
     <p>Cảm ơn bạn đã order hàng của shop</p>
     <h3>Thông tin thanh toán</h3>
     <p>Tiền ship sẽ được tính riêng dựa vào địa chỉ mà bạn cung cấp</p>
-    <div ng-if="payment = ck">
+    <div ng-if="order.payment_type = ck">
         <p>Bạn đã chon hình thức chuyển khoản qua ngân hàng.</p>
         <p> Thanh toán qua số tài khoản : </p>
         <p> - Chủ thẻ: Trần Nhật Thảo Vi </p>
@@ -12,26 +12,24 @@
         <p>Luy ý: Khi chuyển khoản vui lòng nhập mã số đơn hàng vào phần lời nhắn lúc thanh toán để giúp chúng tôi xác nhận dơn hàng
             chính xác hơn </p>
     </div>
-    <div >
+    <div ng-if="order.payment_type = cod">
         <p>Bạn đã chọn thanh toán khi nhận hàng (Ship COD). Chúng tôi sẽ có gắng giao hàng trong thời gian sớm nhất sau khi xác nhận
                 đơn hàng.</p>
     </div>
     
-    
-    <p>Tiền ship sẽ được tính riêng dựa vào địa chỉ mà bạn cung cấp</p>
     <p>Vui lòng kiểm tra thật kỹ đơn hàng và thông báo cho chúng tôi nếu có bất cứ sửa đổi nào trong thời gian sớm</p>
     <h3>Thông tin giao hàng</h3>
     <div>
         <div style="float: left; width: 400px;margin-bottom: 10px;">
-            <p>Họ Tên: {{customer_name}} </p>
-            <p>Địa chỉ: {{customer_address}} </p>
-            <p>SDT: {{customer_phone}} </p>
-            <p>Email: {{customer_email}} </p>
-            <p>Ghi chú: {{customer_msg}} </p>
+            <p>Họ Tên: {{order.customer_name}} </p>
+            <p>Địa chỉ: {{order.customer_address}} </p>
+            <p>SDT: {{order.customer_phone}} </p>
+            <p>Email: {{order.customer_email}} </p>
+            <p>Ghi chú: {{order.customer_msg}} </p>
         </div>
         <div>
-            <p>Mã đơn hàng: {{order_id}} </p>
-            <p>Ngày mua: {{date}} </p>
+            <p>Mã đơn hàng: {{order.order_id}} </p>
+            <p>Ngày mua: {{order.order_date}} </p>
         </div>
     </div>
     <div style="width: 100%; display: grid;clear: both;margin: auto;">
@@ -42,13 +40,11 @@
                 <th style="text-align: center;">Số lượng</th>
                 <th style="text-align: center;">Tổng tiền</th>
             </tr>
-            <tr>
-                <div ng-repeat="b in basket">
-                    <td style="text-align: center;"> {{b.product_name}} </td>
-                    <td style="text-align: center;"> {{b.product_price_show}} </td>
-                    <td style="text-align: center;"> {{b.qty}} </td>
-                    <td style="text-align: center;"> {{b.total_item_show}} </td>
-                </div>
+            <tr ng-repeat="b in product">
+                <td style="text-align: center;"> {{b.product_name}} </td>
+                <td style="text-align: center;"> {{b.order_detail_price_show}} </td>
+                <td style="text-align: center;"> {{b.order_detail_qty}} </td>
+                <td style="text-align: center;"> {{b.total_item_show}} </td>
             </tr>
             <tr>
                 <td></td>
@@ -60,7 +56,7 @@
                 <td></td>
                 <td></td>
                 <td style="float:right;">Tổng thanh toán</td>
-                <td style="text-align: center;"> {{tien_tong_show}} </td>
+                <td style="text-align: center;"> {{total_amount_show}} </td>
             </tr>
         </table>
     </div>

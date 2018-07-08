@@ -218,7 +218,7 @@ module.exports = function (app) {
 
     app.get('/admin/order_detail/:id', function (req, res) {
         var id = req.params.id.replace(":","");
-        var sql = "select tb1.*,tb2.product_name from order_detail tb1 left join product_detail tb2 on tb1.product_id=tb2.product_id where tb1.order_id="+id;
+        var sql = "select tb1.*,tb2.product_name,tb2.order_date from order_detail tb1 left join product_detail tb2 on tb1.product_id=tb2.product_id where tb1.order_id="+id;
         console.log(sql)
         pool.getConnection(function (err, con) {
             if (err) throw err
