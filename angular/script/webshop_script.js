@@ -2,8 +2,10 @@ $(document).ready(function(){
   $(".main_cat").click(function() {
     $(".main_type").show();
   });
-
-  var href = location.href;
+  $('body').click(function() {
+    if($("#navbar_mobile").width() > 0)
+      close_mobile_nav();
+  });
 });
 
 function openCity(evt, cityName) {

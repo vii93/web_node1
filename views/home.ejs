@@ -1,8 +1,19 @@
 <!DOCTYPE html>
 <html lang="en-US" ng-app="MyApp">
 <head>
-    <link href="favicon.ico" rel="icon" type="image/x-icon" />
-        
+    <meta charset="utf-8">
+    <!-- <base href="http://www.vighticosmetic.com"> -->
+    <meta name="author" content="vighti">
+    <meta property="og:title" content="{{metaservice.pageTitle()}}">
+    <meta property="og:description" content="{{metaservice.pageDesc()}}">
+    <meta property="og:image" content="{{metaservice.pageImage()}}">
+    <meta property="og:url" content="{{metaservice.baseUrl()}}">
+    <meta property="og:type" content="website">
+    <title ng-bind="metaservice.metaTitle()"></title>
+    <meta name="description" content="{{ metaservice.metaDescription() }}" />
+    <meta name="keywords" content="{{ metaservice.metaKeywords() }}" />
+
+    <link href="favicon.ico" rel="icon" type="image/x-icon" />       
     <script src="/angular/angular.min.js"></script>
     <script src="/angular/angular.js"></script>
     <script src="/angular-route/angular-route.js"></script>
@@ -23,7 +34,6 @@
     <link rel="stylesheet" type="text/css" href="/style2.css"> 
     <link rel="stylesheet" type="text/css" href="/style_checkout.css"> 
     <link rel="stylesheet" type="text/css" href="/style_basket.css"> 
-    <title>Vi's house</title>
 </head>
 <body>
     <div class="main-screen">

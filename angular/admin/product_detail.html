@@ -6,33 +6,63 @@
 </div>
 
 <div style="margin-top: 20px;">
-    <div style="width: 400px; margin-right: 10px;margin-left: 10px;" class="left">
+    <div style="width: 100%; margin-right: 10px;margin-left: 10px;" class="left">
         <div ng-if="prod.active == '1'">
             <input type="checkbox" name="active" id="active" checked  onchange="update_field(this,'product_detail')" />Active
         </div>
         <div ng-if="prod.active != '1'">
             <input type="checkbox" name="active" id="active"  onchange="update_field(this,'product_detail')" />Active
         </div>
-        <p style="width: 400px;text-align: center;">ID: {{prod.product_id}}</p>
-        <input name="field_id" type="hidden" value="{{prod.product_id}}"/>
-        <p style="width: 400px;text-align: center;">Name</p>
-        <input style="width: 400px;" onchange="update_field(this,'product_detail')" name="product_name" value="{{prod.product_name}}"></input></br>
-        <p style="width: 400px;text-align: center;">Price</p>
-        <input style="width: 400px;" onchange="update_field(this,'product_detail')" name="product_price" value="{{prod.product_price}}"></input></br>
-        <p style="width: 400px;text-align: center;">Sale Price</p>
-        <input style="width: 400px;" onchange="update_field(this,'product_detail')" name="product_sale_price" value="{{prod.product_sale_price}}"></input></br>
-        <p style="width: 400px;text-align: center;">Category</p>
-        <input style="width: 400px;" onchange="update_field(this,'product_detail')" name="prod_cate_url" value="{{prod.prod_cate_url}}"></input></br>
-        <p style="width: 400px;text-align: center;">Type</p>
-        <input style="width: 400px;" onchange="update_field(this,'product_detail')" name="prod_type_url" value="{{prod.prod_type_url}}"></input></br>
-        <p style="width: 400px;text-align: center; ">Brand</p>
-        <input style="width: 400px;" onchange="update_field(this,'product_detail')" name="brand" value="{{prod.brand}}"></input></br>
-        <p style="width: 400px;text-align: center; ">SEO URL</p>
-        <input style="width: 400px;" onchange="update_field(this,'product_detail')" name="seo_url" value="{{prod.seo_url}}"></input></br>
-        <p style="width: 400px;text-align: center; ">Image URL</p>
-        <input style="width: 400px;" onchange="update_field(this,'product_detail')" name="img_url" value="{{prod.img_url}}"></input></br>
-        <p style="width: 400px;text-align: center; ">Short Description</p>
-        <textarea style="width: 400px;" onchange="update_field(this,'product_detail')" name="prod_desc" >{{prod.prod_desc}}</textarea></br>
+        <div style="float: left;     margin-right: 30px;">
+            <p style="width: 400px;text-align: center;">ID: {{prod.product_id}}</p>
+            <input name="field_id" type="hidden" value="{{prod.product_id}}"/>
+            <p style="width: 400px;text-align: center;">Name</p>
+            <input style="width: 400px;" onchange="update_field(this,'product_detail')" name="product_name" value="{{prod.product_name}}"></input></br>
+            <p style="width: 400px;text-align: center;">Price</p>
+            <input style="width: 400px;" onchange="update_field(this,'product_detail')" name="product_price" value="{{prod.product_price}}"></input></br>
+            <p style="width: 400px;text-align: center;">Sale Price</p>
+            <input style="width: 400px;" onchange="update_field(this,'product_detail')" name="product_sale_price" value="{{prod.product_sale_price}}"></input></br>
+            <p style="width: 400px;text-align: center;">Category</p>
+            <input style="width: 400px;" onchange="update_field(this,'product_detail')" name="prod_cate_url" value="{{prod.prod_cate_url}}"></input></br>
+            <p style="width: 400px;text-align: center;">Type</p>
+            <input style="width: 400px;" onchange="update_field(this,'product_detail')" name="prod_type_url" value="{{prod.prod_type_url}}"></input></br>
+            <p style="width: 400px;text-align: center; ">Brand</p>
+            <input style="width: 400px;" onchange="update_field(this,'product_detail')" name="brand" value="{{prod.brand}}"></input></br>
+            <hr/>
+        </div>
+        <div style="float: left; margin-right: 30px;">
+            <p style="width: 400px;text-align: center; ">SEO URL</p>
+            <input style="width: 400px;" onchange="update_field(this,'product_detail')" name="seo_url" value="{{prod.seo_url}}"></input></br>
+            <p style="width: 400px;text-align: center; ">SEO DESC</p>
+            <input style="width: 400px;" onchange="update_field(this,'product_detail')" name="seo_desc" value="{{prod.seo_desc}}"></input></br>
+            <p style="width: 400px;text-align: center; ">SEO Tile</p>
+            <input style="width: 400px;" onchange="update_field(this,'product_detail')" name="seo_title" value="{{prod.seo_title}}"></input></br>
+            <hr/>
+        </div>
+        <div style="float: left; margin-right: 30px;">
+            <p style="width: 400px;text-align: center; ">Image URL</p>
+            <input style="width: 400px;" onchange="update_field(this,'product_detail')" name="img_url" value="{{prod.img_url}}"></input></br>
+            <p style="width: 400px;text-align: center; ">Image ALT</p>
+            <input style="width: 400px;" onchange="update_field(this,'product_detail')" name="img_alt" value="{{prod.img_alt}}"></input></br>
+            <p style="width: 400px;text-align: center; ">Image URL2</p>
+            <input style="width: 400px;" onchange="update_field(this,'product_detail')" name="img_url2" value="{{prod.img_url2}}"></input></br>
+            <p style="width: 400px;text-align: center; ">Image ALT2</p>
+            <input style="width: 400px;" onchange="update_field(this,'product_detail')" name="img_alt2" value="{{prod.img_alt2}}"></input></br>
+            <p style="width: 400px;text-align: center; ">Image URL3</p>
+            <input style="width: 400px;" onchange="update_field(this,'product_detail')" name="img_url3" value="{{prod.img_url3}}"></input></br>
+            <p style="width: 400px;text-align: center; ">Image ALT3</p>
+            <input style="width: 400px;" onchange="update_field(this,'product_detail')" name="img_alt3" value="{{prod.img_alt4}}"></input></br>
+            <form action="/admin/uploadImage" method="post" enctype="multipart/form-data">
+                <input type="file" name="filetoupload"><br>
+                <input type="submit">
+            </form>
+            <hr/>
+        </div>
+        <div style="float: left; margin-right: 30px;">
+            <p style="width: 400px;text-align: center; ">Short Description</p>
+            <textarea style="width: 400px;" onchange="update_field(this,'product_detail')" name="prod_desc" >{{prod.prod_desc}}</textarea>
+            <hr/>
+        </div>
     </div>
 </div>
 

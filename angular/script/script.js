@@ -1,5 +1,4 @@
 $(function(){
-  console.log(document.getElementById("editor"))
   if(document.getElementById("editor"))
     CKEDITOR.replace(document.querySelector('#editor'))
 });

@@ -1,6 +1,30 @@
 'use strict';
 var mainApp = angular.module('MyApp',['ngRoute','ngSanitize']);
 
+mainApp.service('MetaService', function() {
+    var title = 'Web App';
+    var metaDescription = '';
+    var metaKeywords = '';
+    return {
+       set: function(newTitle, newMetaDescription, newKeywords,pT,pD,pI,pU) {
+           metaKeywords = newKeywords;
+           metaDescription = newMetaDescription;
+           title = newTitle; 
+           pTile = pT;
+           pDesc = pD;
+           pImg = pI;
+           pUrl = pU;
+       },
+       metaTitle: function(){ return title; },
+       metaDescription: function() { return metaDescription; },
+       metaKeywords: function() { return metaKeywords; },
+       pageTitle: function(){ return pTile; },
+       pageDesc: function(){ return pDesc; },
+       pageImage: function(){ return pImg ; },
+       baseUrl: function(){ return pUrl ; }
+    }
+});
+
 mainApp.config(function($routeProvider) {
 
     $routeProvider.
@@ -141,8 +165,6 @@ mainApp.controller('fastSearchCtrl', function($scope,$http,$routeParams,myServic
         for(var i in res.data){
             $scope.product[i] = res.data[i];
             $scope.product[i].product_name = decodeURI(res.data[i].product_name);
-            var img = res.data[i].img_url.split(",");
-            $scope.product[i].img_url = img[0];
             $scope.product[i].product_price_show = $scope.product[i].product_price.toLocaleString('it-IT',{ style: 'currency', currency: 'VND' });
         }
     });    
@@ -150,8 +172,6 @@ mainApp.controller('fastSearchCtrl', function($scope,$http,$routeParams,myServic
         var total_amount = 0;
         $scope.basket = res.data;
         for(var i in res.data){            
-            var img = (res.data[i].img_url).split(",");
-            $scope.basket[i].img_url = img[0];
             $scope.basket[i].product_name = decodeURI(res.data[i].product_name);
             $scope.basket[i].total_item = Number(res.data[i].qty) * Number(res.data[i].product_price);
             $scope.basket[i].product_price_show = $scope.basket[i].product_price.toLocaleString('it-IT',{ style: 'currency', currency: 'VND' });
@@ -243,8 +263,6 @@ mainApp.controller('searchTypeCtrl', function($scope,$http,$routeParams,myServic
         for(var i in res.data){
             $scope.product[i] = res.data[i];
             $scope.product[i].product_name = decodeURI(res.data[i].product_name);
-            var img = res.data[i].img_url.split(",");
-            $scope.product[i].img_url = img[0];
             $scope.product[i].product_price_show = $scope.product[i].product_price.toLocaleString('it-IT',{ style: 'currency', currency: 'VND' });
         }
     });    
@@ -252,8 +270,6 @@ mainApp.controller('searchTypeCtrl', function($scope,$http,$routeParams,myServic
         var total_amount = 0;
         $scope.basket = res.data;
         for(var i in res.data){            
-            var img = (res.data[i].img_url).split(",");
-            $scope.basket[i].img_url = img[0];
             $scope.basket[i].product_name = decodeURI(res.data[i].product_name);
             $scope.basket[i].total_item = Number(res.data[i].qty) * Number(res.data[i].product_price);
             $scope.basket[i].product_price_show = $scope.basket[i].product_price.toLocaleString('it-IT',{ style: 'currency', currency: 'VND' });
@@ -344,8 +360,6 @@ mainApp.controller('searchCtrl', function($scope,$http,$routeParams,myService,$w
         for(var i in res.data){
             $scope.product[i] = res.data[i];
             $scope.product[i].product_name = decodeURI(res.data[i].product_name);
-            var img = res.data[i].img_url.split(",");
-            $scope.product[i].img_url = img[0];
             $scope.product[i].product_price_show = $scope.product[i].product_price.toLocaleString('it-IT',{ style: 'currency', currency: 'VND' });
         }
     });    
@@ -353,8 +367,6 @@ mainApp.controller('searchCtrl', function($scope,$http,$routeParams,myService,$w
         var total_amount = 0;
         $scope.basket = res.data;
         for(var i in res.data){            
-            var img = (res.data[i].img_url).split(",");
-            $scope.basket[i].img_url = img[0];
             $scope.basket[i].product_name = decodeURI(res.data[i].product_name);
             $scope.basket[i].total_item = Number(res.data[i].qty) * Number(res.data[i].product_price);
             $scope.basket[i].product_price_show = $scope.basket[i].product_price.toLocaleString('it-IT',{ style: 'currency', currency: 'VND' });
@@ -372,8 +384,6 @@ mainApp.controller('ProdCtrl', function($scope,$http,$routeParams,$sce,myService
         $scope.prod.long_desc = (res.data[0].long_desc) ? decodeURI(res.data[0].long_desc) : "";
         $scope.prod.product_name = decodeURI(res.data[0].product_name);
         $scope.prod.product_price_show = $scope.prod.product_price.toLocaleString('it-IT',{ style: 'currency', currency: 'VND' });
-        $scope.list_img = res.data[0].img_url.split(",");
-        $scope.first_img = $scope.list_img[0];
         $scope.prod.prod_desc = (res.data[0].prod_desc) ? decodeURI(res.data[0].prod_desc) : "";   
    }); 
     $scope.trustAsHtml = function(html) {
@@ -389,8 +399,6 @@ mainApp.controller('ProdCtrl', function($scope,$http,$routeParams,$sce,myService
     $http.get('/api/get_basket/'+sess).then(function(res) {        
         $scope.basket = res.data;
         for(var i in res.data){            
-            var img = (res.data[i].img_url).split(",");
-            $scope.basket[i].img_url = img[0];
             $scope.basket[i].product_name = decodeURI(res.data[i].product_name)
             $scope.basket[i].total_item = Number(res.data[i].qty) * Number(res.data[i].product_price)
             $scope.basket[i].product_price_show = $scope.basket[i].product_price.toLocaleString('it-IT',{ style: 'currency', currency: 'VND' })
@@ -452,8 +460,6 @@ mainApp.controller('checkout', function($scope,$http,$window,myService) {
         console.log(res.data.length)     
         $scope.basket = res.data;
         for(var i in res.data){            
-            var img = (res.data[i].img_url).split(",");
-            $scope.basket[i].img_url = img[0];
             $scope.basket[i].product_name = decodeURI(res.data[i].product_name)
             $scope.basket[i].total_item = Number(res.data[i].qty) * Number(res.data[i].product_price)
             $scope.basket[i].product_price_show = $scope.basket[i].product_price.toLocaleString('it-IT',{ style: 'currency', currency: 'VND' })
@@ -528,13 +534,14 @@ mainApp.controller('checkout', function($scope,$http,$window,myService) {
 });
 
 
-mainApp.controller('home', function($scope,$http,$window,myService) {
+mainApp.controller('home', function($scope,$http,$window,myService,MetaService,$rootScope) {
+    $rootScope.metaservice = MetaService;
+    $rootScope.metaservice.set("Vighti","Chuyên buôn bán mỹ phẩm chính hãng chất lượng","vighti,vighticosmetic","VightiCosmetic","Mỹ phẩm thật","","");
+
     $scope.new_prod = [];
     $http.get('/api/new_prod').then(function(res) {
         for(var i in res.data){
             $scope.new_prod[i] = res.data[i];
-            var img = res.data[i].img_url.split(",");
-            $scope.new_prod[i].img_url = img[0];
             $scope.new_prod[i].product_price_show = $scope.new_prod[i].product_price.toLocaleString('it-IT',{ style: 'currency', currency: 'VND' });
             $scope.new_prod[i].product_name = decodeURI(res.data[i].product_name);
         }
@@ -543,8 +550,6 @@ mainApp.controller('home', function($scope,$http,$window,myService) {
     $http.get('/api/best_sell').then(function(res) {
         for(var i in res.data){
             $scope.best_sell[i] = res.data[i];
-            var img = res.data[i].img_url.split(",");
-            $scope.best_sell[i].img_url = img[0];
             $scope.best_sell[i].product_price_show = $scope.best_sell[i].product_price.toLocaleString('it-IT',{ style: 'currency', currency: 'VND' });
             $scope.best_sell[i].product_name = decodeURI(res.data[i].product_name);
         }       
@@ -558,8 +563,6 @@ mainApp.controller('home', function($scope,$http,$window,myService) {
     $http.get('/api/get_basket/'+sess).then(function(res) {        
         $scope.basket = res.data;
         for(var i in res.data){            
-            var img = (res.data[i].img_url).split(",");
-            $scope.basket[i].img_url = img[0];
             $scope.basket[i].product_name = decodeURI(res.data[i].product_name)
             $scope.basket[i].total_item = Number(res.data[i].qty) * Number(res.data[i].product_price)
             $scope.basket[i].product_price_show = $scope.basket[i].product_price.toLocaleString('it-IT',{ style: 'currency', currency: 'VND' })
@@ -588,8 +591,6 @@ mainApp.controller('home', function($scope,$http,$window,myService) {
         if(temp == $scope.basket.length) {
             
             $scope.basket.push(prod);
-            var img = (prod.img_url).split(",");
-            $scope.basket[$scope.basket.length-1].img_url = img[0];
             $scope.basket[$scope.basket.length-1].qty = 1;
             $scope.basket[$scope.basket.length-1].product_name = decodeURI(prod.product_name)
             $scope.basket[$scope.basket.length-1].total_item =  Number(prod.product_price)
@@ -699,8 +700,6 @@ mainApp.controller('shopCtrl', function($scope,$http,myService,$window) {
         for(var i in res.data){
             $scope.product[i] = res.data[i];
             $scope.product[i].product_name = decodeURI(res.data[i].product_name);
-            var img = res.data[i].img_url.split(",");
-            $scope.product[i].img_url = img[0];
             $scope.product[i].product_price_show = $scope.product[i].product_price.toLocaleString('it-IT',{ style: 'currency', currency: 'VND' });
         }
     });
@@ -709,8 +708,6 @@ mainApp.controller('shopCtrl', function($scope,$http,myService,$window) {
         var total_amount = 0;
         $scope.basket = res.data;
         for(var i in res.data){            
-            var img = (res.data[i].img_url).split(",");
-            $scope.basket[i].img_url = img[0];
             $scope.basket[i].product_name = decodeURI(res.data[i].product_name);
             $scope.basket[i].total_item = Number(res.data[i].qty) * Number(res.data[i].product_price);
             $scope.basket[i].product_price_show = $scope.basket[i].product_price.toLocaleString('it-IT',{ style: 'currency', currency: 'VND' });
