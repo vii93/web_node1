@@ -528,8 +528,6 @@ module.exports = function (app) {
     //         res.end();
     //     });
     // });
-});
+// });
 
 }
-var formidable = require('formidable');
-var fs = require('fs');
