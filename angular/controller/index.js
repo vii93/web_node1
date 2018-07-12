@@ -387,7 +387,12 @@ mainApp.controller('ProdCtrl', function($scope,$http,$routeParams,$sce,myService
         $scope.prod.product_name = decodeURI(res.data[0].product_name);
         $scope.prod.product_price_show = $scope.prod.product_price.toLocaleString('it-IT',{ style: 'currency', currency: 'VND' });
         $scope.prod.prod_desc = (res.data[0].prod_desc) ? decodeURI(res.data[0].prod_desc) : "";   
-   }); 
+        $scope.first_img = {"src":$scope.prod.img_url,"alt":$scope.prod.img_alt};
+        $scope.list_img = [];
+        $scope.list_img.push({"src":$scope.prod.img_url,"alt":$scope.prod.img_alt})
+        $scope.list_img.push({"src":$scope.prod.img_url2,"alt":$scope.prod.img_alt2})
+        $scope.list_img.push({"src":$scope.prod.img_url3,"alt":$scope.prod.img_alt3})
+    }); 
     $scope.trustAsHtml = function(html) {
       return $sce.trustAsHtml(html);
     }   
@@ -412,7 +417,8 @@ mainApp.controller('ProdCtrl', function($scope,$http,$routeParams,$sce,myService
     });   
 
     $scope.show_big_img = function(img) {
-        $(".img_prod").attr("src",img);
+        $(".img_prod").attr("src",img.src);
+        $(".img_prod").attr("alt",img.alt);
     }
 
     $scope.addcard = function(prod) {

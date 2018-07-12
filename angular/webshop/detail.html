@@ -36,11 +36,11 @@
 <div class="prod_top">
 	<span class="inline img_prods">		
 		<div >
-			<img class="img_prod" src="{{first_img}}"/>
+			<img class="img_prod" src="{{first_img.src}}" alt="{{first_img.alt}}"/>
 		</div>
 		<div>
 			<div ng-repeat="imgs in list_img">
-				<a href="javascript:void(0)" ng-click="show_big_img(imgs);"><img class="img_list inline" ng-src="{{imgs}}"/></a>
+				<a href="javascript:void(0)" ng-click="show_big_img(imgs);"><img class="img_list inline" ng-src="{{imgs.src}}" alt="{{imgs.alt}}"/></a>
 			</div>
 		</div>
 	</span>
