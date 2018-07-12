@@ -5,20 +5,22 @@ mainApp.service('MetaService', function() {
     var title = 'Web App';
     var metaDescription = '';
     var metaKeywords = '';
+    var pageT = '', pDesc = '',pUrl = '',pImg = '';
     return {
        set: function(newTitle, newMetaDescription, newKeywords,pT,pD,pI,pU) {
            metaKeywords = newKeywords;
            metaDescription = newMetaDescription;
            title = newTitle; 
-           pTile = pT;
+           console.log(pT,pD,pI,pU,2)
+           pageT = pT;
            pDesc = pD;
-           pImg = pI;
+           pImg = pI;           
            pUrl = pU;
        },
        metaTitle: function(){ return title; },
        metaDescription: function() { return metaDescription; },
        metaKeywords: function() { return metaKeywords; },
-       pageTitle: function(){ return pTile; },
+       pageTitle: function(){ return pageT; },
        pageDesc: function(){ return pDesc; },
        pageImage: function(){ return pImg ; },
        baseUrl: function(){ return pUrl ; }
