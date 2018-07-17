@@ -43,8 +43,8 @@
                 <span><img src="/face_icon.png" alt="" style="width: 20px;"></span>
             </div>
             <div >
-                <span><a href="#!/search/key={{input_search}}"><img src="/search_icon.png" alt="" style="width: 30px;float: right;"></a></span>
-                <input class="search_field" type="text" ng-model="input_search" id="" placeholder="Tìm kiếm..." style="float: right;border: 2px solid lightgray;border-radius: 4px;">
+                <a  style="float:  right;" href="#!/search/key={{input_search}}"><img id="search_btn" src="/search_icon.png" alt="" style="width: 25px;float: right;"></a>
+                <input class="search_field" type="text" ng-model="input_search" id="search" placeholder="Tìm kiếm..." style="float: right;border: 2px solid lightgray;border-radius: 4px;">
             </div>
         </div>
         <div style="text-align:center;" class="">
@@ -74,8 +74,8 @@
             <a href="#!/about">About</a>
         </div>
         <div>
-            <input class="search_field" style="width: 90%;float: left;" type="search" ng-model="input_search" id="" placeholder="Tìm kiếm..." style="float: right;border: 2px solid lightgray;border-radius: 4px;">
-            <button ng-click="location.href = '#!/search/key={{input_search}}'" style="width: 50px;height: 50px; float: left;display:inline-block; background: white;"><img style="width: 50px;" src="/search_icon.png" alt=""></button>
+            <input id="search_mobile" class="search_field" style="width: 90%;float: left;margin-left: 10px;" type="search" ng-model="input_search" placeholder="Tìm kiếm..." style="float: right;border: 2px solid lightgray;border-radius: 4px;">
+            <a  href="#!/search/key={{input_search}}" style="width: 50px;height: 50px; float: left;display:inline-block; background: white;"><img id="search_mobile_btn" style="width: 50px;" src="/search_icon.png" alt=""></a>
         </div>
     </div>
     <div ng-view></div>

@@ -6,6 +6,16 @@ $(document).ready(function(){
     if($("#navbar_mobile").width() > 0)
       close_mobile_nav();
   });
+  $('#search').keypress(function(event){
+    if(event.keyCode == 13){
+      $('#search_btn').click();
+    }
+  });
+  $('#search_mobile').keypress(function(event){
+    if(event.keyCode == 13){
+      $('#search_mobile_btn').click();
+    }
+  });
 });
 
 function openCity(evt, cityName) {
