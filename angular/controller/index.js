@@ -11,7 +11,6 @@ mainApp.service('MetaService', function() {
            metaKeywords = newKeywords;
            metaDescription = newMetaDescription;
            title = newTitle; 
-           console.log(pT,pD,pI,pU,2)
            pageT = pT;
            pDesc = pD;
            pImg = pI;           
@@ -60,7 +59,10 @@ mainApp.config(function($routeProvider) {
     });       
  });
 
-mainApp.controller('confirmCtrl',function($scope,$http,$routeParams,$window){
+mainApp.controller('confirmCtrl',function(MetaServicem,$rootScope,$scope,$http,$routeParams,$window){
+    $rootScope.metaservice = MetaService;
+    $rootScope.metaservice.set("Vighti","Chuyên buôn bán mỹ phẩm chính hãng chất lượng","vighti,vighticosmetic","VightiCosmetic","Mỹ phẩm thật","favicon.ico","www.vighticosmetic.com");
+
     var sess = $window.sessionStorage.getItem("ctk_id");
     $http.get('/admin/list_order/'+$routeParams.order_id).then(function(res) {
         $scope.order = res.data[0];
@@ -86,7 +88,10 @@ mainApp.controller('confirmCtrl',function($scope,$http,$routeParams,$window){
     $window.sessionStorage.removeItem("ctk_id");
 });
 
-mainApp.controller('fastSearchCtrl', function($scope,$http,$routeParams,myService,$window) {
+mainApp.controller('fastSearchCtrl', function($rootScope,MetaService$scope,$http,$routeParams,myService,$window) {
+    $rootScope.metaservice = MetaService;
+    $rootScope.metaservice.set("Vighti","Chuyên buôn bán mỹ phẩm chính hãng chất lượng","vighti,vighticosmetic","VightiCosmetic","Mỹ phẩm thật","favicon.ico","www.vighticosmetic.com");
+
     var type = $routeParams.product_type;
     var key = $routeParams.key;
     $http.get('/api/list_cat_n_type').then(function(res) {
@@ -185,7 +190,10 @@ mainApp.controller('fastSearchCtrl', function($scope,$http,$routeParams,myServic
     });
 });
 
-mainApp.controller('searchTypeCtrl', function($scope,$http,$routeParams,myService,$window) {
+mainApp.controller('searchTypeCtrl', function($rootScope,MetaService,$scope,$http,$routeParams,myService,$window) {
+    $rootScope.metaservice = MetaService;
+    $rootScope.metaservice.set("Vighti","Chuyên buôn bán mỹ phẩm chính hãng chất lượng","vighti,vighticosmetic","VightiCosmetic","Mỹ phẩm thật","favicon.ico","www.vighticosmetic.com");
+
     var type = $routeParams.product_type;
     var key = $routeParams.type;
     $http.get('/api/list_cat_n_type').then(function(res) {
@@ -283,7 +291,10 @@ mainApp.controller('searchTypeCtrl', function($scope,$http,$routeParams,myServic
     });
 });
 
-mainApp.controller('searchCtrl', function($scope,$http,$routeParams,myService,$window) {
+mainApp.controller('searchCtrl', function($rootScope,MetaService,$scope,$http,$routeParams,myService,$window) {
+    $rootScope.metaservice = MetaService;
+    $rootScope.metaservice.set("Vighti","Chuyên buôn bán mỹ phẩm chính hãng chất lượng","vighti,vighticosmetic","VightiCosmetic","Mỹ phẩm thật","favicon.ico","www.vighticosmetic.com");
+
     var key = $routeParams.key;
     $http.get('/api/list_cat_n_type').then(function(res) {
         var kq1 = res.data.cat[0];
@@ -380,7 +391,7 @@ mainApp.controller('searchCtrl', function($scope,$http,$routeParams,myService,$w
     });
 });
 
-mainApp.controller('ProdCtrl', function($scope,$http,$routeParams,$sce,myService,$window) {
+mainApp.controller('ProdCtrl', function($rootScope,MetaService,$scope,$http,$routeParams,$sce,myService,$window) {
    $http.get("/api/product_detail/:"+$routeParams.url).then(function(res) {
         $scope.prod = res.data[0];
         $scope.prod.long_desc = (res.data[0].long_desc) ? decodeURI(res.data[0].long_desc) : "";
@@ -392,6 +403,8 @@ mainApp.controller('ProdCtrl', function($scope,$http,$routeParams,$sce,myService
         $scope.list_img.push({"src":$scope.prod.img_url,"alt":$scope.prod.img_alt})
         $scope.list_img.push({"src":$scope.prod.img_url2,"alt":$scope.prod.img_alt2})
         $scope.list_img.push({"src":$scope.prod.img_url3,"alt":$scope.prod.img_alt3})
+        $rootScope.metaservice = MetaService;
+        $rootScope.metaservice.set($scope.prod.product_name,$scope.prod.prod_desc,$scope.prod.search_field,$scope.prod.product_name,$scope.prod.prod_desc,$scope.prod.img_url,$window.location.href );
     }); 
     $scope.trustAsHtml = function(html) {
       return $sce.trustAsHtml(html);
@@ -451,7 +464,10 @@ mainApp.controller('ProdCtrl', function($scope,$http,$routeParams,$sce,myService
     }
 });
 
-mainApp.controller('checkout', function($scope,$http,$window,myService) {
+mainApp.controller('checkout', function($scope,$http,$window,myService,MetaService, $rootScope) {
+    $rootScope.metaservice = MetaService;
+    $rootScope.metaservice.set("Vighti","Chuyên buôn bán mỹ phẩm chính hãng chất lượng","vighti,vighticosmetic","VightiCosmetic","Mỹ phẩm thật","favicon.ico","www.vighticosmetic.com");
+
     var sess = $window.sessionStorage.getItem("ctk_id");
     if(!sess) {
         var sess = Math.random().toString(36).substring(7);
@@ -465,7 +481,6 @@ mainApp.controller('checkout', function($scope,$http,$window,myService) {
         if(res.data.length <=0){
             $window.location.href = '#'; 
         } 
-        console.log(res.data.length)     
         $scope.basket = res.data;
         for(var i in res.data){            
             $scope.basket[i].product_name = decodeURI(res.data[i].product_name)
@@ -544,7 +559,7 @@ mainApp.controller('checkout', function($scope,$http,$window,myService) {
 
 mainApp.controller('home', function($scope,$http,$window,myService,MetaService,$rootScope) {
     $rootScope.metaservice = MetaService;
-    $rootScope.metaservice.set("Vighti","Chuyên buôn bán mỹ phẩm chính hãng chất lượng","vighti,vighticosmetic","VightiCosmetic","Mỹ phẩm thật","","");
+    $rootScope.metaservice.set("Vighti","Chuyên buôn bán mỹ phẩm chính hãng chất lượng","vighti,vighticosmetic","VightiCosmetic","Mỹ phẩm thật","favicon.ico","www.vighticosmetic.com");
 
     $scope.new_prod = [];
     $http.get('/api/new_prod').then(function(res) {
@@ -630,7 +645,10 @@ mainApp.controller('home', function($scope,$http,$window,myService,MetaService,$
 });
 
 
-mainApp.controller('shopCtrl', function($scope,$http,myService,$window) {
+mainApp.controller('shopCtrl', function($scope,$http,myService,$window,$rootScope,MetaService) {
+    $rootScope.metaservice = MetaService;
+    $rootScope.metaservice.set("Vighti","Chuyên buôn bán mỹ phẩm chính hãng chất lượng","vighti,vighticosmetic","VightiCosmetic","Mỹ phẩm thật","favicon.ico","www.vighticosmetic.com");
+
     $http.get('/api/list_cat_n_type').then(function(res) {
         var kq1 = res.data.cat[0];
         var kq2 = res.data.type[0];
