@@ -16,6 +16,7 @@ function currentDiv(n) {
 function showDivs(n) {
   var i;
   if(!n) n =1;
+  if(!slideIndex) slideIndex = 1;
   var x = document.getElementsByClassName("mySlides");
   var dots = document.getElementsByClassName("demo");
   if (n > x.length) {slideIndex = 1}    
