@@ -162,7 +162,7 @@ mainApp.controller('fastSearchCtrl', function($rootScope,MetaService$scope,$http
                 total += $scope.basket[i].total_item;
             }
             $scope.total_amount = total;
-            $scope.total_amount_show = $scope.total_amount.total_item.toLocaleString('it-IT',{ style: 'currency', currency: 'VND' });
+            $scope.total_amount_show = $scope.total_amount.toLocaleString('it-IT',{ style: 'currency', currency: 'VND' });
         }        
     }
 
@@ -250,6 +250,11 @@ mainApp.controller('searchTypeCtrl', function($rootScope,MetaService,$scope,$htt
         $scope.total_amount_show = $scope.total_amount.toLocaleString('it-IT',{ style: 'currency', currency: 'VND' });
     }
 
+    $scope.delete_item = function(id) {
+        $http.post("/api/delete_item/"+id+"/"+sess).then(function(res) {
+            location.reload();
+        })
+    }
     $scope.update_qty = function(id,qty){
         if(qty > 0 ) {
             var ctk_id = myService.updateQty( id,qty);
@@ -264,7 +269,7 @@ mainApp.controller('searchTypeCtrl', function($rootScope,MetaService,$scope,$htt
                 total += $scope.basket[i].total_item;
             }
             $scope.total_amount = total;
-            $scope.total_amount_show = $scope.total_amount.total_item.toLocaleString('it-IT',{ style: 'currency', currency: 'VND' });
+            $scope.total_amount_show = $scope.total_amount.toLocaleString('it-IT',{ style: 'currency', currency: 'VND' });
         }        
     }
 
@@ -364,8 +369,13 @@ mainApp.controller('searchCtrl', function($rootScope,MetaService,$scope,$http,$r
                 total += $scope.basket[i].total_item;
             }
             $scope.total_amount = total;
-            $scope.total_amount_show = $scope.total_amount.total_item.toLocaleString('it-IT',{ style: 'currency', currency: 'VND' });
+            $scope.total_amount_show = $scope.total_amount.toLocaleString('it-IT',{ style: 'currency', currency: 'VND' });
         }        
+    }
+    $scope.delete_item = function(id) {
+        $http.post("/api/delete_item/"+id+"/"+sess).then(function(res) {
+            location.reload();
+        })
     }
 
     $scope.product = [];
@@ -410,6 +420,15 @@ mainApp.controller('ProdCtrl', function($rootScope,MetaService,$scope,$http,$rou
       return $sce.trustAsHtml(html);
     }   
 
+    $scope.minus_qty = function () {
+        if($scope.detail_qty > 1)
+            $scope.detail_qty = $scope.detail_qty - 1;
+    }
+    $scope.plus_qty = function () {
+        if($scope.detail_qty < 20)
+        $scope.detail_qty = $scope.detail_qty + 1;
+    }
+
     var sess = $window.sessionStorage.getItem("ctk_id");
     if(!sess) {
         var sess = Math.random().toString(36).substring(7);
@@ -436,12 +455,12 @@ mainApp.controller('ProdCtrl', function($rootScope,MetaService,$scope,$http,$rou
 
     $scope.addcard = function(prod) {
         openNav();
-        var ctk_id = myService.addToBasket(prod.product_id);
+        var ctk_id = myService.addToBasket(prod.product_id,$scope.detail_qty);
         var temp = 0;
         for(var i in $scope.basket){
             if($scope.basket[i].product_id == prod.product_id) {
                 var old_qty = $scope.basket[i].qty;
-                $scope.basket[i].qty += 1;
+                $scope.basket[i].qty += $scope.detail_qty;
                 $scope.basket[i].total_item += Number(prod.product_price);
                 $scope.total_amount +=  Number(prod.product_price);
                 $scope.basket[i].total_item_show = $scope.basket[i].total_item.toLocaleString('it-IT',{ style: 'currency', currency: 'VND' });
@@ -461,6 +480,31 @@ mainApp.controller('ProdCtrl', function($rootScope,MetaService,$scope,$http,$rou
             $scope.basket[$scope.basket.length-1].total_item_show =    $scope.basket[$scope.basket.length-1].total_item.toLocaleString('it-IT',{ style: 'currency', currency: 'VND' });
         }
         $scope.total_amount_show = $scope.total_amount.toLocaleString('it-IT',{ style: 'currency', currency: 'VND' });
+    }
+    $scope.update_qty = function(id,qty){
+        if(qty > 0 ) {
+            var ctk_id = myService.updateQty( id,qty);
+            var total = 0;
+            for(var i in $scope.basket){
+                if($scope.basket[i].product_id == id) {
+                    $scope.basket[i].qty = $scope.basket[i].qty;
+                    $scope.basket[i].total_item = Number($scope.basket[i].qty) * Number($scope.basket[i].product_price)
+                    $scope.basket[i].product_price_show = $scope.basket[i].product_price.toLocaleString('it-IT',{ style: 'currency', currency: 'VND' })
+                    $scope.basket[i].total_item_show = $scope.basket[i].total_item.toLocaleString('it-IT',{ style: 'currency', currency: 'VND' });
+                }
+                total += $scope.basket[i].total_item;
+            }
+            $scope.total_amount = total;
+            $scope.total_amount_show = $scope.total_amount.toLocaleString('it-IT',{ style: 'currency', currency: 'VND' });
+
+            $scope.tien_tong = $scope.total_amount + $scope.ship_cod_phi;
+            $scope.tien_tong_show = $scope.tien_tong.toLocaleString('it-IT',{ style: 'currency', currency: 'VND' });
+        }        
+    }
+    $scope.delete_item = function(id) {
+        $http.post("/api/delete_item/"+id+"/"+sess).then(function(res) {
+            location.reload();
+        })
     }
 });
 
@@ -642,6 +686,12 @@ mainApp.controller('home', function($scope,$http,$window,myService,MetaService,$
             $scope.total_amount_show = $scope.total_amount.toLocaleString('it-IT',{ style: 'currency', currency: 'VND' });
         }        
     }
+
+    $scope.delete_item = function(id) {
+        $http.post("/api/delete_item/"+id+"/"+sess).then(function(res) {
+            location.reload();
+        })
+    }
 });
 
 
@@ -717,8 +767,13 @@ mainApp.controller('shopCtrl', function($scope,$http,myService,$window,$rootScop
                 total += $scope.basket[i].total_item;
             }
             $scope.total_amount = total;
-            $scope.total_amount_show = $scope.total_amount.total_item.toLocaleString('it-IT',{ style: 'currency', currency: 'VND' });
+            $scope.total_amount_show = $scope.total_amount.toLocaleString('it-IT',{ style: 'currency', currency: 'VND' });
         }        
+    }
+    $scope.delete_item = function(id) {
+        $http.post("/api/delete_item/"+id+"/"+sess).then(function(res) {
+            location.reload();
+        })
     }
 
     $scope.product = [];
@@ -747,14 +802,14 @@ mainApp.controller('shopCtrl', function($scope,$http,myService,$window,$rootScop
 
 mainApp.factory('myService', function($window,$http) {
     return {
-        addToBasket: function(id) {
+        addToBasket: function(id,qty) {
             var curent_sess = $window.sessionStorage.getItem("ctk_id");
             if(!curent_sess) {
                 curent_sess = Math.random().toString(36).substring(7);
                 $window.sessionStorage.setItem("ctk_id",sess);
             }
-            
-            $http.post('/api/addcard/'+curent_sess+'/'+id).then(function(res) {
+            if(!qty) qty = 1;
+            $http.post('/api/addcard/'+curent_sess+'/'+id+'/'+qty).then(function(res) {
 
             });
             return curent_sess;

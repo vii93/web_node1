@@ -5,6 +5,9 @@ $(document).ready(function(){
   $('body').click(function() {
     if($("#navbar_mobile").width() > 0)
       close_mobile_nav();
+    if($("#mySidenav").width() > 0) {
+      closeNav()
+    }
   });
   $('#search').keypress(function(event){
     if(event.keyCode == 13){
@@ -40,9 +43,8 @@ function open_prod_type(obj) {
 }
 
 function openNav() {
-  console.log($(document).width())
   if($(document).width() <= 1000) {
-    document.getElementById("mySidenav").style.width = "500px";
+    document.getElementById("mySidenav").style.width = "600px";
   }else {
     document.getElementById("mySidenav").style.width = "350px";
   }

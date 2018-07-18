@@ -3,33 +3,33 @@
 		
 </div>
 <div id="mySidenav" class="sidenav">
-	<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-	<span>Giỏ Hàng Của Bạn</span>  
+	<a class="closebtn" onclick="closeNav()">&times;</a>
+	<span class="basket-title">Giỏ Hàng Của Bạn</span>  
 	<hr/>
 	<div ng-repeat="b in basket">
-		<div>
-			<table>
-				<tbody>
-					<tr>
-						<td>
-							<img ng-src="{{b.img_url}}" style="width: 50px" alt="{{b.img_url}}">
-						</td>
-						<td colspan="2">{{b.product_name}}</td>
-					</tr>
-					<tr>
-						<td>{{b.product_price_show}} * </td>
-						<td><input style="width: 60px;" ng-change="update_qty(b.product_id,b.qty)" type="number" name="qty" id="qty" ng-model="b.qty">= </td>
-						<td>{{b.total_item_show}}</td>
-					</tr>
-				</tbody>
-			</table>
+		<div class="basket-detail">
+			<span>
+				<img ng-src="{{b.img_url}}" style="width: 50px" alt="{{b.img_url}}">
+			</span>
+			<span>{{b.product_name}}</span>
+			<br/>
+			<span style="padding-left:5px;">{{b.product_price_show}}</span>
+			<span style="padding-left:5px;">*</span>
+			<span><input class="b-p-qty" ng-change="update_qty(b.product_id,b.qty)" type="number" name="qty" id="qty" ng-model="b.qty"></span>
+			<span style="padding-left:5px;">=</span>
+			<span style="padding-left:5px;">{{b.total_item_show}} </span>
+			<span style="padding-left:5px;" ng-click="delete_item(b.product_id)"><img src="/delete_icon.png" alt=""></span>
 			<hr/>
 		</div>
 	</div>      
-	<div style="text-align:right; display: grid;">Tổng: {{total_amount_show}} <hr/></div>
+	<div class="total-basket">
+		<span class="total-basket">Tổng tiền:</span>
+		<span class="total-basket">{{total_amount_show}} </span>  
+		<hr/>
+	</div>
 
 	<div style="float: right; display: grid;margin-bottom: 50px;">
-		<button onclick="location.href='#!/checkout'">Checkout</button>
+		<button class="btn-checkout" onclick="location.href='#!/checkout'">Checkout</button>
 	</div>
 </div>
 
@@ -40,11 +40,11 @@
 		</div>
 		<div>
 			<div ng-repeat="imgs in list_img">
-				<a href="javascript:void(0)" ng-click="show_big_img(imgs);"><img class="img_list inline" ng-src="{{imgs.src}}" alt="{{imgs.alt}}"/></a>
+				<a  ng-click="show_big_img(imgs);"><img class="img_list inline" ng-src="{{imgs.src}}" alt="{{imgs.alt}}"/></a>
 			</div>
 		</div>
 	</span>
-	<span class="prod_action">
+	<div class="prod_action">
 		<div style="height:30px"></div>
 		<p class="product_name">{{prod.product_name}}</p>
 		<div>
@@ -53,25 +53,39 @@
 		</div>
 		
 		<div>
-			<p class="select_inline text_prod">Price: {{prod.product_price_show}}</p>
+			<p class="select_inline text_prod">Giá tiền: {{prod.product_price_show}}</p>
+		</div>
+		</br>
+		</br>
+		<div style="width:550px">
+			<span style="float:left;margin-right:10px;"> Số lượng: </span>
+			<div style="width:20px;float:left;">
+				<a ng-click="minus_qty()" ><img src="/minus_icon.png" alt=""></a>
+			</div>
+			<div style="width:50px;height:22px;float:left;border: solid 1px gray;margin:5px;text-align:center;">
+				<input type="number" min="1" max="20" required style="width:50px;height:22px;" ng-model="detail_qty" ng-init="detail_qty = 1"></input>
+			</div>
+			<div style="width:20px;float:left;">
+				<a ng-click="plus_qty()"><img src="/add_icon.png" alt=""></a>
+			</div>
 		</div>
 		</br>
 		</br>
 		<div>
-			<button class="btn_add_cart w3-red prod_detail" ng-click="addcard(prod)">Add to bag</button>
+			<button class="btn_add_cart prod_detail" ng-click="addcard(prod)">THÊM VÀO GIỎ</button>
 		</div>
-	</span>
+	</div>
 </div>
 
 <div class="w3-container prod_long_desc">
 	<div class="w3-row">
-		<a href="javascript:void(0)" onclick="openCity(event, 'Description');">
+		<a href="" onclick="openCity(event, 'Description');">
 			<div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding w3-border-pale-red">Description</div>
 		</a>
-		<a href="javascript:void(0)" onclick="openCity(event, 'Review');">
+		<a href="" onclick="openCity(event, 'Review');">
 			<div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding">Review</div>
 		</a>
-		<a href="javascript:void(0)" onclick="openCity(event, 'Question');">
+		<a href="" onclick="openCity(event, 'Question');">
 			<div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding">Question</div>
 		</a>
 	</div>

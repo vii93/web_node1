@@ -37,11 +37,6 @@
 <body>
     <div class="main-screen">
         <div style="width: 100%;height: 30px; ">
-            <div style="width: auto;float: left;">
-                <span><img src="/mobile_icon.png" alt="" style="width: 20px;"></span>
-                <span><a href="tel:0946073981">0946073981</a> </span>
-                <span><img src="/face_icon.png" alt="" style="width: 20px;"></span>
-            </div>
             <div >
                 <a  style="float:  right;" href="#!/search/key={{input_search}}"><img id="search_btn" src="/search_icon.png" alt="" style="width: 25px;float: right;"></a>
                 <input class="search_field" type="text" ng-model="input_search" id="search" placeholder="Tìm kiếm..." style="float: right;border: 2px solid lightgray;border-radius: 4px;">
@@ -66,12 +61,15 @@
         <div style="text-align:center; width: 30%; float: left;" class="logo_mobile">
             <a href="/"><img class="logo_mobile" src="/logo.jpg" ></a>
         </div>
-        <div id="navbar_mobile" class="nav_mobile">
-            <a href="javascript:void(0)" class="closebtn" onclick="close_mobile_nav()">&times;</a>
+        <div id="navbar_mobile" class="nav-mobile">
+            <a href="" class="closebtn" onclick="close_mobile_nav()">&times;</a>
             <a href="#!/">Home</a>
             <a href="#!/shop">Shop Now</a>
             <a href="#!/product_detail">Contact</a>
             <a href="#!/about">About</a>
+            <hr/>
+            <span style="    float: left;"><img src="/mobile_icon.png" alt="" style="width: 20px;"></span>
+            <span><a href="tel:0946073981">0946073981</a> </span>
         </div>
         <div>
             <input id="search_mobile" class="search_field" style="width: 90%;float: left;margin-left: 10px;" type="search" ng-model="input_search" placeholder="Tìm kiếm..." style="float: right;border: 2px solid lightgray;border-radius: 4px;">
@@ -82,14 +80,18 @@
     <div class="footer">
         <hr/>
         <div class="content content1">
-            <p><a href="www.facebook.com">Shop</a></p>
-            <p><a href="www.instagram.com">About us</a></p>
-            <p><a href="www.youtube.com">Contact</a></p>
+            <p><a href="#!/shop">Shop</a></p>
+            <p><a href="#!/aboutus">About us</a></p>
+            <p><a href="#!/contact">Contact</a></p>
         </div>
         <div class="content content2">
-            <p><a href="www.facebook.com">facebook</a></p>
-            <p><a href="www.instagram.com">instagram</a></p>
-            <p><a href="www.youtube.com">youtube</a></p>
+            <p><a href="www.youtube.com">Follow Us</a></p>
+            <div>
+                <a href="https://www.facebook.com/Vighti-cosmetic-465096790603748/"><img src="/face_icon.png" alt="" style="width: 20px;"></a>
+                <a href="www.instagram.com"><img src="/insta_icon.png" alt="" style="width: 20px;"></a>
+                <a href="www.youtube.com"><img src="/yt_icon.png" alt="" style="width: 20px;"></a>
+            </div>
+            
         </div>
     </div>
     <script src="/slick-carousel/slick/slick.js"></script>

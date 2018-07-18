@@ -15,6 +15,7 @@ function currentDiv(n) {
 
 function showDivs(n) {
   var i;
+  if(!n) n =1;
   var x = document.getElementsByClassName("mySlides");
   var dots = document.getElementsByClassName("demo");
   if (n > x.length) {slideIndex = 1}    
@@ -27,5 +28,4 @@ function showDivs(n) {
   }
   x[slideIndex-1].style.display = "block";  
   dots[slideIndex-1].className += " w3-pale-red";
-  console.log(slideIndex)
 }

@@ -291,21 +291,23 @@ module.exports = function (app) {
         });
     });
 
-    app.post('/api/addcard/:ctk_id/:id', function (req, res) {
+    app.post('/api/addcard/:ctk_id/:id/:qty', function (req, res) {
         pool.getConnection(function (err, con) {
             if (err) throw err
             var id = (req.params.id).replace(":", "")
             var ctk_id = (req.params.ctk_id).replace(":", "")
+            var qty = (req.params.qty).replace(":", "")
+            console.log(qty)
             con.query("select basket_id from basket_detail where product_id=" + id + " and ctk_id='" + ctk_id + "'", function (err, result) {
                 if (err) { con.end(); console.error(err); return; }
                 if (result.length < 1) {
-                    con.query("INSERT INTO basket_detail( basket_id, product_id, ctk_id,qty ) SELECT ifnull(MAX( basket_id ),0) + 1, '" + id + "', '" + ctk_id + "', 1 FROM basket_detail;", function (err, result) {
+                    con.query("INSERT INTO basket_detail( basket_id, product_id, ctk_id,qty ) SELECT ifnull(MAX( basket_id ),0) + 1, '" + id + "', '" + ctk_id + "', " + qty + " FROM basket_detail;", function (err, result) {
                         if (err) { con.end(); console.error(err); return; }
                         res.json(result);
                         con.end();
                     });
                 } else {
-                    con.query("update basket_detail set qty = (qty+1) where basket_id=" + result[0].basket_id, function (err, result) {
+                    con.query("update basket_detail set qty = (qty+" + qty + ") where basket_id=" + result[0].basket_id, function (err, result) {
                         if (err) { con.end(); console.error(err); return; }
                         res.json(result);
                         con.end();

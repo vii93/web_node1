@@ -3,33 +3,33 @@
             
 </div>
 <div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <span>Giỏ Hàng Của Bạn</span>  
+    <a class="closebtn" onclick="closeNav()">&times;</a>
+    <span class="basket-title">Giỏ Hàng Của Bạn</span>  
     <hr/>
     <div ng-repeat="b in basket">
-        <div>
-            <table>
-                <tbody>
-                    <tr>
-                        <td>
-                            <img ng-src="{{b.img_url}}" style="width: 50px" alt="{{b.img_url}}">
-                        </td>
-                        <td colspan="2">{{b.product_name}}</td>
-                    </tr>
-                    <tr>
-                        <td>{{b.product_price_show}} * </td>
-                        <td><input style="width: 60px;" ng-change="update_qty(b.product_id,b.qty)" type="number" name="qty" id="qty" ng-model="b.qty">= </td>
-                        <td>{{b.total_item_show}}</td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="basket-detail">
+            <span>
+                <img ng-src="{{b.img_url}}" style="width: 50px" alt="{{b.img_url}}">
+            </span>
+            <span>{{b.product_name}}</span>
+            <br/>
+            <span style="padding-left:5px;">{{b.product_price_show}}</span>
+            <span style="padding-left:5px;">*</span>
+            <span><input class="b-p-qty" ng-change="update_qty(b.product_id,b.qty)" type="number" name="qty" id="qty" ng-model="b.qty"></span>
+            <span style="padding-left:5px;">=</span>
+            <span style="padding-left:5px;">{{b.total_item_show}} </span>
+            <span style="padding-left:5px;" ng-click="delete_item(b.product_id)"><img src="/delete_icon.png" alt=""></span>
             <hr/>
         </div>
     </div>      
-    <div style="text-align:right; display: grid;">Tổng: {{total_amount_show}} <hr/></div>
-    
+    <div class="total-basket">
+        <span class="total-basket">Tổng tiền:</span>
+        <span class="total-basket">{{total_amount_show}} </span>  
+        <hr/>
+    </div>
+
     <div style="float: right; display: grid;margin-bottom: 50px;">
-        <button onclick="location.href='#!/checkout'">Checkout</button>
+        <button class="btn-checkout" onclick="location.href='#!/checkout'">Checkout</button>
     </div>
 </div>
 
@@ -86,7 +86,7 @@
                     <span class="prod_info " ng-if="prod.product_sale_price>0">{{prod.product_sale_price}}</span>
                     <span class="prod_info">{{prod.product_price_show}}</span>                
                 </a>
-                <button class="btn_add_cart w3-red" ng-click="addcard(prod)">Thêm vào giỏ</button>
+                <button class="btn_add_cart " ng-click="addcard(prod)">Thêm vào giỏ</button>
             </div>            
         </div>
     </div>
@@ -123,7 +123,7 @@
                         <span class="prod_info" ng-if="prod.product_sale_price>0">{{prod.product_sale_price}}</span>
                         <span class="prod_info">{{prod.product_price}}</span>                   
                     </a>      
-                    <button class="btn_add_cart w3-red" ng-click="addcard(prod)">Thêm vào giỏ</button>
+                    <button class="btn_add_cart" ng-click="addcard(prod)">Thêm vào giỏ</button>
                 </div>      
             </div>
         </div>

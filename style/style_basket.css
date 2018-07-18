@@ -5,7 +5,7 @@
     z-index: 1;
     top: 0;
     right: 0;
-    background-color: antiquewhite;
+    background-color: white;
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
@@ -28,6 +28,39 @@
     position: absolute;
     top: 0;
     right: 25px;
-    font-size: 36px;
+    font-size: 25px;
     margin-left: 50px;
+}
+
+.basket-detail {
+    padding-left: 20px;
+    padding-right: 20px; 
+}
+
+.basket-title {
+    text-transform: uppercase;
+    color: #ca8a8a;
+    font-weight: 600;
+}
+.total-basket {
+    text-align: right;
+    font-size: 20px;
+    color: #b97e7e;
+}
+
+.b-p-qty {
+    width: 46px;
+    text-align: center;
+}
+.btn-checkout {
+    padding: 10px 30px;
+    text-transform: uppercase;
+    background-color: lightcoral;
+    color: #fff;
+}
+
+@media only screen and (max-width: 1000px) {
+    .total-basket{
+        font-size: 30px;
+    }
 }

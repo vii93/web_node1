@@ -59,12 +59,18 @@ li a {
     text-align: center;
     padding: 0px 16px;
     text-decoration: none;
+    color: gray;
 }
 
 li a:hover {
     background-color:antiquewhite;
     border-radius: 80px;
+    color: gray;
+}
+
+a:hover {
     text-decoration: none;
+    color: lightcoral;
 }
 
 .nav {
@@ -76,10 +82,18 @@ li a:hover {
 
 }
 
+p {
+    color: darkslategrey;
+}
+span {
+    color: darkslategrey;
+}
+
 .main-screen {
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 10px;
 }
 .mobile-screen{
     display: none;
@@ -92,7 +106,6 @@ li a:hover {
 
 
 .footer {
-    position: relative;
     margin: 0 auto;
     margin-top: 30px;
 }
@@ -180,6 +193,7 @@ li a:hover {
 	margin: auto;
     height: 700px;
     margin-bottom: 10px;
+    margin-top: 10px;
 }
 .img_list{
 	width:100px;
@@ -195,7 +209,7 @@ li a:hover {
 
 .prod_action {
     display: inline-block;
-    width: 400px;
+    width: 55%;
 }
 
 .content-title{
@@ -346,11 +360,14 @@ a {
     display: grid;
     text-align: center;
     margin: auto;
+    background-color: lightcoral;
+    color: white;
 }
 
 .prod_detail{
     width: 300px;
     height: 50px;
+    margin-left: 100px;
 }
 .address_delivery {
     display: grid; 
