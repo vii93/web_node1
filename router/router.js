@@ -519,23 +519,5 @@ module.exports = function (app) {
         });
     });
 
-    app.post('/admin/uploadImage', function(req,res) {
-        var form = new formidable.IncomingForm();
-        console.log(req,1)
-        form.parse(req, function (err, fields, files) {
-            console.log(files,2)
-        //   var oldpath =  "D:/"+ files.filetoupload.name;
-        //   var newpath = 'D:/test/' + files.filetoupload.name;
-        //   fs.copyFile(oldpath, newpath, function (err) {
-        //     if (err) throw err;
-        //     res.write('File uploaded and moved!');
-        //     res.end();
-        //   });
-            res.Redirect("")
-        });
-    });
 
 }
-var formidable = require("formidable");
-var fs = require('fs');
-var path = require('path');
