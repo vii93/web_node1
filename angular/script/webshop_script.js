@@ -2,11 +2,13 @@ $(document).ready(function(){
   $(".main_cat").click(function() {
     $(".main_type").show();
   });
-  $('body').click(function() {
+  $('body').click(function(e) {
     if($("#navbar_mobile").width() > 0)
       close_mobile_nav();
-    if($("#mySidenav").width() > 0) {
-      closeNav()
+    if(!$(e.target).hasClass('b-p-qty') && !$(e.target).hasClass('delete-item')) {
+      if($("#mySidenav").width() > 0) {
+        closeNav()
+      }
     }
   });
   $('#search').keypress(function(event){

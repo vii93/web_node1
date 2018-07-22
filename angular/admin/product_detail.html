@@ -52,9 +52,9 @@
             <input style="width: 400px;" onchange="update_field(this,'product_detail')" name="img_url3" value="{{prod.img_url3}}"></input></br>
             <p style="width: 400px;text-align: center; ">Image ALT3</p>
             <input style="width: 400px;" onchange="update_field(this,'product_detail')" name="img_alt3" value="{{prod.img_alt4}}"></input></br>
-            <form action="/admin/uploadImage" method="post" enctype="multipart/form-data">
-                <input type="file" name="filetoupload"><br>
-                <input type="submit">
+            <form id="upload_frm" action="/admin/uploadImage" method="post" onsubmit="return true" enctype="multipart/form-data">
+                <input type="file" name="filetoupload" id="filetoupload"><br>
+                <button onclick="upload()">Submit</button>
             </form>
             <hr/>
         </div>

@@ -1,6 +1,7 @@
 $(function(){
   if(document.getElementById("editor"))
     CKEDITOR.replace(document.querySelector('#editor'))
+
 });
 
 function load_editor() {
@@ -52,4 +53,25 @@ function submit_db_change() {
       else $("#result").val("False!");
     }
   });
+}
+
+function upload() {
+  var path = document.getElementById("filetoupload").files[0]
+  // path.webkitRelativePath = $("#filetoupload").val();
+  // // $("#upload_frm").attr('action', '/admin/uploadImage/'+path);
+  // console.log(path)
+  $("#upload_frm").submit()
+  // var oldP =  $("#filetoupload").val();
+  // var formData = new FormData();
+  // formData.append("file",path,path.name)
+  // $.ajax({
+  //   url: '/admin/uploadImage',
+  //   type: 'POST',
+  //   data: {"frm":formData,"old_path":oldP,"new_path":"D:/test"},
+  //   processData: false,
+  //   contentType: false,
+  //   success: function(data){
+  //       console.log('upload successful!');
+  //   }
+  // });
 }
