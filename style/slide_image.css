@@ -145,7 +145,7 @@ img {vertical-align: middle;}
 @media only screen and (max-width: 1000px) {
     .banner_home{
         margin-top: 0px;
-        padding-top: 270px;
+        padding-top: 150px;
         height: 570px;
     }
     .w3-section, .w3-code{

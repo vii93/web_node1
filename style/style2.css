@@ -1,10 +1,61 @@
 @media only screen and (max-width: 1000px) {
+  .qty {
+    width:550px;
+    padding: 20px;
+  }
+  .input-qty {
+    width: 104px;
+    height: 51px;
+    float:left;
+    text-align:center;
+  }
+  .product_name {
+    font-size: 40px;
+    padding: 20px;
+  }
+  .sort-desc-n-sku {
+    padding: 20px;
+  }
+  .text_prod {
+    font-size: 40px;
+    padding: 20px;
+  }
+  .checkout-btn {
+    padding-right: 20px;
+  }
+  .total-price {
+    padding-right: 20px;
+  }
+  .empty-basket {
+    font-size: 20px;
+  }
+  .continue-shopping {
+    width: 300px;
+    margin: auto;
+  }
+  .continue-shopping-btn {
+    background: white;
+    border: solid 1px lightcoral;
+    font-size: 20px;
+    width: 300px;
+    height: 50px;
+    cursor: pointer;
+  }
+  .prod_info.name {
+    height: 90px;
+  }
+  .plus-qty{
+    width: 30px;
+  }
+  .minus-qty{
+    width: 30px;
+  }
   .img_list{
     width: 30%;
   }
   .img_prod{
     width: 100%;
-    padding-top: 200px;
+    padding-top: 220px;
   }
   .checkout-page{
     margin-top: 0px;
@@ -48,6 +99,8 @@
   }
   .inline{
     width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
   }
   .img_list {
     width: 30%;
@@ -61,6 +114,7 @@
   }
   .prod_top {
     padding-top: 200px;
+    height: 700px;
     display: contents;
   }
   .main-screen {
@@ -68,7 +122,7 @@
   }
   .cart_icon {
     margin-left: 85%;
-    margin-top: 5%;
+    margin-top: 1%;
     width: 100px;
     height: 100px;
   }
@@ -78,18 +132,20 @@
   .prod_detail{
     width: 500px;
     height: 100px;
+    margin: auto;
   }
   .logo_mobile {
-    margin: 15px;
+    /* margin: 15px; */
   }
   .nav_bar_mobile {
-    font-size:120px;
+    font-size:90px;
     cursor:pointer;
     color:black;
     background: white;
+    padding-left: 30px;
   }
   img.logo_mobile {
-    width: 150px;
+    width: 140px;
   }
   .w3-tooltip, .w3-display-container{
     position: unset;
@@ -138,7 +194,8 @@
     width: 29%;
   }
   .prod_cell{
-    width: 45%;
+    width: 47%;
+    margin: 14px;
   }
   .img_prod_cell{
     width: 100%;
@@ -151,7 +208,6 @@
     margin-left: 0px; 
     width: 100%;
     margin: auto;
-    margin-top: 70px;
   }
 }
 

@@ -3,34 +3,38 @@
             
 </div>
 <div id="mySidenav" class="sidenav">
-    <a class="closebtn" onclick="closeNav()">&times;</a>
-    <span class="basket-title">Giỏ Hàng Của Bạn</span>  
-    <hr/>
-    <div ng-repeat="b in basket">
-        <div class="basket-detail">
-            <span>
-                <img ng-src="{{b.img_url}}" style="width: 50px" alt="{{b.img_url}}">
-            </span>
-            <span>{{b.product_name}}</span>
-            <br/>
-            <span style="padding-left:5px;">{{b.product_price_show}}</span>
-            <span style="padding-left:5px;">*</span>
-            <span><input class="b-p-qty" ng-change="update_qty(b.product_id,b.qty)" type="number" name="qty" id="qty" ng-model="b.qty"></span>
-            <span style="padding-left:5px;">=</span>
-            <span style="padding-left:5px;">{{b.total_item_show}} </span>
-            <span style="padding-left:5px;" ng-click="delete_item(b.product_id)"><img src="/delete_icon.png" alt=""></span>
-            <hr/>
-        </div>
-    </div>      
-    <div class="total-basket">
-        <span class="total-basket">Tổng tiền:</span>
-        <span class="total-basket">{{total_amount_show}} </span>  
-        <hr/>
-    </div>
+	<a class="closebtn" onclick="closeNav()">&times;</a>
+	<span class="basket-title" ng-if="total_amount > 0">Giỏ Hàng Của Bạn</span>  
+	<hr/>
+	<div ng-repeat="b in basket">
+		<div class="basket-detail">
+			<span>
+				<img ng-src="{{b.img_url}}" style="width: 50px" alt="{{b.img_url}}">
+			</span>
+			<span>{{b.product_name}}</span>
+			<br/>
+			<span style="padding-left:5px;">{{b.product_price_show}}</span>
+			<span style="padding-left:5px;">*</span>
+			<span><input class="b-p-qty" ng-change="update_qty(b.product_id,b.qty)" type="number" name="qty" id="qty" ng-model="b.qty"></span>
+			<span style="padding-left:5px;">=</span>
+			<span style="padding-left:5px;">{{b.total_item_show}} </span>
+			<span style="padding-left:5px;" ng-click="delete_item(b.product_id)"><img class="delete-item" src="/delete_icon.png" alt=""></span>
+			<hr/>
+		</div>
+	</div>      
+	<div class="total-basket" ng-if="total_amount > 0">
+		<span class="total-basket">Tổng tiền:</span>
+		<span class="total-basket total-price">{{total_amount_show}} </span>  
+		<hr/>
+	</div>
 
-    <div style="float: right; display: grid;margin-bottom: 50px;">
-        <button class="btn-checkout" onclick="location.href='#!/checkout'">Checkout</button>
-    </div>
+	<div class="checkout-btn" ng-if="total_amount > 0">
+		<button class="btn-checkout" onclick="location.href='#!/checkout'">Thanh Toán</button>
+	</div>
+	<div ng-if="total_amount == 0" style="text-align: center;"><span class="empty-basket">Giỏ hàng của bạn đang trống</span></div>
+	<br ng-if="total_amount == 0">
+	<br ng-if="total_amount == 0">
+	<div ng-if="total_amount == 0" class="continue-shopping"><button class="continue-shopping-btn">Tiếp tục mua sắm</button></div>
 </div>
 
 <div class="w3-content w3-section banner_home">
@@ -113,7 +117,7 @@
                         <span class="prod_info name">{{prod.product_name}}</span>
                         <hr class="hr"/>
                         <span class="prod_info" ng-if="prod.product_sale_price>0">{{prod.product_sale_price}}</span>
-                        <span class="prod_info">{{prod.product_price}}</span>                   
+                        <span class="prod_info">{{prod.product_price_show}}</span>                   
                     </a>      
                     <button class="btn_add_cart" ng-click="addcard(prod)">Thêm vào giỏ</button>
                 </div>      

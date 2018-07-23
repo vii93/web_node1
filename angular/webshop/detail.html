@@ -4,7 +4,7 @@
 </div>
 <div id="mySidenav" class="sidenav">
 	<a class="closebtn" onclick="closeNav()">&times;</a>
-	<span class="basket-title">Giỏ Hàng Của Bạn</span>  
+	<span class="basket-title" ng-if="total_amount > 0">Giỏ Hàng Của Bạn</span>  
 	<hr/>
 	<div ng-repeat="b in basket">
 		<div class="basket-detail">
@@ -22,15 +22,19 @@
 			<hr/>
 		</div>
 	</div>      
-	<div class="total-basket">
+	<div class="total-basket" ng-if="total_amount > 0">
 		<span class="total-basket">Tổng tiền:</span>
-		<span class="total-basket">{{total_amount_show}} </span>  
+		<span class="total-basket total-price">{{total_amount_show}} </span>  
 		<hr/>
 	</div>
 
-	<div style="float: right; display: grid;margin-bottom: 50px;">
-		<button class="btn-checkout" onclick="location.href='#!/checkout'">Checkout</button>
+	<div class="checkout-btn" ng-if="total_amount > 0">
+		<button class="btn-checkout" onclick="location.href='#!/checkout'">Thanh Toán</button>
 	</div>
+	<div ng-if="total_amount == 0" style="text-align: center;"><span class="empty-basket">Giỏ hàng của bạn đang trống</span></div>
+	<br ng-if="total_amount == 0">
+	<br ng-if="total_amount == 0">
+	<div ng-if="total_amount == 0" class="continue-shopping"><button class="continue-shopping-btn">Tiếp tục mua sắm</button></div>
 </div>
 
 <div class="prod_top">
@@ -47,7 +51,7 @@
 	<div class="prod_action">
 		<div style="height:30px"></div>
 		<p class="product_name">{{prod.product_name}}</p>
-		<div>
+		<div class="sort-desc-n-sku">
 			<p>SKU: {{prod.product_id}}</p>
 			<p ng-bind-html="trustAsHtml(prod.prod_desc)"></p>
 		</div>
@@ -57,15 +61,15 @@
 		</div>
 		</br>
 		</br>
-		<div style="width:550px">
+		<div class="qty">
 			<span style="float:left;margin-right:10px;"> Số lượng: </span>
-			<div style="width:20px;float:left;">
+			<div class="plus-qty">
 				<a ng-click="minus_qty()" ><img src="/minus_icon.png" alt=""></a>
 			</div>
-			<div style="width:50px;height:22px;float:left;border: solid 1px gray;margin:5px;text-align:center;">
-				<input type="number" min="1" max="20" required style="width:50px;height:22px;" ng-model="detail_qty" ng-init="detail_qty = 1"></input>
+			<div>
+				<input type="number" min="1" max="20" required class="input-qty" ng-model="detail_qty" ng-init="detail_qty = 1"></input>
 			</div>
-			<div style="width:20px;float:left;">
+			<div class="minus-qty">
 				<a ng-click="plus_qty()"><img src="/add_icon.png" alt=""></a>
 			</div>
 		</div>
@@ -80,26 +84,25 @@
 <div class="w3-container prod_long_desc">
 	<div class="w3-row">
 		<a href="" onclick="openCity(event, 'Description');">
-			<div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding w3-border-pale-red">Description</div>
+			<div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding w3-border-pale-red">CHI TIẾT</div>
 		</a>
 		<a href="" onclick="openCity(event, 'Review');">
-			<div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding">Review</div>
+			<div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding">ĐÁNH GIÁ</div>
 		</a>
 		<a href="" onclick="openCity(event, 'Question');">
-			<div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding">Question</div>
+			<div class="w3-third tablink w3-bottombar w3-hover-light-grey w3-padding">CÂU HỎI</div>
 		</a>
 	</div>
 
 	<div id="Description" class="w3-container city">
-		<h2>Description</h2>
 		<p ng-bind-html="trustAsHtml(prod.long_desc)"></p>
 	</div>
 
 	<div id="Review" class="w3-container city" style="display:none">
-		<h2>Review</h2> 
+		
 	</div>
 
 	<div id="Question" class="w3-container city" style="display:none">
-		<h2>Question</h2>
+		
 	</div>
 </div>
