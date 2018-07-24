@@ -7,9 +7,15 @@ var nodemailer = require('nodemailer');
 module.exports = function (app) {
     app.get('/api/show', function (req, res) {
         pool.getConnection(function (err, con) {
-            if (err) throw err
+            if (err) {
+                console.log(err);
+                return;
+            }
             con.query("select * from w_data;", function (err, result) {
-                if (err) throw err;
+                if (err) {
+                    console.log(err);
+                    return;
+                }
                 res.json(result);
                 con.end();
             });
@@ -20,7 +26,10 @@ module.exports = function (app) {
 
     app.get('/admin/list_product', function (req, res) {
         pool.getConnection(function (err, con) {
-            if (err) throw err
+            if (err) {
+                console.log(err);
+                return;
+            }
             con.query("select * from product_detail;", function (err, result) {
                 if (err) { con.end(); console.error(err); return; }
                 res.json(result);
@@ -39,11 +48,14 @@ module.exports = function (app) {
             where_field = "product_type_id";
         var sql = "update " + req.params.tb + " set " + req.params.col + " = '" + encodeURI(req.params.val) + "' where " + where_field + "=" + req.params.id+";";
         pool.getConnection(function (err, con) {
-            if (err) throw err
+            if (err) {
+                console.log(err);
+                return;
+            }
             con.query(sql, function (err, result) {
                 var result = { "status": true, msg: "" }
                 if (err) {
-                    throw err;
+                    console.log(err);
                     result.status = false;
                     result.msg = err.sqlMessage;
                 }
@@ -56,11 +68,14 @@ module.exports = function (app) {
     app.post('/admin/update_db/:val', function (req, res) {
         var sql = req.params.val;
         pool.getConnection(function (err, con) {
-            if (err) throw err
+            if (err) {
+                console.log(err);
+                return;
+            }
             con.query(sql, function (err, result) {
                 var result1 = { "status": true, msg: result }
                 if (err) {
-                    throw err;
+                    console.log(err);
                     result1.status = false;
                     result1.msg = err.sqlMessage;
                 }
@@ -72,7 +87,10 @@ module.exports = function (app) {
 
     app.post('/admin/add_new/:tb/:field_id', function (req, res) {
         pool.getConnection(function (err, con) {
-            if (err) throw err
+            if (err) {
+                console.log(err);
+                return;
+            }
             con.query("insert into " + req.params.tb + "(" + req.params.field_id + ") select ifnull(max(" + req.params.field_id + "),0)+1 from " + req.params.tb, function (err, result) {
                 if (err) {
                     console.log(err);
@@ -86,7 +104,10 @@ module.exports = function (app) {
 
     app.get('/admin/list_main_cate', function (req, res) {
         pool.getConnection(function (err, con) {
-            if (err) throw err
+            if (err) {
+                console.log(err);
+                return;
+            }
             con.query("select * from main_category;", function (err, result) {
                 if (err) { con.end(); console.error(err); return; }
                 res.json(result);
@@ -98,7 +119,10 @@ module.exports = function (app) {
     app.get('/admin/get_main_cat/:id', function (req, res) {
         var params = (req.params.id).replace(":", "");
         pool.getConnection(function (err, con) {
-            if (err) throw err
+            if (err) {
+                console.log(err);
+                return;
+            }
             con.query("select * from main_category where main_cate_id=" + params, function (err, result) {
                 if (err) { con.end(); console.error(err); return; }
                 res.json(result);
@@ -109,7 +133,10 @@ module.exports = function (app) {
 
     app.get('/admin/list_prod_cate', function (req, res) {
         pool.getConnection(function (err, con) {
-            if (err) throw err
+            if (err) {
+                console.log(err);
+                return;
+            }
             con.query("select * from product_category;", function (err, result) {
                 if (err) { con.end(); console.error(err); return; }
                 res.json(result);
@@ -121,7 +148,10 @@ module.exports = function (app) {
     app.get('/admin/get_prod_cat/:id', function (req, res) {
         var params = (req.params.id).replace(":", "");
         pool.getConnection(function (err, con) {
-            if (err) throw err
+            if (err) {
+                console.log(err);
+                return;
+            }
             con.query("select * from product_category where product_cate_id=" + params, function (err, result) {
                 if (err) { con.end(); console.error(err); return; }
                 res.json(result);
@@ -132,7 +162,10 @@ module.exports = function (app) {
 
     app.get('/admin/list_prod_type', function (req, res) {
         pool.getConnection(function (err, con) {
-            if (err) throw err
+            if (err) {
+                console.log(err);
+                return;
+            }
             con.query("select * from product_type;", function (err, result) {
                 if (err) { con.end(); console.error(err); return; }
                 res.json(result);
@@ -145,7 +178,8 @@ module.exports = function (app) {
         var params = (req.params.id).replace(":", "");
         pool.getConnection(function (err, con) {
             if (err) {
-                throw err;
+                console.log(err);
+                return;
             }
             con.query("select * from product_type where product_type_id=" + params, function (err, result) {
                 if (err) { con.end(); console.error(err); return; }
@@ -158,7 +192,8 @@ module.exports = function (app) {
     app.get('/api/new_prod', function (req, res) {
         pool.getConnection(function (err, con) {
             if (err) {
-                throw err;
+                console.log(err);
+                return;
             }
             con.query("select product_id,product_name,seo_url,img_url,img_alt,product_price,product_sale_price from product_detail where active=1 order by product_id desc limit 10;", function (err, result) {
                 if (err) { con.end(); console.error(err); return; }
@@ -169,7 +204,10 @@ module.exports = function (app) {
     });
     app.get('/api/best_sell', function (req, res) {
         pool.getConnection(function (err, con) {
-            if (err) throw err
+            if (err) {
+                console.log(err);
+                return;
+            }
             con.query("select product_id,product_name,seo_url,img_url,img_alt,product_price,product_sale_price from product_detail where active=1 order by product_id  limit 50;", function (err, result) {
                 if (err) { con.end(); console.error(err); return; }
                 res.json(result);
@@ -180,7 +218,10 @@ module.exports = function (app) {
 
     app.get('/admin/get_prod_detail/:id', function (req, res) {
         pool.getConnection(function (err, con) {
-            if (err) throw err
+            if (err) {
+                console.log(err);
+                return;
+            }
             var params = (req.params.id).replace(":", "");
             con.query("select * from product_detail where product_id=" + params, function (err, result) {
                 if (err) { con.end(); console.error(err); return; }
@@ -192,7 +233,7 @@ module.exports = function (app) {
 
     app.get('/admin/list_order/:id', function (req, res) {
         pool.getConnection(function (err, con) {
-            if (err) throw err
+            if (err) {                 console.log(err);                 return;             }
             var params = (req.params.id).replace(":", "");
             con.query("select * from order_edit where order_id=" + params, function (err, result) {
                 if (err) { con.end(); console.error(err); return; }
@@ -205,10 +246,11 @@ module.exports = function (app) {
     app.get('/admin/list_order', function (req, res) {
         var sql = "select * from order_edit";
         pool.getConnection(function (err, con) {
-            if (err) throw err
+            if (err) {                 console.log(err);                 return;             }
             con.query(sql, function (err, result) {
                 if (err) {
-                    throw err;
+                    console.log(err);
+                    return;
                 }
                 res.json(result);
                 con.end();
@@ -221,10 +263,11 @@ module.exports = function (app) {
         var sql = "select tb1.*,tb2.product_name,tb2.order_date from order_detail tb1 left join product_detail tb2 on tb1.product_id=tb2.product_id where tb1.order_id="+id;
         console.log(sql)
         pool.getConnection(function (err, con) {
-            if (err) throw err
+            if (err) {                 console.log(err);                 return;             }
             con.query(sql, function (err, result) {
                 if (err) {
-                    throw err;
+                    console.log(err);
+                    return;
                 }
                 res.json(result);
                 con.end();
@@ -234,7 +277,7 @@ module.exports = function (app) {
 
     app.get('/api/list_cat_n_type', function (req, res) {
         pool.getConnection(function (err, con) {
-            if (err) throw err
+            if (err) {                 console.log(err);                 return;             }
             var kq = { "cat": [], "type": [] };
             con.query("select product_cate_name,product_cate_id,seo_url from product_category where active=1", function (err, result) {
                 if (err) { con.end(); console.error(err); return; }
@@ -250,7 +293,7 @@ module.exports = function (app) {
     });
     app.get('/api/get_fast_search', function (req, res) {
         pool.getConnection(function (err, con) {
-            if (err) throw err
+            if (err) {                 console.log(err);                 return;             }
             con.query("select * from product_detail where active=1 limit 50", function (err, result) {
                 if (err) { con.end(); console.error(err); return; }
                 res.json(result);
@@ -269,7 +312,7 @@ module.exports = function (app) {
             sql_where = " and product_name like ('%"+key+"%') or prod_desc like('%"+key+"%') or long_desc like ('%"+key+"%');"
         }
         pool.getConnection(function (err, con) {
-            if (err) throw err
+            if (err) {                 console.log(err);                 return;             }
             var sql = "select * from product_detail where active=1 "+sql_where;
             con.query(sql, function (err, result) {
                 if (err) { con.end(); console.error(err); return; }
@@ -281,7 +324,7 @@ module.exports = function (app) {
 
     app.get('/api/product_detail/:url', function (req, res) {
         pool.getConnection(function (err, con) {
-            if (err) throw err
+            if (err) {                 console.log(err);                 return;             }
             var param = req.params.url.replace(":", "");
             con.query("select * from product_detail where seo_url='" + param + "'", function (err, result) {
                 if (err) { con.end(); console.error(err); return; }
@@ -293,7 +336,7 @@ module.exports = function (app) {
 
     app.post('/api/addcard/:ctk_id/:id/:qty', function (req, res) {
         pool.getConnection(function (err, con) {
-            if (err) throw err
+            if (err) {                 console.log(err);                 return;             }
             var id = (req.params.id).replace(":", "")
             var ctk_id = (req.params.ctk_id).replace(":", "")
             var qty = (req.params.qty).replace(":", "")
@@ -318,7 +361,7 @@ module.exports = function (app) {
     });
     app.post('/api/change_qty/:ctk_id/:id/:qty', function (req, res) {
         pool.getConnection(function (err, con) {
-            if (err) throw err
+            if (err) {                 console.log(err);                 return;             }
             var ctk_id = (req.params.ctk_id).replace(":", "")
             var id = (req.params.id).replace(":", "")
             var qty = (req.params.qty).replace(":", "")
@@ -332,7 +375,7 @@ module.exports = function (app) {
     });
     app.get('/api/get_basket/:ctk_id', function (req, res) {
         pool.getConnection(function (err, con) {
-            if (err) throw err
+            if (err) {                 console.log(err);                 return;             }
             var ctk_id = (req.params.ctk_id).replace(":", "")
             con.query("select tb1.product_id,tb2.product_name,tb2.seo_url,tb2.img_url,tb2.img_alt,tb2.product_price,tb2.product_sale_price,tb1.qty from basket_detail tb1 left join product_detail tb2 on tb1.product_id=tb2.product_id where tb1.ctk_id='" + ctk_id + "'", function (err, result) {
                 if (err) { con.end(); console.error(err); return; }
@@ -343,7 +386,7 @@ module.exports = function (app) {
     });
     app.get("/api/get_basket/:id/:ctk_id", function (req, res) {
         pool.getConnection(function (err, con) {
-            if (err) throw err
+            if (err) {                 console.log(err);                 return;             }
             var id = (req.params.id).replace(":", "");
             var ctk_id = (req.params.ctk_id).replace(":", "")
             var sql = "select tb1.product_id,tb2.product_name,tb2.seo_url,tb2.img_url,tb2.img_alt,tb2.product_price,tb2.product_sale_price,tb1.qty from basket_detail tb1 join product_detail tb2 on tb1.product_id=tb2.product_id where tb1.product_id='" + id + "' and tb2.active=1 and tb1.ctk_id = '" + ctk_id + "'";
@@ -357,7 +400,7 @@ module.exports = function (app) {
 
     app.get('/admin/list_discount', function (req, res) {
         pool.getConnection(function (err, con) {
-            if (err) throw err
+            if (err) {                 console.log(err);                 return;             }
             con.query("select * from discount_code;", function (err, result) {
                 if (err) { con.end(); console.error(err); return; }
                 res.json(result);
@@ -368,7 +411,7 @@ module.exports = function (app) {
 
     app.get('/api/remove_basket/:ctk_id', function (req, res) {
         pool.getConnection(function (err, con) {
-            if (err) throw err
+            if (err) {                 console.log(err);                 return;             }
             var ctk_id = req.params.ctk_id.replace(":", "");
             con.query("delete from basket_detail where ctk_id='" + ctk_id + "';", function (err, result) {
                 if (err) { con.end(); console.error(err); return; }
@@ -380,7 +423,7 @@ module.exports = function (app) {
 
     app.post('/api/delete_item/:id/:ctk_id', function (req, res) {
         pool.getConnection(function (err, con) {
-            if (err) throw err
+            if (err) {                 console.log(err);                 return;             }
             var ctk_id = req.params.ctk_id.replace(":", "");
             var id = req.params.id.replace(":", "");
             con.query("delete from basket_detail where ctk_id='" + ctk_id + "' and product_id='" + id + "';", function (err, result) {
@@ -393,7 +436,7 @@ module.exports = function (app) {
 
     app.get('/api/send_email', function (req, res) {
         pool.getConnection(function (err, con) {
-            if (err) throw err
+            if (err) {                 console.log(err);                 return;             }
             var params = req.query;
             var basket = JSON.parse(params.basket);
             if (params.cust)
@@ -509,7 +552,7 @@ module.exports = function (app) {
 
     app.get('/api/search/order_by:key', function (req, res) {
         pool.getConnection(function (err, con) {
-            if (err) throw err
+            if (err) {                 console.log(err);                 return;             }
             var param = req.params.key.replace(":", "");
             con.query("select * from product_detail order by product_id  " + param , function (err, result) {
                 if (err) { con.end(); console.error(err); return; }
