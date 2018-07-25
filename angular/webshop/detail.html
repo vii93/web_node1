@@ -44,7 +44,7 @@
 		</div>
 		<div>
 			<div ng-repeat="imgs in list_img">
-				<a  ng-click="show_big_img(imgs);"><img class="img_list inline" ng-src="{{imgs.src}}" alt="{{imgs.alt}}"/></a>
+				<a ng-if="imgs.src" ng-click="show_big_img(imgs);"><img class="img_list inline" ng-src="{{imgs.src}}" alt="{{imgs.alt}}"/></a>
 			</div>
 		</div>
 	</span>

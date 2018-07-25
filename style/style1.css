@@ -240,8 +240,9 @@ span {
     margin-top: 10px;
 }
 .img_list{
-	width:100px;
-	margin:10px 8px 0px 8px;
+    width:100px;
+    height: 100px;
+	margin:10px 8px 10px 8px;
 }
 .product_name{
 	font-size: 30px;

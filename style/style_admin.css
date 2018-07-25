@@ -62,7 +62,6 @@ tr:nth-child(even) {
     float: left;
 }
 
-.ck-content{
-    height: 600px;
+.content_area{
+    width: 700px;
 }
-

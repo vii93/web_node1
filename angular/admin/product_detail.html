@@ -7,15 +7,19 @@
 
 <div style="margin-top: 20px;">
     <div style="width: 100%; margin-right: 10px;margin-left: 10px;" class="left">
+        <div>
+            <p style="width: 400px;text-align: center;">ID: {{prod.product_id}}</p>
+            <input name="field_id" type="hidden" value="{{prod.product_id}}"/>
+        </div>
         <div ng-if="prod.active == '1'">
             <input type="checkbox" name="active" id="active" checked  onchange="update_field(this,'product_detail')" />Active
+            <p>Đã Mua: {{prod.product_ordered}}</p>
         </div>
         <div ng-if="prod.active != '1'">
             <input type="checkbox" name="active" id="active"  onchange="update_field(this,'product_detail')" />Active
+            <p>Đã Mua: {{prod.product_ordered}}</p>
         </div>
-        <div style="float: left;     margin-right: 30px;">
-            <p style="width: 400px;text-align: center;">ID: {{prod.product_id}}</p>
-            <input name="field_id" type="hidden" value="{{prod.product_id}}"/>
+        <div style="float: left; margin-right: 30px;">
             <p style="width: 400px;text-align: center;">Name</p>
             <input style="width: 400px;" onchange="update_field(this,'product_detail')" name="product_name" value="{{prod.product_name}}"></input></br>
             <p style="width: 400px;text-align: center;">Price</p>
@@ -29,6 +33,15 @@
             <p style="width: 400px;text-align: center; ">Brand</p>
             <input style="width: 400px;" onchange="update_field(this,'product_detail')" name="brand" value="{{prod.brand}}"></input></br>
             <hr/>
+        </div>
+        <div style="float: left; margin-right: 30px;">
+            <p style="width: 400px;text-align: center; ">Search Field</p>
+            <input style="width: 400px;" onchange="update_field(this,'product_detail')" name="search_field" value="{{prod.search_field}}"></input></br>
+            <p style="width: 400px;text-align: center; ">Giá mua</p>
+            <input style="width: 400px;" onchange="update_field(this,'product_detail')" name="inprice" value="{{prod.inprice}}"></input></br>
+            <p style="width: 400px;text-align: center; ">Tồn Kho</p>
+            <input style="width: 400px;" onchange="update_field(this,'product_detail')" name="stock_count" value="{{prod.stock_count}}"></input></br>
+           <hr/>
         </div>
         <div style="float: left; margin-right: 30px;">
             <p style="width: 400px;text-align: center; ">SEO URL</p>
@@ -52,10 +65,7 @@
             <input style="width: 400px;" onchange="update_field(this,'product_detail')" name="img_url3" value="{{prod.img_url3}}"></input></br>
             <p style="width: 400px;text-align: center; ">Image ALT3</p>
             <input style="width: 400px;" onchange="update_field(this,'product_detail')" name="img_alt3" value="{{prod.img_alt4}}"></input></br>
-            <form id="upload_frm" action="/admin/uploadImage" method="post" onsubmit="return true" enctype="multipart/form-data">
-                <input type="file" name="filetoupload" id="filetoupload"><br>
-                <button onclick="upload()">Submit</button>
-            </form>
+           
             <hr/>
         </div>
         <div style="float: left; margin-right: 30px;">

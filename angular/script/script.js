@@ -1,11 +1,12 @@
 $(function(){
   if(document.getElementById("editor"))
-    CKEDITOR.replace(document.querySelector('#editor'))
+    load_editor()
 
 });
 
 function load_editor() {
-  CKEDITOR.replace(document.querySelector('#editor'))
+  CKEDITOR.replace(document.querySelector('#editor'),{height: '600px'})
+  
 }
 
 function add_new(tb,field_id) {
@@ -31,13 +32,24 @@ function update_field(obj,tb,id) {
   if($(obj).attr("name") == "active"){
     val = Number($(obj).is(":checked"))
   }
+  if(!val) val = null;
   $.ajax({
     type: 'POST',
     url: '/admin/update_prod/'+$(obj).attr("name")+'/'+encodeURIComponent(val)+'/'+id+'/'+tb,
     success: function(res_data) {
-      if(res_data.status)
-        alert("Success!")
-      else alert("False!")
+      if(res_data.status) {
+        $(obj).css("background","lightgreen")
+        setTimeout(function(){ 
+          $(obj).css("background","none")
+        }, 1000);
+        
+      } else {
+        $(obj).css("background","red")
+        $(obj).val(obj.defaultValue);
+        setTimeout(function(){ 
+          $(obj).css("background","none")
+        }, 1000);
+      }
     }
   });
 }
@@ -53,25 +65,4 @@ function submit_db_change() {
       else $("#result").val("False!");
     }
   });
-}
-
-function upload() {
-  var path = document.getElementById("filetoupload").files[0]
-  // path.webkitRelativePath = $("#filetoupload").val();
-  // // $("#upload_frm").attr('action', '/admin/uploadImage/'+path);
-  // console.log(path)
-  $("#upload_frm").submit()
-  // var oldP =  $("#filetoupload").val();
-  // var formData = new FormData();
-  // formData.append("file",path,path.name)
-  // $.ajax({
-  //   url: '/admin/uploadImage',
-  //   type: 'POST',
-  //   data: {"frm":formData,"old_path":oldP,"new_path":"D:/test"},
-  //   processData: false,
-  //   contentType: false,
-  //   success: function(data){
-  //       console.log('upload successful!');
-  //   }
-  // });
 }
