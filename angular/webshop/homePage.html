@@ -1,5 +1,5 @@
 <div class="cart_info">
-        <img onclick="openNav()" class="cart_icon" src="cart.png" alt="" >
+        <img onerror="this.src='/default.jpg'"onclick="openNav()" class="cart_icon" src="cart.png" alt="Thông tinh giỏ hàng" >
             
 </div>
 <div id="mySidenav" class="sidenav">
@@ -9,7 +9,7 @@
 	<div ng-repeat="b in basket">
 		<div class="basket-detail">
 			<span>
-				<img ng-src="{{b.img_url}}" style="width: 50px" alt="{{b.img_url}}">
+				<img onerror="this.src='/default.jpg'"ng-src="{{b.img_url}}" style="width: 50px" alt="{{b.img_url}}">
 			</span>
 			<span>{{b.product_name}}</span>
 			<br/>
@@ -18,7 +18,7 @@
 			<span><input class="b-p-qty" ng-change="update_qty(b.product_id,b.qty)" type="number" name="qty" id="qty" ng-model="b.qty"></span>
 			<span style="padding-left:5px;">=</span>
 			<span style="padding-left:5px;">{{b.total_item_show}} </span>
-			<span style="padding-left:5px;" ng-click="delete_item(b.product_id)"><img class="delete-item" src="/delete_icon.png" alt=""></span>
+			<span style="padding-left:5px;" ng-click="delete_item(b.product_id)"><img onerror="this.src='/default.jpg'" class="delete-item" src="/delete_icon.png" alt="Xóa sản phẩm khỏi giỏ hàng"></span>
 			<hr/>
 		</div>
 	</div>      
@@ -39,30 +39,30 @@
 
 <div class="w3-content w3-section banner_home">
     <div class="mySlides">
-        <img class="mySlide" src="/banner/banner1.png">
+        <img onerror="this.src='/default.jpg'" alt="Banner 1" class="mySlide" src="/banner/banner1.png">
     </div>
     <div class="mySlides">
-        <img class="mySlide" src="/banner/banner2.png">
+        <img onerror="this.src='/default.jpg'" alt="Banner 2" class="mySlide" src="/banner/banner2.png">
     </div>
     <div class="mySlides">
-        <img class="mySlide" src="/banner/banner3.png">
+        <img onerror="this.src='/default.jpg'" alt="Banner 3" class="mySlide" src="/banner/banner3.png">
     </div>
 </div>
 
 <div class="list_banner" style="clear:  both;">
     <div class="div_small_banner">
         <a href="#!/shop/product_type/sun-cream">
-            <img class="small_banner" src="/small_banner/sb_4.png" alt="Kem chống nắng">
+            <img onerror="this.src='/default.jpg'" class="small_banner" src="/small_banner/sb_4.png" alt="Kem chống nắng">
         </a>
     </div>
     <div class="div_small_banner">
         <a href="#!/shop/product_type/lotion">
-            <img class="small_banner" src="/small_banner/sb_5.png" alt="">
+            <img onerror="this.src='/default.jpg'" class="small_banner" src="/small_banner/sb_5.png" alt="Lotion">
         </a>
     </div>
     <div class="div_small_banner">
         <a href="#!/shop/product_type/mask">  
-            <img class="small_banner" src="/small_banner/sb_6.png" alt="">
+            <img onerror="this.src='/default.jpg'" class="small_banner" src="/small_banner/sb_6.png" alt="Mặt nạ">
         </a>
     </div>
 </div>
@@ -76,7 +76,7 @@
         <div ng-repeat="prod in new_prod">
             <div class="prod_cell">
                 <a href="#!/product_detail/{{prod.seo_url}}" >
-                    <img class="img_prod_cell" ng-src="{{prod.img_url}}" alt="{{prod.img_alt}}">
+                    <img onerror="this.src='/default.jpg'" class="img_prod_cell" ng-src="{{prod.img_url}}" alt="{{prod.img_alt}}">
                     <span class="prod_info name">{{prod.product_name}}</span>
                     <hr class="hr"/>
                     <span class="prod_info " ng-if="prod.product_sale_price>0">{{prod.product_sale_price}}</span>
@@ -90,17 +90,17 @@
 <div class="list_banner" style="clear:  both;">   
     <div class="div_small_banner">
         <a href="#!/shop/product_type/lipstick">
-            <img class="small_banner" src="/small_banner/sb_1.png" alt="">
+            <img onerror="this.src='/default.jpg'" class="small_banner" src="/small_banner/sb_1.png" alt="Son môi">
         </a>
     </div>
     <div class="div_small_banner">
         <a href="#!/shop/product_type/functional-food">
-            <img class="small_banner" src="/small_banner/sb_2.png" alt="">  
+            <img onerror="this.src='/default.jpg'" class="small_banner" src="/small_banner/sb_2.png" alt="Thực phẩm chức năng">  
         </a>
     </div>
     <div class="div_small_banner">
         <a href="#!/shop/product_type/face-wash">
-            <img class="small_banner" src="/small_banner/sb_3.png" alt="">
+            <img onerror="this.src='/default.jpg'" class="small_banner" src="/small_banner/sb_3.png" alt="Sửa rữa mặt">
         </a>
     </div>
 </div>
@@ -113,7 +113,7 @@
             <div ng-repeat="prod in best_sell">
                 <div class="prod_cell">
                     <a href="#!/product_detail/{{prod.seo_url}}" >
-                        <img class="img_prod_cell" ng-src="{{prod.img_url}}" alt="{{prod.img_alt}}">
+                        <img onerror="this.src='/default.jpg'" class="img_prod_cell" ng-src="{{prod.img_url}}" alt="{{prod.img_alt}}">
                         <span class="prod_info name">{{prod.product_name}}</span>
                         <hr class="hr"/>
                         <span class="prod_info" ng-if="prod.product_sale_price>0">{{prod.product_sale_price}}</span>

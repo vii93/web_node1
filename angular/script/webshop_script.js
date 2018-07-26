@@ -5,7 +5,7 @@ $(document).ready(function(){
   $('body').click(function(e) {
     if($("#navbar_mobile").width() > 0)
       close_mobile_nav();
-    if(!$(e.target).hasClass('b-p-qty') && !$(e.target).hasClass('delete-item')) {
+    if(!$(e.target).hasClass('b-p-qty') && !$(e.target).hasClass('delete-item') && !$(e.target).hasClass('btn_add_cart')) {
       if($("#mySidenav").width() > 0) {
         closeNav()
       }
