@@ -5,7 +5,7 @@
     <div ng-repeat="b in basket">
       <div style="display: grid;">
         <div style="float: left;">
-            <img onerror="this.src='/default.jpg'"ng-src="{{b.img_url}}" style="width: 50px" alt="{{b.img_url}}">
+            <img err-src="/default.jpg"  ng-src="{{b.img_url}}" style="width: 50px" alt="{{b.img_url}}">
             {{b.product_name}}
             <span  style="float: right;">{{b.total_item_show}} || <a ng-click="delete_item(b.product_id)">Xóa</a></span> 
             <div  style="float: right; margin-right: 5px;">
